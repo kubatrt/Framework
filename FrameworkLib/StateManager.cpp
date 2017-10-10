@@ -29,10 +29,6 @@ void StateManager::addState(const GameStatePtr& gs)
 	states_.emplace_back(std::move(gs));
 }
 
-/*void StateManager::addState(GameStatePtr&& gs)
-{
-	states_.emplace_back(gs);
-}*/
 
 void StateManager::changeState(std::string stateName)
 {

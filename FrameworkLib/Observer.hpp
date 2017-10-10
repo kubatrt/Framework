@@ -10,20 +10,27 @@
 namespace framework
 {
 
+// prototype
 enum class Event 
 { 
 	KeyDown, 
 	KeyUp, 
 	Word 
 };
-
+// prototype
 class GameEvent
 {
 	std::string	name;
 	size_t id;
 };
 
-class Observer;
+
+class Observer
+{
+public:
+	void notification() const {};
+
+};
 
 class Subject
 {
@@ -43,14 +50,6 @@ public:
 
 private:
 	std::map<Event, std::vector<Observer&> > observers;
-};
-
-
-class Observer
-{
-public:
-	void notification() const {};
-
 };
 
 } // framework

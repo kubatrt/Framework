@@ -1,8 +1,15 @@
 #include <SFML/Graphics.hpp>
 
+typedef unsigned int uint;
+
+constexpr uint WINDOW_WIDTH = 800;
+constexpr uint WINDOW_HEIGHT = 600;
+
+
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
+	sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Framework Test Application");
+	
 	sf::CircleShape shape(100.f);
 	shape.setFillColor(sf::Color::Green);
 
@@ -16,7 +23,10 @@ int main()
 		}
 
 		window.clear();
+		
 		window.draw(shape);
+
+
 		window.display();
 	}
 

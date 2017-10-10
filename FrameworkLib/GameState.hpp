@@ -4,8 +4,8 @@
 #include <vector>
 #include <functional>
 //#include <SFML/Graphics.hpp>
+
 #include "State.hpp"
-//#include "StateManager.hpp"
 
 namespace sf
 {
@@ -16,8 +16,6 @@ namespace sf
 
 namespace framework
 {
-
-
 
 class StateManager;
 class GameState;
@@ -47,7 +45,7 @@ public:
 	virtual void draw(sf::RenderWindow&) {};
 
 protected:
-	StateManager& sm_;	// reference to SM
+	StateManager& sm_;
 	//std::map<sf::Event::EventType, std::function<void(const sf::Event& data)>> eventHandlers_;
 	std::string name_;
 };

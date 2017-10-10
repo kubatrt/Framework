@@ -1,14 +1,20 @@
 #include <iostream>
+#include <cmath>
+#include <vector>
+
 #include "gtest\gtest.h"
-#include "..\FrameworkLib\Arithmetic.hpp"
+
+#include "..\FrameworkLib\Util\Maths.hpp"
 
 using namespace testing;
-using namespace arithmetic;
+using namespace framework;
 
 
-TEST(Arithmetic, Square)
+TEST(MathTest, Collision2d)
 {
-	EXPECT_EQ(square<int>(2,2), 2*2);
+	Point p(1,1);
+	Rect rect(0, 0, 2, 2);
+	EXPECT_TRUE(collision2d(p, rect));
 }
 
 

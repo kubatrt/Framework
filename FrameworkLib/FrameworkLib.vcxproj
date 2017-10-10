@@ -26,13 +26,13 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -117,16 +117,45 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Application.hpp" />
-    <ClInclude Include="Arithmetic.hpp" />
+    <ClInclude Include="Game.hpp" />
+    <ClInclude Include="GUI\Button.hpp" />
+    <ClInclude Include="GUI\Panel.hpp" />
+    <ClInclude Include="GUI\StackMenu.hpp" />
+    <ClInclude Include="GUI\Textbox.hpp" />
+    <ClInclude Include="GUI\Widget.hpp" />
+    <ClInclude Include="IApplication.hpp" />
     <ClInclude Include="GameState.hpp" />
     <ClInclude Include="Observer.hpp" />
+    <ClInclude Include="ResourceManager\ResourceHolder.hpp" />
+    <ClInclude Include="ResourceManager\ResourceManager.hpp" />
     <ClInclude Include="State.hpp" />
     <ClInclude Include="StateManager.hpp" />
+    <ClInclude Include="States\StateBase.hpp" />
+    <ClInclude Include="States\StatePlaying.hpp" />
     <ClInclude Include="Utilities.hpp" />
+    <ClInclude Include="Util\Animation.h" />
+    <ClInclude Include="Util\FileUtil.hpp" />
+    <ClInclude Include="Util\FPSCounter.hpp" />
+    <ClInclude Include="Util\Maths.hpp" />
+    <ClInclude Include="Util\NonCopyable.hpp" />
+    <ClInclude Include="Util\NonMoveable.hpp" />
+    <ClInclude Include="Util\Random.hpp" />
+    <ClInclude Include="Util\ToggleKey.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GUI\Button.cpp" />
+    <ClCompile Include="GUI\StackMenu.cpp" />
+    <ClCompile Include="GUI\Textbox.cpp" />
+    <ClCompile Include="GUI\Widget.cpp" />
+    <ClCompile Include="ResourceManager\ResourceHolder.cpp" />
     <ClCompile Include="StateManager.cpp" />
+    <ClCompile Include="States\StatePlaying.cpp" />
+    <ClCompile Include="Util\Animation.cpp" />
+    <ClCompile Include="Util\FileUtil.cpp" />
+    <ClCompile Include="Util\FPSCounter.cpp" />
+    <ClCompile Include="Util\Maths.cpp" />
+    <ClCompile Include="Util\ToggleKey.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
