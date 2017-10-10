@@ -127,8 +127,8 @@
     <ProjectReference Include="..\FrameworkLib\FrameworkLib.vcxproj">
       <Project>{479590df-7ef1-4134-baec-04f0b1a09c93}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\gtest\gtest.vcxproj">
-      <Project>{229803d3-2485-419f-85d9-f0961a3470b8}</Project>
+    <ProjectReference Include="..\GoogleTest\GoogleTest.vcxproj">
+      <Project>{5ed325eb-03e7-41fb-8f55-27cc0569e465}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
