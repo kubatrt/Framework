@@ -2,7 +2,7 @@
 
 #include "../ResourceManager/ResourceHolder.hpp"
 
-constexpr int BASEY = 95;
+constexpr float BASE_Y = 95.f;
 
 namespace framework
 {
@@ -11,17 +11,17 @@ namespace gui
 {
 
 StackMenu::StackMenu(const sf::RenderWindow& window)
-:   m_basePosition  (window.getSize().x / 2, BASEY)
-,   m_baseSize      (300, 20)
+:   m_basePosition  (window.getSize().x / 2.f, BASE_Y)
+,   m_baseSize      (300.f, 20.f)
 {
     m_background.setFillColor({100, 100, 100, 128});
     m_background.setSize(m_baseSize);
-    m_background.setPosition(m_basePosition.x - m_baseSize.x / 2, BASEY - 30);
+    m_background.setPosition(m_basePosition.x - m_baseSize.x / 2.f, BASE_Y - 30.f);
 }
 
 StackMenu::StackMenu(const sf::Vector2f& position)
 :   m_basePosition  (position)
-,   m_baseSize      (300, 20)
+,   m_baseSize      (300.f, 20.f)
 {
     m_background.setFillColor({100, 100, 100, 128});
     m_background.setSize(m_baseSize);
@@ -29,10 +29,10 @@ StackMenu::StackMenu(const sf::Vector2f& position)
 }
 
 StackMenu::StackMenu(StackMenu&& other)
-:   m_widgets       (std::move(other.m_widgets))
-,   m_background    (std::move(other.m_background))
-,   m_basePosition  (other.m_basePosition)
-,   m_baseSize      (other.m_baseSize)
+	:   m_widgets       (std::move(other.m_widgets))
+	,   m_background    (std::move(other.m_background))
+	,   m_basePosition  (other.m_basePosition)
+	,   m_baseSize      (other.m_baseSize)
 {
 }
 
@@ -57,8 +57,8 @@ void StackMenu::initWidget(Widget& widget)
     widget.setPosition({m_basePosition.x - widget.getSize().x / 2,
                        m_basePosition.y});
 
-    m_basePosition.y    += widget.getSize().y + 25;
-    m_baseSize.y        += widget.getSize().y + 25;
+    m_basePosition.y    += widget.getSize().y + 25.f;
+    m_baseSize.y        += widget.getSize().y + 25.f;
     m_background.setSize(m_baseSize);
 }
 

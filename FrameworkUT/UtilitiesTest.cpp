@@ -4,11 +4,18 @@
 
 #include "gtest\gtest.h"
 
+#include "..\FrameworkLib\Utilities.hpp"
 #include "..\FrameworkLib\Util\Maths.hpp"
 
 using namespace testing;
 using namespace framework;
 
+
+TEST(VariadicPrint, test)
+{
+	doPrint(std::cout, "a", "b", "c", "d");
+	doPrint(std::cerr, "This", "is", "a", "test");
+}
 
 TEST(MathTest, Collision2d)
 {

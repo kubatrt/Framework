@@ -4,14 +4,13 @@
 
 namespace framework
 {
-// todo with std::copy to ostream_iterator
-struct Printer
+
+template <typename Arg, typename... Args>
+void doPrint(std::ostream& out, Arg&& arg, Args&&... args)
 {
-	std::ostream& os_;
-	Printer(std::ostream& os) : os_(os) {}
-	
-	template<typename T>
-	void operator()(const T& obj) { os_ << obj << " "; }
-};
+	out << std::forward<Arg>(arg);
+	using expander = int[];
+	(void) expander { 0, (void(out << ',' << std::forward<Args>(args)), 0)... };
+}
 
 } // framework

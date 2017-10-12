@@ -73,6 +73,7 @@
       <Filter>GUI</Filter>
     </ClInclude>
     <ClInclude Include="Game.hpp" />
+    <ClInclude Include="IEntity.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GUI\Button.cpp">

@@ -17,7 +17,7 @@ FPSCounter::FPSCounter()
 }
 
 
-void FPSCounter::update()
+void FPSCounter::update(sf::Time deltaTime)
 {
     m_frameCount++;
 

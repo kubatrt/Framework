@@ -1,15 +1,26 @@
 #include <SFML/Graphics.hpp>
+#include "CatchGame.hpp"
 
 typedef unsigned int uint;
 
 constexpr uint WINDOW_WIDTH = 800;
 constexpr uint WINDOW_HEIGHT = 600;
 
+void example();
 
-int main()
+
+int main(int argc, char** argv)
+{
+	CatchGame game;
+	game.run();
+	return 0;
+}
+
+
+void example()
 {
 	sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Framework Test Application");
-	
+
 	sf::CircleShape shape(100.f);
 	shape.setFillColor(sf::Color::Green);
 
@@ -23,12 +34,10 @@ int main()
 		}
 
 		window.clear();
-		
+
 		window.draw(shape);
 
 
 		window.display();
 	}
-
-	return 0;
 }

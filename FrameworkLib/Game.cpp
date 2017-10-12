@@ -35,7 +35,7 @@ void Game::run()
         //Real time update
         state.handleInput();
         state.update(elapsed);
-        counter.update();
+        counter.update(elapsed);
 
         //Fixed time update
         while (lag >= timePerUpdate)

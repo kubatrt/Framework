@@ -76,6 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>D:\Libs\SFML-2.4.2\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>SFML_STATIC;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>D:\Libs\SFML-2.4.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -96,6 +97,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>D:\Libs\SFML-2.4.2\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>SFML_STATIC;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -125,6 +127,7 @@
     <ClInclude Include="GUI\Widget.hpp" />
     <ClInclude Include="IApplication.hpp" />
     <ClInclude Include="GameState.hpp" />
+    <ClInclude Include="IEntity.hpp" />
     <ClInclude Include="Observer.hpp" />
     <ClInclude Include="ResourceManager\ResourceHolder.hpp" />
     <ClInclude Include="ResourceManager\ResourceManager.hpp" />
