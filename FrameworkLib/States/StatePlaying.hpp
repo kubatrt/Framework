@@ -15,10 +15,10 @@ class StatePlaying : public StateBase
         void handleInput() override;
         void update         (sf::Time deltaTime) override;
         void fixedUpdate(sf::Time deltaTime) override;
-        void render(sf::RenderTarget& renderer) override;
+        void draw(sf::RenderTarget& renderer) override;
 
     private:
-        gui::StackMenu m_TestMenu;
+        gui::StackMenu testMenu_;
 };
 
 }

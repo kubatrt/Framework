@@ -5,7 +5,7 @@
 #include <functional>
 //#include <SFML/Graphics.hpp>
 
-#include "State.hpp"
+#include "IGameState.hpp"
 
 namespace sf
 {
@@ -20,7 +20,7 @@ namespace framework
 class StateManager;
 class GameState;
 
-class GameState : public IState
+class GameState : public IGameState
 {
 public:
 	GameState() = default;

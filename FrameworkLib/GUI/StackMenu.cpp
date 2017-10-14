@@ -2,80 +2,77 @@
 
 #include "../ResourceManager/ResourceHolder.hpp"
 
-constexpr float BASE_Y = 95.f;
-
 namespace framework
 {
 
 namespace gui
 {
-
-StackMenu::StackMenu(const sf::RenderWindow& window)
-:   m_basePosition  (window.getSize().x / 2.f, BASE_Y)
-,   m_baseSize      (300.f, 20.f)
+/*
+StackMenu::StackMenu(const sf::RenderWindow& window) // ACCESSWINDOW HERE?
+	: basePosition_ (window.getSize().x / 2.f, StackMenu::baseY)
+	, baseSize_(300.f, 20.f)
 {
     m_background.setFillColor({100, 100, 100, 128});
-    m_background.setSize(m_baseSize);
-    m_background.setPosition(m_basePosition.x - m_baseSize.x / 2.f, BASE_Y - 30.f);
-}
+    m_background.setSize(baseSize_);
+    m_background.setPosition(basePosition_.x - baseSize_.x / 2.f, StackMenu::baseY - 30.f);
+}*/
 
 StackMenu::StackMenu(const sf::Vector2f& position)
-:   m_basePosition  (position)
-,   m_baseSize      (300.f, 20.f)
+	: basePosition_(position)
+	, baseSize_(StackMenu::defaultHeight, StackMenu::defaultWidth)
 {
-    m_background.setFillColor({100, 100, 100, 128});
-    m_background.setSize(m_baseSize);
-    m_background.setPosition(position);
+    background_.setFillColor({100, 100, 100, 128});
+    background_.setSize(baseSize_);
+	background_.setPosition(basePosition_.x - baseSize_.x / 2.f, StackMenu::defaultY - StackMenu::defaultWidth);
 }
 
 StackMenu::StackMenu(StackMenu&& other)
-	:   m_widgets       (std::move(other.m_widgets))
-	,   m_background    (std::move(other.m_background))
-	,   m_basePosition  (other.m_basePosition)
-	,   m_baseSize      (other.m_baseSize)
+	: widgets_(std::move(other.widgets_))
+	, background_(std::move(other.background_))
+	, basePosition_(other.basePosition_)
+	, baseSize_(other.baseSize_)
 {
 }
 
 StackMenu& StackMenu::operator=(StackMenu&& other)
 {
-    m_widgets       =   std::move(other.m_widgets);
-    m_background    =   std::move(other.m_background);
-    m_basePosition  =   other.m_basePosition;
-    m_baseSize      =   other.m_baseSize;
-
+    widgets_  = std::move(other.widgets_);
+    background_ = std::move(other.background_);
+    basePosition_ = other.basePosition_;
+    baseSize_  = other.baseSize_;
     return *this;
 }
 
 void StackMenu::addWidget(std::unique_ptr<Widget> w)
 {
     initWidget(*w);
-    m_widgets.push_back(std::move(w));
+    widgets_.push_back(std::move(w));
 }
 
 void StackMenu::initWidget(Widget& widget)
 {
-    widget.setPosition({m_basePosition.x - widget.getSize().x / 2,
-                       m_basePosition.y});
+    widget.setPosition({basePosition_.x - widget.getSize().x / 2,
+                       basePosition_.y});
 
-    m_basePosition.y    += widget.getSize().y + 25.f;
-    m_baseSize.y        += widget.getSize().y + 25.f;
-    m_background.setSize(m_baseSize);
+    basePosition_.y += widget.getSize().y + 25.f;
+    baseSize_.y += widget.getSize().y + 25.f;
+    background_.setSize(baseSize_);
 }
 
 void StackMenu::handleEvent(sf::Event e, const sf::RenderWindow& window)
 {
-    for (auto& widget : m_widgets)
+    for (auto& widget : widgets_)
     {
         widget->handleEvent(e, window);
     }
 }
 
-void StackMenu::render(sf::RenderTarget& renderer)
+void StackMenu::draw(sf::RenderTarget& renderer)
 {
-    renderer.draw(m_background);
-    for (auto& widget : m_widgets)
+    renderer.draw(background_);
+    for (auto& widget : widgets_)
     {
-        widget->render(renderer);
+        widget->draw(renderer);
     }
 }
 

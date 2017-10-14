@@ -24,7 +24,6 @@
     <ClInclude Include="GameState.hpp" />
     <ClInclude Include="IApplication.hpp" />
     <ClInclude Include="Observer.hpp" />
-    <ClInclude Include="State.hpp" />
     <ClInclude Include="StateManager.hpp" />
     <ClInclude Include="Utilities.hpp" />
     <ClInclude Include="ResourceManager\ResourceHolder.hpp">
@@ -74,6 +73,8 @@
     </ClInclude>
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="IEntity.hpp" />
+    <ClInclude Include="IGameState.hpp" />
+    <ClInclude Include="IState.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GUI\Button.cpp">

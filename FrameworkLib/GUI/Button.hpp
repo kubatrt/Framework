@@ -28,7 +28,7 @@ class Button : public Widget
         void setTexture (const sf::Texture& tex);
 
         void handleEvent(sf::Event e, const sf::RenderWindow& window) override;
-        void render(sf::RenderTarget& renderer) override;
+        void draw(sf::RenderTarget& renderer) override;
         void setPosition(const sf::Vector2f& pos) override;
         sf::Vector2f getSize() const override;
 

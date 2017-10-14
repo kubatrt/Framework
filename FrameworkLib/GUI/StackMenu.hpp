@@ -17,7 +17,6 @@ namespace gui
 class StackMenu : public framework::NonCopyable
 {
     public:
-        StackMenu(const sf::RenderWindow& window);
         StackMenu(const sf::Vector2f& position);
         
 		StackMenu(StackMenu&& other);
@@ -28,16 +27,21 @@ class StackMenu : public framework::NonCopyable
         void addWidget(std::unique_ptr<Widget>);
 
         void handleEvent(sf::Event e, const sf::RenderWindow& window);
-        void render(sf::RenderTarget& renderer);
+        void draw(sf::RenderTarget& renderer);
 
-    private:
+		static const unsigned defaultY = 95;
+
+    protected:
+		static const unsigned defaultWidth = 300;	// why not float?
+		static const unsigned defaultHeight = 20;
+		
         void initWidget(Widget& w);
 
-        std::vector<std::unique_ptr<Widget>> m_widgets;
-        sf::RectangleShape m_background;
+        std::vector<std::unique_ptr<Widget>> widgets_;
+        sf::RectangleShape background_;
 
-        sf::Vector2f m_basePosition;
-        sf::Vector2f m_baseSize;
+        sf::Vector2f basePosition_;
+        sf::Vector2f baseSize_;
 };
 
 }

@@ -48,6 +48,5 @@ TEST_F(ApplicationTest, instanceCreation)
 	sut2_.onStartup();
 	sut2_.onDestroy();
 
-
-	EXPECT_NO_THROW();
+	//EXPECT_NO_THROW();
 }

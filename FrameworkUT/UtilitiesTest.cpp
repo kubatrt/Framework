@@ -13,8 +13,8 @@ using namespace framework;
 
 TEST(VariadicPrint, test)
 {
-	doPrint(std::cout, "a", "b", "c", "d");
-	doPrint(std::cerr, "This", "is", "a", "test");
+	printVA(std::cout, "a", "b", "c", "d");
+	printVA(std::cerr, "This", "is", "a", "test");
 }
 
 TEST(MathTest, Collision2d)

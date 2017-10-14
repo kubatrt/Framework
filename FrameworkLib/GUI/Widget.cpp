@@ -13,10 +13,10 @@ sf::Vector2f itof(sf::Vector2i vec)
 // Text
 Widget::Text::Text()
 {
-    setCharacterSize (20);
-    setOutlineColor  (sf::Color::Black);
-    setFillColor     (sf::Color::White);
-    setFont          (ResourceHolder::get().fonts.get("arial"));
+    setCharacterSize(Widget::defaultCharacterSize);
+    setOutlineColor(sf::Color::Black);
+    setFillColor(sf::Color::White);
+    setFont(ResourceHolder::get().fonts.get("arial"));
 }
 
 //Rectangle
@@ -26,7 +26,7 @@ bool Widget::Rectangle::isRolledOn(const sf::RenderWindow& window) const
     return getGlobalBounds().contains(itof(pos));
 }
 
-bool Widget::Rectangle::isClicked  (sf::Event e, const sf::RenderWindow& window)
+bool Widget::Rectangle::isClicked(sf::Event e, const sf::RenderWindow& window)
 {
     if(isRolledOn(window))
     {

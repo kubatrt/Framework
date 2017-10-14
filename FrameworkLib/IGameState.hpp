@@ -4,7 +4,7 @@
 namespace framework
 {
 
-struct IState
+struct IGameState
 {
 	virtual void onEnter() = 0;
 	virtual void onExit() = 0;

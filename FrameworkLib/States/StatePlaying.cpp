@@ -12,12 +12,9 @@
 namespace framework
 {
 
-//std::string test;
-
-
 StatePlaying::StatePlaying(Game& game)
-:   StateBase   (game)
-,   m_TestMenu  (game.getWindow())
+	: StateBase(game)
+	, testMenu_({ game.getWindow().getSize().x / 2.f, 90.f })
 {
     auto b = std::make_unique<gui::Button>();
     b->setText("Button 1");
@@ -25,12 +22,21 @@ StatePlaying::StatePlaying(Game& game)
         std::cout << "Button 1 clicked!" << '\n';
     });
 
-    m_TestMenu.addWidget(std::move(b));
+	auto b2 = std::make_unique<gui::Button>();
+	b2->setText("Quit");
+	b2->setFunction( [&]() 
+	{
+		game_.close();
+	});
+	b2->setPosition({100.f, 200.f});
+
+    testMenu_.addWidget(std::move(b));
+	testMenu_.addWidget(std::move(b2));
 }
 
 void StatePlaying::handleEvent(sf::Event e)
 {
-    m_TestMenu.handleEvent(e, m_pGame->getWindow());
+    testMenu_.handleEvent(e, game_.getWindow());
 }
 
 void StatePlaying::handleInput()
@@ -48,9 +54,9 @@ void StatePlaying::fixedUpdate(sf::Time deltaTime)
 
 }
 
-void StatePlaying::render(sf::RenderTarget& renderer)
+void StatePlaying::draw(sf::RenderTarget& renderer)
 {
-    m_TestMenu.render(renderer);
+    testMenu_.draw(renderer);
 }
 
 }

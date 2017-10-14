@@ -5,64 +5,85 @@ namespace framework
 {
 
 Game::Game()
-	: m_window({1280, 720}, "GameNameHere")
+	: window_({1280, 720}, "GameNameHere")
 {
-    m_window.setFramerateLimit(100);
+    window_.setFramerateLimit(100);
     pushState<StatePlaying>(*this);
 }
 
-void Game::run()
+void Game::update(sf::Time deltaTime)
 {
-    constexpr unsigned TPS = 60;                            //ticks per seconds
-    const sf::Time     timePerUpdate = sf::seconds(1.0f / float(TPS));
+	auto& state = getCurrentState();
+	state.draw(window_);
+	state.handleInput();
+	state.update(deltaTime);
+	fpsCounter_.update(deltaTime);
+}
+
+void Game::draw(sf::RenderTarget& renderer)
+{
+	window_.clear();
+	
+	auto& state = getCurrentState();
+	state.draw(window_);
+	fpsCounter_.draw(window_);
+	
+	window_.display();
+}
+
+int Game::run()
+{
+    constexpr unsigned ticksPerSecond = 60;	//ticks per seconds
+    const sf::Time timePerUpdate = sf::seconds(1.f / static_cast<float>(ticksPerSecond));
     unsigned ticks = 0;
 
     sf::Clock timer;
     auto lastTime = sf::Time::Zero;
     auto lag      = sf::Time::Zero;
 
-    while (m_window.isOpen() && !m_states.empty())
+    while (window_.isOpen() && !states_.empty())
     {
         auto& state = getCurrentState();
 
         //Get times
         auto time = timer.getElapsedTime();
         auto elapsed = time - lastTime;
-
         lastTime = time;
         lag += elapsed;
 
         //Real time update
-        state.handleInput();
-        state.update(elapsed);
-        counter.update(elapsed);
+		update(elapsed); 
 
         //Fixed time update
         while (lag >= timePerUpdate)
         {
             ticks++;
             lag -= timePerUpdate;
-            state.fixedUpdate(elapsed);
+            
+			state.fixedUpdate(elapsed);
         }
 
         //Render
-        m_window.clear();
-        state.render(m_window);
-        counter.draw(m_window);
-        m_window.display();
-
+        draw(window_);
 
         //Handle window events
         handleEvent();
         tryPop();
     }
+
+	return 0;
+}
+
+void Game::close()
+{
+	window_.close();
 }
 
 void Game::tryPop()
 {
-    if (m_shouldPop)
+    if (shouldPopState_)
     {
-        m_states.pop_back();
+        states_.pop_back();
     }
 }
 
@@ -70,13 +91,13 @@ void Game::handleEvent()
 {
     sf::Event e;
 
-    while (m_window.pollEvent(e))
+    while (window_.pollEvent(e))
     {
         getCurrentState().handleEvent(e);
         switch (e.type)
         {
             case sf::Event::Closed:
-                m_window.close();
+                window_.close();
                 break;
 
             default:
@@ -88,17 +109,17 @@ void Game::handleEvent()
 
 StateBase& Game::getCurrentState()
 {
-    return *m_states.back();
+    return *states_.back();
 }
 
 void Game::popState()
 {
-    m_shouldPop = true;
+    shouldPopState_ = true;
 }
 
 const sf::RenderWindow& Game::getWindow() const
 {
-    return m_window;
+    return window_;
 }
 
 } //framework

@@ -25,7 +25,7 @@ void TextBox::handleEvent(sf::Event e, const sf::RenderWindow& window)
     handleTextInput(e);
 }
 
-void TextBox::render(sf::RenderTarget& renderer)
+void TextBox::draw(sf::RenderTarget& renderer)
 {
 	const sf::Color InActiveColor = { 52, 152, 219 };
 	const sf::Color ActiveColor = { 82, 132, 239 };

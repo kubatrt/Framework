@@ -6,16 +6,20 @@
 
 #include "Util/FPSCounter.hpp"
 #include "States/StateBase.hpp"
+#include "Utilities.hpp"
 
 namespace framework
 {
 
-class Game
+class Game : public NonCopyable
 {
     public:
         Game();
+		//virtual ~Game();
 
-        void run();
+		void update(sf::Time deltaTime);
+		void draw(sf::RenderTarget& renderer);
+        int run();
 
         template<typename T, typename... Args>
         void pushState(Args&&... args);
@@ -23,24 +27,26 @@ class Game
 
         const sf::RenderWindow& getWindow() const;
 
+		void close();
+
     private:
         void handleEvent();
         void tryPop();
 
-        StateBase& getCurrentState();
+        StateBase& getCurrentState(); 
 
-        sf::RenderWindow m_window;
-        std::vector<std::unique_ptr<StateBase>> m_states;
+        sf::RenderWindow window_;
+        std::vector<std::unique_ptr<StateBase>> states_;
 
-        FPSCounter counter;
+        FPSCounter fpsCounter_;
 
-        bool m_shouldPop = false;
+        bool shouldPopState_;
 };
 
 template<typename T, typename... Args>
 void Game::pushState(Args&&... args)
 {
-    m_states.push_back(std::make_unique<T>(std::forward<Args>(args)...));
+    states_.push_back(std::make_unique<T>(std::forward<Args>(args)...));
 }
 
 }

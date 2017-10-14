@@ -13,5 +13,5 @@ public:
 	MOCK_METHOD0(handleInput, void());
 	MOCK_METHOD1(update, void(sf::Time));
 	MOCK_METHOD1(fixedUpdate, void(sf::Time));
-	MOCK_METHOD1(render, void(sf::RenderTarget&));
+	MOCK_METHOD1(draw, void(sf::RenderTarget&));
 };
