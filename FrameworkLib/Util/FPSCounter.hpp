@@ -15,7 +15,7 @@ class FPSCounter : IEntity
         void draw(sf::RenderTarget& renderer) override;
 
     private:
-        sf::Text m_text;
+        sf::Text text_;
         sf::Font m_font;
 
         sf::Clock m_delayTimer;

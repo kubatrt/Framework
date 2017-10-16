@@ -25,7 +25,7 @@ class Button : public Widget
 
         void setFunction(Callback func);
         void setText(const std::string& str);
-        void setTexture (const sf::Texture& tex);
+		void setTexture(const sf::Texture& tex);
 
         void handleEvent(sf::Event e, const sf::RenderWindow& window) override;
         void draw(sf::RenderTarget& renderer) override;
@@ -35,11 +35,12 @@ class Button : public Widget
     private:
         void updateText();
 
-        sf::Vector2f m_position;
+        sf::Vector2f position_;
+		Rectangle selection_;
 
-		Text m_text;
-		Rectangle m_button;
-		Callback m_function = [](){};
+		Text text_;
+		Rectangle button_;
+		Callback callback_ = [](){};
 };
 
 }

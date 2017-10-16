@@ -62,9 +62,6 @@
     <ClInclude Include="GUI\Textbox.hpp">
       <Filter>GUI</Filter>
     </ClInclude>
-    <ClInclude Include="GUI\Panel.hpp">
-      <Filter>GUI</Filter>
-    </ClInclude>
     <ClInclude Include="GUI\StackMenu.hpp">
       <Filter>GUI</Filter>
     </ClInclude>

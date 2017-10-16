@@ -5,21 +5,27 @@
 
 namespace framework
 {
-
 namespace gui
 {
 
+namespace buttonColor
+{
+sf::Color normal{ 52, 150, 220 };
+sf::Color clicked{ 52, 190, 220 };
+}
+
+
 Button::Button(ButtonSize s)
 {
-    m_button.setFillColor({52, 152, 219});
+    button_.setFillColor(buttonColor::normal);
     switch (s)
     {
         case ButtonSize::Wide:
-            m_button.setSize({256, 64});
+            button_.setSize({256, 64});
             break;
 
         case ButtonSize::Small:
-            m_button.setSize({128, 64});
+            button_.setSize({128, 64});
             break;
     }
 
@@ -27,31 +33,34 @@ Button::Button(ButtonSize s)
 
 void Button::setFunction(Callback func)
 {
-    m_function = func;
+    callback_ = func;
 }
 
 void Button::setText (const std::string& str)
 {
-    m_text.setString(str);
+    text_.setString(str);
     updateText();
 }
 
 void Button::setTexture (const sf::Texture& tex)
 {
-    m_button.setTexture(&tex);
+    button_.setTexture(&tex);
 }
 
 void Button::handleEvent(sf::Event e, const sf::RenderWindow& window)
 {
-    auto pos = sf::Mouse::getPosition(window);
-
-    if (m_button.getGlobalBounds().contains(itof(pos)))
+	if(button_.isRolledOn(window))
     {
-        if (e.type == sf::Event::MouseButtonPressed)
+		if (e.type == sf::Event::MouseButtonPressed)
+		{	
+			button_.setFillColor(buttonColor::clicked);
+		}
+        if (e.type == sf::Event::MouseButtonReleased)
         {
             if (e.mouseButton.button == sf::Mouse::Left)
             {
-                m_function();
+				button_.setFillColor(buttonColor::normal);
+                callback_();
             }
         }
     }
@@ -59,33 +68,42 @@ void Button::handleEvent(sf::Event e, const sf::RenderWindow& window)
 
 void Button::draw(sf::RenderTarget& renderer)
 {
-    renderer.draw(m_button);
-    renderer.draw(m_text);
+	/*if (isSelected())
+	{
+		selection_.setSize(button_.getSize());
+		selection_.setPosition(button_.getPosition());
+		selection_.setOutlineColor({255, 200, 50});
+		selection_.setOutlineThickness(2);
+		selection_.setFillColor(sf::Color::Transparent);
+	}*/
+
+    renderer.draw(button_);
+    renderer.draw(text_);
+	renderer.draw(selection_);
 }
 
 void Button::setPosition(const sf::Vector2f& pos)
 {
-    m_position = pos;
+    position_ = pos;
 
-    m_button.setPosition(m_position);
-    m_text.setPosition  (m_position);
-
+    button_.setPosition(position_);
+    text_.setPosition(position_);
     updateText();
 }
 
 void Button::updateText()
 {
-    m_text.setOrigin(m_text.getGlobalBounds().width  / 2.f,
-                     m_text.getGlobalBounds().height / 2.f);
+    text_.setOrigin(text_.getGlobalBounds().width  / 2.f,
+                     text_.getGlobalBounds().height / 2.f);
 
-    m_text.move(m_button.getGlobalBounds().width  / 2.f,
-                m_button.getGlobalBounds().height / 2.5f);
+    text_.move(button_.getGlobalBounds().width  / 2.f,
+                button_.getGlobalBounds().height / 2.5f);
 }
 
 
 sf::Vector2f Button::getSize() const
 {
-    return m_button.getSize();
+    return button_.getSize();
 }
 
 }

@@ -41,18 +41,18 @@ void TextBox::draw(sf::RenderTarget& renderer)
 
     renderer.draw(m_rect);
     renderer.draw(m_label);
-    renderer.draw(m_text);
+    renderer.draw(text_);
 }
 
 void TextBox::setPosition(const sf::Vector2f& pos)
 {
-    m_position = pos;
+    position_ = pos;
 
-    m_rect.setPosition(m_position);
-    m_label.setPosition(m_position.x,
-		m_position.y + m_label.getGlobalBounds().height - m_rect.getGlobalBounds().height / 2);
-    m_text.setPosition  (m_position);
-    m_text.move(5.f, m_rect.getGlobalBounds().height / 2.5f);
+    m_rect.setPosition(position_);
+    m_label.setPosition(position_.x,
+		position_.y + m_label.getGlobalBounds().height - m_rect.getGlobalBounds().height / 2);
+    text_.setPosition  (position_);
+    text_.move(5.f, m_rect.getGlobalBounds().height / 2.5f);
 }
 
 sf::Vector2f TextBox::getSize() const
@@ -105,7 +105,7 @@ void TextBox::handleTextInput (sf::Event e)
             if (m_pModString->length() > 0)
                 m_pModString->pop_back();
         }
-        m_text.setString(*m_pModString);
+        text_.setString(*m_pModString);
     }
 }
 

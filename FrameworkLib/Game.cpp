@@ -7,7 +7,7 @@ namespace framework
 Game::Game()
 	: window_({1280, 720}, "GameNameHere")
 {
-    window_.setFramerateLimit(100);
+    window_.setFramerateLimit(60);
     pushState<StatePlaying>(*this);
 }
 

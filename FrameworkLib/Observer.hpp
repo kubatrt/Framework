@@ -10,7 +10,8 @@
 namespace framework
 {
 
-// prototype
+namespace prototype
+{
 enum class Event 
 { 
 	KeyDown, 
@@ -23,14 +24,15 @@ class GameEvent
 	std::string	name;
 	size_t id;
 };
-
+}
 
 class Observer
 {
 public:
 	void notification() const {};
-
 };
+
+using namespace prototype;
 
 class Subject
 {

@@ -5,9 +5,20 @@ namespace framework
 namespace gui 
 {
 
+unsigned int Widget::selectionIdndexCounter = 0;
+unsigned int Widget::currentSelectionIndex = 1;
+
 sf::Vector2f itof(sf::Vector2i vec)
 {
 	return sf::Vector2f(static_cast<float>(vec.x), static_cast<float>(vec.y));
+}
+
+Widget::Widget()
+	: selectionIndex_(++Widget::selectionIdndexCounter)
+	, isSelected_(selectionIndex_ == Widget::currentSelectionIndex ? true : false)
+	, isActive_(true)
+{
+
 }
 
 // Text
@@ -29,8 +40,8 @@ bool Widget::Rectangle::isRolledOn(const sf::RenderWindow& window) const
 bool Widget::Rectangle::isClicked(sf::Event e, const sf::RenderWindow& window)
 {
     if(isRolledOn(window))
-    {
-        if (e.type == sf::Event::MouseButtonPressed)
+	{
+        if (e.type == sf::Event::MouseButtonReleased)
         {
             return e.mouseButton.button == sf::Mouse::Left;
         }

@@ -1,29 +1,30 @@
+#include <iostream>
 #include "StackMenu.hpp"
 
 #include "../ResourceManager/ResourceHolder.hpp"
 
 namespace framework
 {
-
 namespace gui
 {
-/*
-StackMenu::StackMenu(const sf::RenderWindow& window) // ACCESSWINDOW HERE?
-	: basePosition_ (window.getSize().x / 2.f, StackMenu::baseY)
-	, baseSize_(300.f, 20.f)
+
+namespace
 {
-    m_background.setFillColor({100, 100, 100, 128});
-    m_background.setSize(baseSize_);
-    m_background.setPosition(basePosition_.x - baseSize_.x / 2.f, StackMenu::baseY - 30.f);
-}*/
+constexpr float defaultY = 95.f;
+constexpr float defaultWidth = 300.f;
+constexpr float defaultHeight = 25.f;
+constexpr float offset = 25.f;
+}
+
 
 StackMenu::StackMenu(const sf::Vector2f& position)
 	: basePosition_(position)
-	, baseSize_(StackMenu::defaultHeight, StackMenu::defaultWidth)
+	, baseSize_(defaultWidth, defaultHeight)
 {
-    background_.setFillColor({100, 100, 100, 128});
-    background_.setSize(baseSize_);
-	background_.setPosition(basePosition_.x - baseSize_.x / 2.f, StackMenu::defaultY - StackMenu::defaultWidth);
+    background_.setFillColor({127, 127, 127});
+	background_.setPosition(basePosition_.x - baseSize_.x / 2.f, 
+		defaultY - offset);
+	background_.setSize(baseSize_);
 }
 
 StackMenu::StackMenu(StackMenu&& other)
@@ -51,12 +52,18 @@ void StackMenu::addWidget(std::unique_ptr<Widget> w)
 
 void StackMenu::initWidget(Widget& widget)
 {
-    widget.setPosition({basePosition_.x - widget.getSize().x / 2,
-                       basePosition_.y});
+	// move widget accordingly menu bounds
+    widget.setPosition({basePosition_.x - widget.getSize().x / 2, basePosition_.y});
 
-    basePosition_.y += widget.getSize().y + 25.f;
-    baseSize_.y += widget.getSize().y + 25.f;
+	// set size of menu accordingly to wigets inside
+    basePosition_.y += widget.getSize().y + offset;
+    baseSize_.y += widget.getSize().y + offset;
     background_.setSize(baseSize_);
+}
+
+void StackMenu::alignSize()
+{
+	// align background size to added widgets
 }
 
 void StackMenu::handleEvent(sf::Event e, const sf::RenderWindow& window)
@@ -70,6 +77,7 @@ void StackMenu::handleEvent(sf::Event e, const sf::RenderWindow& window)
 void StackMenu::draw(sf::RenderTarget& renderer)
 {
     renderer.draw(background_);
+
     for (auto& widget : widgets_)
     {
         widget->draw(renderer);

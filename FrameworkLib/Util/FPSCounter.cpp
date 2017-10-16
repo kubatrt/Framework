@@ -8,12 +8,12 @@ namespace framework
 
 FPSCounter::FPSCounter()
 {
-    m_text.move(10, 10);
-    m_text.setOutlineColor (sf::Color::Black);
-    m_text.setFillColor({255,255,255});
-    m_text.setOutlineThickness  (2);
-    m_text.setFont(ResourceHolder::get().fonts.get("arial"));
-    m_text.setCharacterSize(25);
+    text_.move(10, 10);
+    text_.setOutlineColor (sf::Color::Black);
+    text_.setFillColor({255,255,255});
+    text_.setOutlineThickness  (2);
+    text_.setFont(ResourceHolder::get().fonts.get("arial"));
+    text_.setCharacterSize(25);
 }
 
 
@@ -31,8 +31,8 @@ void FPSCounter::update(sf::Time deltaTime)
 
 void FPSCounter::draw(sf::RenderTarget& renderer)
 {
-    m_text.setString("FPS: " + std::to_string((int)m_fps));
-    renderer.draw(m_text);
+    text_.setString("FPS: " + std::to_string((int)m_fps));
+    renderer.draw(text_);
 }
 
 }

@@ -19,7 +19,7 @@ StatePlaying::StatePlaying(Game& game)
     auto b = std::make_unique<gui::Button>();
     b->setText("Button 1");
     b->setFunction([]() {
-        std::cout << "Button 1 clicked!" << '\n';
+        std::cout << "Button 1 clicked!\n";
     });
 
 	auto b2 = std::make_unique<gui::Button>();
@@ -28,10 +28,17 @@ StatePlaying::StatePlaying(Game& game)
 	{
 		game_.close();
 	});
-	b2->setPosition({100.f, 200.f});
+
+	auto b3 = std::make_unique<gui::Button>();
+	b3->setText("Button 3");
+	b3->setFunction([&] ()
+	{
+		std::cout << "Button 3 clicked!\n";
+	});
 
     testMenu_.addWidget(std::move(b));
 	testMenu_.addWidget(std::move(b2));
+	testMenu_.addWidget(std::move(b3));
 }
 
 void StatePlaying::handleEvent(sf::Event e)
