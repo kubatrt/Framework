@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../FrameworkLib/Game.hpp"
+#include "Game.hpp"
 
 class CatchGame : public framework::Game
 {

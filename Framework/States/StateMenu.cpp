@@ -1,7 +1,7 @@
-#include "StatePlaying.hpp"
+#include "StateMenu.hpp"
 
-#include "../GUI/Button.hpp"
-#include "../GUI/Textbox.hpp"
+#include "../../FrameworkLib/GUI/Button.hpp"
+#include "../../FrameworkLib/GUI/Textbox.hpp"
 #include "../Game.hpp"
 
 #include <iostream>
@@ -12,7 +12,7 @@
 namespace framework
 {
 
-StatePlaying::StatePlaying(Game& game)
+StateMenu::StateMenu(Game& game)
 	: StateBase(game)
 	, testMenu_({ game.getWindow().getSize().x / 2.f, 90.f })
 {
@@ -41,27 +41,27 @@ StatePlaying::StatePlaying(Game& game)
 	testMenu_.addWidget(std::move(b3));
 }
 
-void StatePlaying::handleEvent(sf::Event e)
+void StateMenu::handleEvent(sf::Event e)
 {
     testMenu_.handleEvent(e, game_.getWindow());
 }
 
-void StatePlaying::handleInput()
+void StateMenu::handleInput()
 {
 
 }
 
-void StatePlaying::update(sf::Time deltaTime)
+void StateMenu::update(sf::Time deltaTime)
 {
 
 }
 
-void StatePlaying::fixedUpdate(sf::Time deltaTime)
+void StateMenu::fixedUpdate(sf::Time deltaTime)
 {
 
 }
 
-void StatePlaying::draw(sf::RenderTarget& renderer)
+void StateMenu::draw(sf::RenderTarget& renderer)
 {
     testMenu_.draw(renderer);
 }

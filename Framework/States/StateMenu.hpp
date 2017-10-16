@@ -1,15 +1,15 @@
 #pragma once
 
-#include "StateBase.hpp"
-#include "../GUI/StackMenu.hpp"
+#include "../../FrameworkLib/States/StateBase.hpp"
+#include "../../FrameworkLib/GUI/StackMenu.hpp"
 
 namespace framework
 {
 
-class StatePlaying : public StateBase
+class StateMenu : public StateBase
 {
     public:
-        StatePlaying(Game& game);
+        StateMenu(Game& game);
 
         void handleEvent    (sf::Event e) override;
         void handleInput() override;

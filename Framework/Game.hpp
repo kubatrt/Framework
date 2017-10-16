@@ -4,9 +4,9 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 
-#include "Util/FPSCounter.hpp"
-#include "States/StateBase.hpp"
-#include "Utilities.hpp"
+#include "../FrameworkLib/Util/FPSCounter.hpp"
+#include "../FrameworkLib/States/StateBase.hpp"
+#include "../FrameworkLib/Utilities.hpp"
 
 namespace framework
 {

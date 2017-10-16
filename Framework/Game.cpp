@@ -1,5 +1,5 @@
 #include "Game.hpp"
-#include "States/StatePlaying.hpp"
+#include "States/StateMenu.hpp"
 
 namespace framework
 {
@@ -8,7 +8,7 @@ Game::Game()
 	: window_({1280, 720}, "GameNameHere")
 {
     window_.setFramerateLimit(60);
-    pushState<StatePlaying>(*this);
+    pushState<StateMenu>(*this);
 }
 
 void Game::update(sf::Time deltaTime)

@@ -2,8 +2,21 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="CatchGame.hpp" />
+    <ClInclude Include="Game.hpp" />
+    <ClInclude Include="States\StateMenu.hpp">
+      <Filter>States</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="States\StateMenu.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="States">
+      <UniqueIdentifier>{38531a6c-bd85-4539-acd9-6847c5c92e21}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
