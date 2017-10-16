@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="CourseGame.cpp" />
+    <ClCompile Include="Dictionary.cpp" />
+    <ClCompile Include="GameStateManager.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="framework\Observer.cpp">
+      <Filter>framework</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CourseGame.hpp" />
+    <ClInclude Include="CourseText.hpp" />
+    <ClInclude Include="Dictionary.hpp" />
+    <ClInclude Include="ExampleGame.hpp" />
+    <ClInclude Include="GalleryGame.hpp" />
+    <ClInclude Include="Game.hpp" />
+    <ClInclude Include="GameStateManager.hpp" />
+    <ClInclude Include="KeyboardTyper.hpp" />
+    <ClInclude Include="Miscellaneous.hpp" />
+    <ClInclude Include="PictureElement.hpp" />
+    <ClInclude Include="SimpleApplication.hpp" />
+    <ClInclude Include="Utilities.hpp" />
+    <ClInclude Include="VirtualKeyboard.hpp" />
+    <ClInclude Include="WordBlock.hpp" />
+    <ClInclude Include="WordsAttackGame.hpp" />
+    <ClInclude Include="framework\Application.hpp">
+      <Filter>framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\Observer.hpp">
+      <Filter>framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\Singleton.hpp">
+      <Filter>framework</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyutf.h">
+      <Filter>3rdparty</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="framework">
+      <UniqueIdentifier>{bc0cb987-810f-4bb1-a5c9-52e181fd82ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rdparty">
+      <UniqueIdentifier>{f51f5224-9e55-44c5-b8b8-d091a5ea91e7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
