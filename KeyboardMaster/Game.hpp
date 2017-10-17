@@ -38,14 +38,5 @@ public:
 private:
 	std::unique_ptr<GameStateManager> gameStateManager;
 };
-
-// prototype
-class SfmleExampleGame : public GameBase
-{
-	virtual void OnUpdate(float deltaTime) {};
-	virtual void OnDraw(const sf::RenderWindow& window) {};
-	virtual void OnEvent(const sf::Event& event) {};
-	virtual void OnInput(const sf::Event& input) {};
-};
-
+	
 }	// KM

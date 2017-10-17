@@ -11,7 +11,7 @@ namespace KM
 int CourseGame::run(int argc, char* argv)
 {
     const char* appName = "KeyboardMaster";
-    const char* courseFile = "data/text-pl.txt";
+    const char* courseFile = "data/texts-pl";
     constexpr int windowWidth = 1024, windowHeight = 768;
     constexpr int gameAreaWidth = 1024, gameAreaHeight = 640;
     constexpr int courseAreaWidth = 1024, courseAreaHeight = 400;
@@ -100,16 +100,15 @@ int CourseGame::run(int argc, char* argv)
     int correct = 0;
     int mistakes = 0;
 
-
     std::vector<sf::Text> courseTextLines;
     std::vector<sf::Text> courseInputTextLines;
 
     // create lines of text for this course
-    for (int i = 0; i < dictw.lines.size(); ++i)
+    for (int i = 0; i < dictw.getLines().size(); ++i)
     {
         sf::Text textField;
         textField.setFont(mainFont);
-        textField.setString(dictw.lines[i]);   // must be 'L'
+        textField.setString(dictw.getLines()[i]);   // must be 'L'
         textField.setCharacterSize(fontSize);
         textField.setFillColor(sf::Color::White);
         textField.setStyle(sf::Text::Bold);
@@ -118,7 +117,7 @@ int CourseGame::run(int argc, char* argv)
         courseTextLines.push_back(textField);
     }
     // same for user input text, but empty
-    for (int i = 0; i < dictw.lines.size(); ++i)
+    for (int i = 0; i < dictw.getLines().size(); ++i)
     {
         sf::Text textField;
         textField.setFont(mainFont);
@@ -130,13 +129,12 @@ int CourseGame::run(int argc, char* argv)
         courseInputTextLines.push_back(textField);
     }
 
-
     // int wordLength = 0;
     // std::string typingWord;
     // setup starting letter
 
     wchar_t nextLetter;
-    nextLetter = dictw.lines[currentline][currentletter];
+    nextLetter = dictw.getLines()[currentline][currentletter];
     nextLetterText.setString(nextLetter);
     vkb.highlightLetter(static_cast<int>(nextLetter));
 
@@ -188,14 +186,14 @@ int CourseGame::run(int argc, char* argv)
                         courseInputTextLines[currentline].setString(typingText);
                     }
 
-                    nextLetter = dictw.lines[currentline][currentletter];
+                    nextLetter = dictw.getLines()[currentline][currentletter];
                     nextLetterText.setString(nextLetter);
                 }
                 else if (static_cast<int>(typedLetter) == KeyCode::Enter)
                 {
-                    if (currentline < dictw.lines.size() - 1)	// can we go down?
+                    if (currentline < dictw.getLines().size() - 1)	// can we go down?
                     {
-                        omittedLetters = dictw.lines[currentline].size() - currentletter;
+                        omittedLetters = dictw.getLines()[currentline].size() - currentletter;
                         std::wcout << "omitted: " << omittedLetters << std::endl;
 
                         // move to new line
@@ -206,7 +204,7 @@ int CourseGame::run(int argc, char* argv)
                         sound.setBuffer(audioNewline);
                         sound.play();
 
-                        nextLetter = dictw.lines[currentline][currentletter];
+                        nextLetter = dictw.getLines()[currentline][currentletter];
                         nextLetterText.setString(nextLetter);
 
                         // TODO we should consider ommited letters in line
@@ -214,7 +212,7 @@ int CourseGame::run(int argc, char* argv)
                     else
                     {
                         // end course with "enter" key which is correct
-                        if (currentletter == dictw.lines[currentline].size())
+                        if (currentletter == dictw.getLines()[currentline].size())
                         {
                             std::wcout << "END2" << std::endl;
                             window.close();
@@ -226,7 +224,7 @@ int CourseGame::run(int argc, char* argv)
                     keysTyped++; // every key
 
                                  // if current letter is still in current line?
-                    if (currentletter < dictw.lines[currentline].size())
+                    if (currentletter < dictw.getLines()[currentline].size())
                     {
 
                         typingText.push_back(typedLetter);
@@ -255,7 +253,7 @@ int CourseGame::run(int argc, char* argv)
 
                         currentletter++;
 
-                        nextLetter = dictw.lines[currentline][currentletter];
+                        nextLetter = dictw.getLines()[currentline][currentletter];
 
                         if (static_cast<int>(nextLetter) == 0)
                             nextLetterText.setString("NL"); // new line
@@ -270,7 +268,7 @@ int CourseGame::run(int argc, char* argv)
                     else
                     {
                         std::wcout << "last letter in line" << std::endl;
-                        if (currentline < dictw.lines.size() - 1)
+                        if (currentline < dictw.getLines().size() - 1)
                         {
                             // the correct movement to next line are only "space" or "Enter" (earlier)
                             if (static_cast<int>(typedLetter) == KeyCode::Enter)
@@ -291,7 +289,7 @@ int CourseGame::run(int argc, char* argv)
                             typingText.clear();
                             currentletter = 0;
 
-                            nextLetter = dictw.lines[currentline][currentletter];
+                            nextLetter = dictw.getLines()[currentline][currentletter];
                             nextLetterText.setString(nextLetter);
                         }
                         // this means that was last letter in last line in course and it's incorrect, but dont count mistake
@@ -310,7 +308,8 @@ int CourseGame::run(int argc, char* argv)
                 }
 
                 // calculate correctness
-                correctness = (mistakes == 0 && omittedLetters == 0) ? 100.f : 100.f - (static_cast<float>(mistakes + omittedLetters) / dictw.lettersCount * 100.f);
+                correctness = (mistakes == 0 && omittedLetters == 0) ? 100.f 
+					: 100.f - (static_cast<float>(mistakes + omittedLetters) / dictw.getLettersCount() * 100.f);
 
                 vkb.highlightLetter(static_cast<int>(nextLetter));
 
@@ -330,12 +329,12 @@ int CourseGame::run(int argc, char* argv)
             wss << L"Time: " << clock.getElapsedTime().asSeconds()
                 << L"\nCorrect: " << correct << L" Miss: " << mistakes
                 << L"\nLetter: " << currentletter << L" Line: " << currentline
-                << L"\nd.currentline.s: " << dictw.lines[currentline].size()
-                << L"\nd.lines.s: " << dictw.lines.size()
+                << L"\nd.currentline.s: " << dictw.getLines()[currentline].size()
+                << L"\nd.lines.s: " << dictw.getLines().size()
                 << L"\ntotalKeysTyped: " << keysTyped
                 << L"\nKPM: " << kpm
-                << L"\nLetters count: " << dictw.lettersCount
-                << L"\nWords count: " << dictw.wordsCount
+                << L"\nLetters count: " << dictw.getLettersCount()
+                << L"\nWords count: " << dictw.getWordsCount()
                 << L"\nCorrectness: " << correctness;
 
 

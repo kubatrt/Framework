@@ -29,44 +29,52 @@ std::wstring LoadUtf8FileToString(const char* filename)
 
 
 Dictionary::Dictionary()
-	: shortestWord(3)
-	, longestWord(0)
-	, lettersCount(0)
-	, wordsCount(0)
+	: shortestWord_(3)
+	, longestWord_(0)
+	, lettersCount_(0)
+	, wordsCount_(0)
+{
+}
+
+Dictionary::~Dictionary()
 {
 }
 
 void Dictionary::loadFromFile(const char* filename)
 {
     text_ = LoadUtf8FileToString(filename);
-    std::wcout << "Loaded text: " << text_ << std::endl;    
-    
     prepareWords();
     prepareLines();
-    
-	// prepareCount
-    for (auto& line : lines)
-    {
-        lettersCount += line.length();
-    }
+	prepareCount();
+	sortWordsByLength();
 
-	// sortWordsByLength
-    for (auto& word : words)
-    {
-        if(word.length() != 0)
-            wordsByLength[word.length()].push_back(word);
-    }
-
-    std::wcout << "letters count: " << lettersCount << std::endl;
-    std::wcout << "longest word: " << longestWord << std::endl;
-    std::wcout << "shortest word: " << shortestWord<< std::endl;
+	std::wcout << "Loaded text: " << text_ << std::endl;
+    std::wcout << "letters count: " << lettersCount_ << std::endl;
+    std::wcout << "longest word: " << longestWord_ << std::endl;
+    std::wcout << "shortest word: " << shortestWord_ << std::endl;
 }
 
+void Dictionary::prepareCount()
+{
+	for (auto& line : lines_)
+	{
+		lettersCount_ += line.length();
+	}
+}
+
+void Dictionary::sortWordsByLength()
+{
+	for (auto& word : words_)
+	{
+		if (word.length() != 0)
+			wordsByLength_[word.length()].push_back(word);
+	}
+}
 
 
 void Dictionary::printAllWords()
 {
-    for (auto& w : words)
+    for (auto& w : words_)
     {
         std::wcout << w << " ";
     }
@@ -75,7 +83,7 @@ void Dictionary::printAllWords()
 
 std::wstring Dictionary::randomWord(int length)
 {
-    return wordsByLength[length].at(RandomMachine::GetRange<size_t>(0, wordsByLength[length].size() - 1));
+    return wordsByLength_[length].at(RandomMachine::GetRange<size_t>(0, wordsByLength_[length].size() - 1));
 }
 
 void Dictionary::prepareLines()
@@ -85,7 +93,7 @@ void Dictionary::prepareLines()
     {
         if (*it == '\n')
         {
-            lines.push_back(buffer);
+            lines_.push_back(buffer);
             buffer.clear();
         }
         else
@@ -93,7 +101,7 @@ void Dictionary::prepareLines()
             buffer.push_back(*it);
         }
     }
-    lines.push_back(buffer);
+    lines_.push_back(buffer);
 }
 
 void Dictionary::prepareWords()
@@ -103,14 +111,15 @@ void Dictionary::prepareWords()
     {
         if (*it == ' ' || *it == '\n')
         {
-            if (buffer.length() > longestWord)
-                longestWord = buffer.length();
+			// longest
+            if (buffer.length() > longestWord_)
+                longestWord_ = buffer.length();
+			// shortest
+            if (buffer.length() != 0 && buffer.length() < shortestWord_)
+                shortestWord_ = buffer.length();
 
-            if (buffer.length() != 0 && buffer.length() < shortestWord)
-                shortestWord = buffer.length();
-
-            wordsCount++;
-            words.insert(buffer);
+            wordsCount_++;
+            words_.insert(buffer);
             buffer.clear();
         }
         else
@@ -122,8 +131,8 @@ void Dictionary::prepareWords()
     bool lastWord = !buffer.empty();
     if (lastWord)
     {
-        wordsCount++;
-        words.insert(buffer);
+        wordsCount_++;
+        words_.insert(buffer);
     }
 }
 

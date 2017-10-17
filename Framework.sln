@@ -15,7 +15,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "KeyboardMaster", "KeyboardM
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EE2D536E-CE46-4746-8D22-3E0D398E0120}"
 	ProjectSection(SolutionItems) = preProject
-		ReamMe.md = ReamMe.md
+		ReadMe.md = ReadMe.md
 	EndProjectSection
 EndProject
 Global
