@@ -30,7 +30,7 @@ namespace KM
 class CourseGame : public SimpleApplication
 {
     public:
-		explicit CourseGame() {}
+		CourseGame() = default;
 
         CourseGame(const CourseGame&) = delete;
         const CourseGame& operator=(const CourseGame&) = delete;

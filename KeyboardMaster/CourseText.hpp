@@ -28,7 +28,7 @@ struct CourseText
 	CourseText(const Dictionary& dictw)
 	{
 		currentLetter = 0;
-		text = dictw.text;
+		text = dictw.getText();
 
 		misstakes = 0;
 		correct = 0;

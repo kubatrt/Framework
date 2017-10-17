@@ -139,12 +139,12 @@
     <ClInclude Include="CourseGame.hpp" />
     <ClInclude Include="CourseText.hpp" />
     <ClInclude Include="Dictionary.hpp" />
-    <ClInclude Include="ExampleGame.hpp" />
     <ClInclude Include="framework\Application.hpp" />
     <ClInclude Include="framework\Observer.hpp" />
     <ClInclude Include="framework\Singleton.hpp" />
     <ClInclude Include="GalleryGame.hpp" />
     <ClInclude Include="Game.hpp" />
+    <ClInclude Include="GameSettings.hpp" />
     <ClInclude Include="GameStateManager.hpp" />
     <ClInclude Include="KeyboardTyper.hpp" />
     <ClInclude Include="Miscellaneous.hpp" />

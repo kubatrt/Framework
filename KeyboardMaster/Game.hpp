@@ -1,22 +1,13 @@
 #pragma once
 
+#include <memory>
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
-#include <memory>
+
 #include "GameStateManager.hpp"
 
 namespace KM
 {
-
-// prototype
-struct GameSettings
-{
-	std::string name;
-	std::string dictionaryFile;
-	
-	int gameAreaWidth, gameAreaHeight;
-	int fontSize;
-};
 
 // placeholders
 class Graphics; 
@@ -24,17 +15,17 @@ class Event;
 
 typedef unsigned int StateID;
 
-//class Game : State
 
-
-class Game 
+class GameBase
 {
 public:
-	Game() {};
-	Game(const Game&) = delete;
-	Game& operator=(Game const&) = delete;
-	Game(int idleState) {};
-	virtual ~Game() {};
+	GameBase() {};
+	GameBase(int idleState) {};
+	
+	GameBase(const GameBase&) = delete;
+	GameBase& operator=(GameBase const&) = delete;
+	
+	virtual ~GameBase() {};
 
 	virtual void OnStartup() {};
 	virtual void OnShutdown() {};
@@ -48,7 +39,8 @@ private:
 	std::unique_ptr<GameStateManager> gameStateManager;
 };
 
-class SfmlGame : public Game
+// prototype
+class SfmleExampleGame : public GameBase
 {
 	virtual void OnUpdate(float deltaTime) {};
 	virtual void OnDraw(const sf::RenderWindow& window) {};
@@ -56,4 +48,4 @@ class SfmlGame : public Game
 	virtual void OnInput(const sf::Event& input) {};
 };
 
-}
+}	// KM

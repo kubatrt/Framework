@@ -3,58 +3,66 @@
 namespace KM
 {
 
-// http://www.cplusplus.com/reference/locale/
-// http://www.cplusplus.com/reference/locale/codecvt/
-
+namespace
+{
 std::wstring LoadUtf8FileToString(const char* filename)
 {
-    LOG("Opening file: " << filename);
-    std::wifstream wif(filename);
-    if(wif.is_open())
-    {
-        std::wcout << "wifstream open" << std::endl;
-    }
-    std::locale loc(std::locale(), new std::codecvt_utf8<wchar_t>);
-    std::cout << loc.name() << std::endl;
-    //wif.imbue(loc);
-    
-    std::wstringstream wss;
-    wss << wif.rdbuf();
-    return wss.str();
+	LOG("Opening file: " << filename);
+
+	// http://www.cplusplus.com/reference/locale/
+	// http://www.cplusplus.com/reference/locale/codecvt/
+	std::wifstream wif(filename);
+	if (wif.is_open())
+	{
+		std::wcout << "wifstream open" << std::endl;
+	}
+
+	std::locale loc(std::locale(), new std::codecvt_utf8<wchar_t>);
+	wif.imbue(loc);
+	//std::cout << loc.name() << std::endl;
+
+	std::wstringstream wss;
+	wss << wif.rdbuf();
+	return wss.str();
+}
 }
 
 
 Dictionary::Dictionary()
+	: shortestWord(3)
+	, longestWord(0)
+	, lettersCount(0)
+	, wordsCount(0)
 {
-    shortestWord = 3;
-    longestWord = 0;
-    lettersCount = 0;
-    wordsCount = 0;
 }
 
 void Dictionary::loadFromFile(const char* filename)
 {
-    text = LoadUtf8FileToString(filename);
-    std::wcout << "Loaded text: " << text << std::endl;    
+    text_ = LoadUtf8FileToString(filename);
+    std::wcout << "Loaded text: " << text_ << std::endl;    
     
     prepareWords();
     prepareLines();
     
+	// prepareCount
     for (auto& line : lines)
     {
         lettersCount += line.length();
     }
 
-    for (auto& w : words)
+	// sortWordsByLength
+    for (auto& word : words)
     {
-        if(w.length() != 0)
-            wordsByLength[w.length()].push_back(w);
+        if(word.length() != 0)
+            wordsByLength[word.length()].push_back(word);
     }
 
     std::wcout << "letters count: " << lettersCount << std::endl;
     std::wcout << "longest word: " << longestWord << std::endl;
     std::wcout << "shortest word: " << shortestWord<< std::endl;
 }
+
+
 
 void Dictionary::printAllWords()
 {
@@ -65,7 +73,7 @@ void Dictionary::printAllWords()
     std::wcout << std::endl;
 }
 
-std::wstring Dictionary::getRandomWord(int length)
+std::wstring Dictionary::randomWord(int length)
 {
     return wordsByLength[length].at(RandomMachine::GetRange<size_t>(0, wordsByLength[length].size() - 1));
 }
@@ -73,7 +81,7 @@ std::wstring Dictionary::getRandomWord(int length)
 void Dictionary::prepareLines()
 {
     std::wstring buffer;
-    for (std::wstring::iterator it = text.begin(); it != text.end(); ++it)
+    for (std::wstring::iterator it = text_.begin(); it != text_.end(); ++it)
     {
         if (*it == '\n')
         {
@@ -91,7 +99,7 @@ void Dictionary::prepareLines()
 void Dictionary::prepareWords()
 {
     std::wstring buffer;
-    for (std::wstring::iterator it = text.begin(); it != text.end(); ++it)
+    for (std::wstring::iterator it = text_.begin(); it != text_.end(); ++it)
     {
         if (*it == ' ' || *it == '\n')
         {
@@ -110,6 +118,7 @@ void Dictionary::prepareWords()
             buffer.push_back(*it);
         }
     }
+
     bool lastWord = !buffer.empty();
     if (lastWord)
     {

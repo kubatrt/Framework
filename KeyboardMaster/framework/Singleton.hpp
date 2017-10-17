@@ -13,7 +13,11 @@ private:
 protected:
 	static T* instance;
 
-	Singleton() { instance = new T; /*instance = static_cast<T*>(this);*/ }
+	Singleton() 
+	{
+		instance = new T; 
+		/*instance = static_cast<T*>(this);*/ 
+	}
 	virtual ~Singleton() {}
 
 public:

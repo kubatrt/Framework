@@ -14,12 +14,12 @@ enum class GameEvent { Pause, Resume };
 
 class Applicatoin
 {
-	virtual void OnStartup() = 0;
-	virtual void OnShutdown() = 0;
-	virtual void OnUpdate(float) = 0;
-	virtual void OnDraw(const Graphics&) = 0;
-	virtual void OnEvent(const Event& event) = 0;
-	virtual void OnInput(const Event& input) = 0;
+	virtual void onStartup() = 0;
+	virtual void onShutdown() = 0;
+	virtual void onUpdate(float) = 0;
+	virtual void onDraw(const Graphics&) = 0;
+	virtual void onEvent(const Event& event) = 0;
+	virtual void onInput(const Event& input) = 0;
 };
 
 }

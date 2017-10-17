@@ -16,24 +16,23 @@ namespace KM
 {
 
 // Class responsible for loading words from file, UTF-8
-// using windows specific function
 class Dictionary
 {
 public:
-
     Dictionary();
     Dictionary(const Dictionary&) = delete;
     const Dictionary& operator=(const Dictionary) = delete;
 
 	void loadFromFile(const char* filename);
 	void printAllWords();
-	std::wstring getRandomWord(int length);
+	std::wstring randomWord(int length);
 
-	std::wstring text;
+	
 	std::vector <std::wstring> lines;
 	std::set <std::wstring> words;
 	std::map<int, std::vector<std::wstring>>	wordsByLength;	//	is this will be helpfull??
 	
+	const std::wstring getText() const { return text_; }
 	int lettersCount;
 	int wordsCount;
 	int longestWord;
@@ -42,6 +41,8 @@ public:
 private:
     void prepareLines();
 	void prepareWords();
+
+	std::wstring text_;
 };
 
 }
