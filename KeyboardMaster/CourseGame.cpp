@@ -23,7 +23,7 @@ int CourseGame::run(int argc, char* argv)
     //fs::path full_path(fs::initial_path<fs::path>());
     //	FIXME
 //		full_path = fs::system_complete(fs::path(std::string(argv[0])));
-    std::string exec_path = "D:\\Workspace\\Projects\\Framework\\Debug";//full_path.remove_filename().string() + "/";
+    std::string exec_path = ""; // "D:\\Workspace\\Projects\\Framework\\Debug";//full_path.remove_filename().string() + "/";
     std::cout << "exec_path = " << exec_path << std::endl;
 
 
