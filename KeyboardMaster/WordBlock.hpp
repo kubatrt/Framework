@@ -10,7 +10,7 @@ namespace KM
 class WordBlock : public Rectangle
 {
 private:
-	int spawnHorizontalPositions[5] { 0, 200, 400, 600, 800 };
+	float spawnHorizontalPositions[5] { 0.f, 200.f, 400.f, 600.f, 800.f };
 	static const int charFontSize = 22;
 	static const int charWidth = 14;
 	static const int charHeight = 24;

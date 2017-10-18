@@ -132,7 +132,7 @@ public:
 
 		for (int i = 0; i < pictureElementsNum; ++i)
 		{
-			int wordLength = RandomMachine::GetRange(dictw.shortestWord, dictw.longestWord);
+			int wordLength = RandomMachine::getRange(dictw.shortestWord, dictw.longestWord);
 			std::wstring wordGenerated = dictw.randomWord(wordLength);
 			sf::Sprite pes = sf::Sprite(pictureTexture, sf::IntRect(i % pictureElementsCols * peWidth, i % pictureElementsRows *peHeight, peWidth, peHeight));
 

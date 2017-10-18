@@ -21,7 +21,6 @@ class Dictionary
 public:
     Dictionary();
 	~Dictionary();
-
     Dictionary(const Dictionary&) = delete;
     const Dictionary& operator=(const Dictionary) = delete;
 	Dictionary(Dictionary&&) = delete;

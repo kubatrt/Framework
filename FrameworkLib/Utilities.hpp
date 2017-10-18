@@ -8,15 +8,13 @@
 
 #include "Util\NonCopyable.hpp"
 #include "Util\NonMoveable.hpp"
+#include "Util\Maths.hpp"
+#include "Util\Random.hpp"
 
 // old
 #define LOG(msg)    std::wcout << msg << " ::" << __FILE__ << ":" << __LINE__ << std::endl;
 #define DEBUG(msg)  std::wcout << "DEBUG: " << msg << std::endl;
 #define ERROR(msg)  std::wcerr << "ERROR: " << msg << std::endl;
-
-#define log_inf(text) std::cout << text << std::endl;
-#define log_dbg(text) std::cout << text << std::endl;
-#define log_err(text) std::cerr << text << std::endl;
 
 typedef unsigned int uint;
 
@@ -27,7 +25,7 @@ namespace framework
 struct RandomMachine
 {
 	template<class T>
-	static T GetRange(T min, T max)
+	static T getRange(T min, T max)
 	{
 		std::random_device rd;
 		std::default_random_engine re(rd());	//std::mt19937
@@ -59,7 +57,7 @@ struct Capitalize
 	}
 };
 
-struct Upper
+struct ToUpper
 {
 	void operator()(std::string &str)
 	{
@@ -77,7 +75,7 @@ struct Upper
 	}
 };
 
-struct Lower
+struct ToLower
 {
 	void operator()(std::string &str)
 	{
@@ -120,7 +118,7 @@ bool isIntersecting(T1& a, T2& b)
 template <typename T>
 void printVec(T vec)
 {
-	std::cout << "("<< vec.x << ", " << vec.y << ")"
+	std::cout << "("<< vec.x << ", " << vec.y << ")";
 }
 
 template <typename... Args>
@@ -130,5 +128,4 @@ void printVA(std::ostream& out, Args&&... args)
 	(void)expander { (void(out << ',' << std::forward<Args>(args)),0)... };
 	out << std::endl;
 }
-
 } // framework

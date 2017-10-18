@@ -42,8 +42,8 @@ TEST_F(ApplicationTest, instanceCreation)
 	EXPECT_CALL(sut2_, onStartup()).Times(AtLeast(1));
 	EXPECT_CALL(sut2_, onDestroy()).Times(AtLeast(1));
 
-	sut_->onStartup();
-	sut_->onDestroy();
+	//sut_->onStartup();
+	//sut_->onDestroy();
 
 	sut2_.onStartup();
 	sut2_.onDestroy();

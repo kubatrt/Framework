@@ -146,6 +146,7 @@
     <ClInclude Include="GameSettings.hpp" />
     <ClInclude Include="GameStateManager.hpp" />
     <ClInclude Include="KeyboardTyper.hpp" />
+    <ClInclude Include="Metronome.hpp" />
     <ClInclude Include="Miscellaneous.hpp" />
     <ClInclude Include="PictureElement.hpp" />
     <ClInclude Include="SimpleApplication.hpp" />

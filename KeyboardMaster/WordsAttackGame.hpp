@@ -143,7 +143,7 @@ public:
 
 		for (int i = 0; i < maxWordsInGame; ++i)
 		{
-			int wordLength = RandomMachine::GetRange(dictw.shortestWord, dictw.longestWord);
+			int wordLength = RandomMachine::getRange(dictw.shortestWord, dictw.longestWord);
 			std::wstring wordGenerated = dictw.randomWord(wordLength);
 			wordsBlocksPtrList.push_back(WordBlockPtr(new WordBlock(i, wordGenerated, sf::Vector2f(0, 1), sf::Color::Blue, mainFont)));
 		}
@@ -299,7 +299,7 @@ public:
 				// create new
 				if (wordsBlocksPtrList.size() < maxWordsInGame)
 				{
-					int wordLength = RandomMachine::GetRange(dictw.shortestWord, dictw.longestWord);
+					int wordLength = RandomMachine::getRange(dictw.shortestWord, dictw.longestWord);
 					std::wstring wordGenerated = dictw.randomWord(wordLength);
 
 					// speed up every 10 seconds

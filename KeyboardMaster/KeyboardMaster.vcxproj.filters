@@ -59,6 +59,7 @@
     <ClInclude Include="WordsAttackGame.hpp">
       <Filter>Games</Filter>
     </ClInclude>
+    <ClInclude Include="Metronome.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="3rdparty">

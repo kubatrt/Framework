@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include <vector>
+#include <SFML\Graphics.hpp>
 
 #include "gtest\gtest.h"
 
@@ -9,12 +10,53 @@
 
 using namespace testing;
 using namespace framework;
+using namespace framework::charutils;
 
-
-TEST(VariadicPrint, test)
+TEST(CharUtils, Captitalize)
 {
-	printVA(std::cout, "a", "b", "c", "d");
-	printVA(std::cerr, "This", "is", "a", "test");
+	std::string exampleText = "warsaw";
+	Capitalize capitalize; 
+	capitalize(exampleText);
+	EXPECT_STREQ("Warsaw", exampleText.c_str());
+}
+
+TEST(CharUtils, ToUpper)
+{
+	std::string exampleText = "text in lower case";
+	ToUpper upper;
+	upper(exampleText);
+	EXPECT_STREQ("TEXT IN LOWER CASE", exampleText.c_str());
+}
+
+TEST(CharUtils, ToLower)
+{
+	std::string exampleText = "TEXT IN UPPER CASE";
+	ToLower lower;
+	lower(exampleText);
+	EXPECT_STREQ("text in upper case", exampleText.c_str());
+}
+
+TEST(CharUtils, RemoveSpaces)
+{
+	std::string text = "This is text with spaces.";
+	RemoveSpaces rs;
+	rs(text);
+	EXPECT_STREQ("Thisistextwithspaces.", text.c_str());
+}
+
+TEST(PrintVector, test)
+{
+	sf::Vector2f vector { 120.f, 240.f };
+	printVec(vector); 
+	std::cout << std::endl;
+}
+
+TEST(PrintVariadic, test)
+{
+	std::ostringstream oss;
+	printVA(oss, "This", "is", "a", "test");
+
+	EXPECT_STREQ(",This,is,a,test\n", oss.str().c_str());
 }
 
 TEST(MathTest, Collision2d)

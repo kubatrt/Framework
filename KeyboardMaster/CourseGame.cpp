@@ -89,11 +89,11 @@ int CourseGame::run(int argc, char* argv)
     dictw.loadFromFile(courseFile);
 
     //CourseText courseText(dictw);
-    int currentline = 0;
-    int currentletter = 0;
-    int currentword = 0;
-    int correct = 0;
-    int mistakes = 0;
+	unsigned int currentline = 0;
+    unsigned int currentletter = 0;
+	unsigned int currentword = 0;
+	unsigned int correct = 0;
+	unsigned int mistakes = 0;
 
     std::vector<sf::Text> courseTextLines;
     std::vector<sf::Text> courseInputTextLines;

@@ -82,7 +82,7 @@ void Dictionary::printAllWords()
 std::wstring Dictionary::randomWord(int length)
 {
     return wordsByLength_[length].at(
-		framework::RandomMachine::GetRange<size_t>(0, wordsByLength_[length].size() - 1));
+		framework::RandomMachine::getRange<size_t>(0, wordsByLength_[length].size() - 1));
 }
 
 void Dictionary::prepareLines()
