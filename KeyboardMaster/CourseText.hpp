@@ -23,14 +23,14 @@ struct CourseText
 	unsigned int currentLetter;
 
 	int correct;
-	int misstakes;
+	int mistakes_;
 
 	CourseText(const Dictionary& dictw)
 	{
 		currentLetter = 0;
 		text = dictw.getText();
 
-		misstakes = 0;
+		mistakes_ = 0;
 		correct = 0;
 	}
 
@@ -42,7 +42,7 @@ struct CourseText
 		}
 		else
 		{
-			misstakes++;
+			mistakes_++;
 		}
 	}
 

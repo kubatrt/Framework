@@ -31,11 +31,13 @@ class CourseGame : public SimpleApplication
 {
     public:
 		CourseGame() = default;
-
+		~CourseGame() = default;
         CourseGame(const CourseGame&) = delete;
         const CourseGame& operator=(const CourseGame&) = delete;
+		CourseGame(CourseGame&&) = delete;
+		CourseGame&& operator=(CourseGame&&) = delete;
 
-        virtual int run(int argc, char* argv);
+        int run(int argc, char* argv);
 };
 
 }

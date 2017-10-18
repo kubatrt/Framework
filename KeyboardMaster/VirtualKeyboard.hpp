@@ -1,13 +1,20 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include <map>
-#include "Utilities.hpp"
 
+#include <map>
+#include <SFML/Graphics.hpp>
+#include "Miscellaneous.hpp"
+
+namespace KM
+{
+
+namespace 
+{
 constexpr float row_1st = 4;
 constexpr float row_2nd = 55;
 constexpr float row_3rd = 107;
 constexpr float row_4th = 159;
 constexpr float row_5th = 210;
+}
 
 struct Virtualkeyboard
 {
@@ -75,3 +82,5 @@ struct Virtualkeyboard
 	}
 
 };
+
+}	// KM

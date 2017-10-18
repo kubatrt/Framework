@@ -1,49 +1,77 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="CourseGame.cpp" />
-    <ClCompile Include="Dictionary.cpp" />
-    <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="framework\Observer.cpp">
-      <Filter>framework</Filter>
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Dictionary.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="CourseGame.cpp">
+      <Filter>Games</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CourseGame.hpp" />
-    <ClInclude Include="CourseText.hpp" />
-    <ClInclude Include="Dictionary.hpp" />
-    <ClInclude Include="GalleryGame.hpp" />
-    <ClInclude Include="Game.hpp" />
     <ClInclude Include="GameStateManager.hpp" />
-    <ClInclude Include="KeyboardTyper.hpp" />
     <ClInclude Include="Miscellaneous.hpp" />
-    <ClInclude Include="PictureElement.hpp" />
-    <ClInclude Include="SimpleApplication.hpp" />
-    <ClInclude Include="Utilities.hpp" />
-    <ClInclude Include="VirtualKeyboard.hpp" />
-    <ClInclude Include="WordBlock.hpp" />
-    <ClInclude Include="WordsAttackGame.hpp" />
     <ClInclude Include="framework\Application.hpp">
-      <Filter>framework</Filter>
+      <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="framework\Observer.hpp">
-      <Filter>framework</Filter>
+      <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="framework\Singleton.hpp">
-      <Filter>framework</Filter>
+      <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="tinyutf.h">
       <Filter>3rdparty</Filter>
     </ClInclude>
     <ClInclude Include="GameSettings.hpp" />
+    <ClInclude Include="VirtualKeyboard.hpp">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Dictionary.hpp">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardTyper.hpp">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="WordBlock.hpp">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="CourseGame.hpp">
+      <Filter>Games</Filter>
+    </ClInclude>
+    <ClInclude Include="CourseText.hpp">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GalleryGame.hpp">
+      <Filter>Games</Filter>
+    </ClInclude>
+    <ClInclude Include="GameBase.hpp" />
+    <ClInclude Include="PictureElement.hpp">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleApplication.hpp">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="WordsAttackGame.hpp">
+      <Filter>Games</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="framework">
-      <UniqueIdentifier>{bc0cb987-810f-4bb1-a5c9-52e181fd82ed}</UniqueIdentifier>
-    </Filter>
     <Filter Include="3rdparty">
       <UniqueIdentifier>{f51f5224-9e55-44c5-b8b8-d091a5ea91e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects">
+      <UniqueIdentifier>{90c97902-d24e-4652-b241-7dca7fe5555b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Games">
+      <UniqueIdentifier>{e651a726-8029-47c3-a170-bf7353aa7064}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework">
+      <UniqueIdentifier>{bc0cb987-810f-4bb1-a5c9-52e181fd82ed}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

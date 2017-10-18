@@ -9,17 +9,10 @@
 namespace KM
 {
 
-// placeholders
-class Graphics; 
-class Event;
-
-typedef unsigned int StateID;
-
-
 class GameBase
 {
 public:
-	GameBase() {};
+	GameBase() : gsm_() {};
 	GameBase(int idleState) {};
 	
 	GameBase(const GameBase&) = delete;
@@ -31,12 +24,12 @@ public:
 	virtual void OnShutdown() {};
 
 	virtual void OnUpdate(float deltaTime) {};
-	virtual void OnDraw(const Graphics& window) {};
-	virtual void OnEvent(const Event& event) {};
-	virtual void OnInput(const Event& input) {};
+	virtual void OnDraw(const sf::RenderTarget& window) {};
+	virtual void OnEvent(const sf::Event& event) {};
+	virtual void OnInput(const sf::Event& input) {};
 
 private:
-	std::unique_ptr<GameStateManager> gameStateManager;
+	std::unique_ptr<GameStateManager> gsm_;
 };
 	
 }	// KM

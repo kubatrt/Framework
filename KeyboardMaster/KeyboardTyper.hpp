@@ -1,5 +1,9 @@
 #pragma once
+
 #include <vector>
+
+namespace KM
+{
 
 struct KeyboardTyper
 {
@@ -19,3 +23,5 @@ struct KeyboardTyper
 	void pause() {};
 	void stop() {};
 };
+
+}	// KM

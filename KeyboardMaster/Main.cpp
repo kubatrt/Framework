@@ -1,8 +1,6 @@
 #include "CourseGame.hpp"
-//#include "WordsAttackGame.hpp"
-//#include "GalleryGame.hpp"
-#include "SimpleApplication.hpp"
-#include <string>
+#include "WordsAttackGame.hpp"
+#include "GalleryGame.hpp"
 
 /* 
 	Let's begin from...

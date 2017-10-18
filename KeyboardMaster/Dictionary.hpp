@@ -9,7 +9,7 @@
 #include <set>
 #include <codecvt>
 #include <locale>
-#include "Utilities.hpp"
+#include "../FrameworkLib/Utilities.hpp"
 
 
 namespace KM
@@ -30,11 +30,10 @@ public:
 	void loadFromFile(const char* filename);
 	void printAllWords();
 	std::wstring randomWord(int length);
-	
+
 	const std::wstring getText() const { return text_; }
 	const std::vector<std::wstring> getLines() const { return lines_; }
 	const std::set<std::wstring> getWords() const { return words_; }
-
 	unsigned int getLettersCount() const { return lettersCount_; }
 	unsigned int getWordsCount() const { return wordsCount_; }
 	unsigned int getLongestWord() const { return longestWord_; }
@@ -46,15 +45,15 @@ private:
 	void sortWordsByLength();
 	void prepareCount();
 
-	std::wstring text_;
-	std::vector <std::wstring> lines_;
-	std::set <std::wstring> words_;	// set = vector?
-	std::map<int, std::vector<std::wstring>>	wordsByLength_;	//	is this will be helpfull??
-
 	unsigned int lettersCount_;
 	unsigned int wordsCount_;
 	unsigned int longestWord_;
 	unsigned int shortestWord_;
+
+	std::wstring text_;
+	std::vector <std::wstring> lines_;
+	std::set <std::wstring> words_;
+	std::map<int, std::vector<std::wstring>> wordsByLength_;
 };
 
 }

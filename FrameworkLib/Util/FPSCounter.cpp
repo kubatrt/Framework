@@ -1,7 +1,6 @@
+#include <iostream>
 #include "FPSCounter.hpp"
 #include "../ResourceManager/ResourceHolder.hpp"
-
-#include <iostream>
 
 namespace framework
 {

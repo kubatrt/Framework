@@ -132,7 +132,6 @@
     <ClCompile Include="CourseGame.cpp" />
     <ClCompile Include="Dictionary.cpp" />
     <ClCompile Include="framework\Observer.cpp" />
-    <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -143,7 +142,7 @@
     <ClInclude Include="framework\Observer.hpp" />
     <ClInclude Include="framework\Singleton.hpp" />
     <ClInclude Include="GalleryGame.hpp" />
-    <ClInclude Include="Game.hpp" />
+    <ClInclude Include="GameBase.hpp" />
     <ClInclude Include="GameSettings.hpp" />
     <ClInclude Include="GameStateManager.hpp" />
     <ClInclude Include="KeyboardTyper.hpp" />
@@ -151,7 +150,6 @@
     <ClInclude Include="PictureElement.hpp" />
     <ClInclude Include="SimpleApplication.hpp" />
     <ClInclude Include="tinyutf.h" />
-    <ClInclude Include="Utilities.hpp" />
     <ClInclude Include="VirtualKeyboard.hpp" />
     <ClInclude Include="WordBlock.hpp" />
     <ClInclude Include="WordsAttackGame.hpp" />

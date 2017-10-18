@@ -1,25 +1,24 @@
 #include "Dictionary.hpp"
 
+
 namespace KM
 {
 
 namespace
 {
+// http://www.cplusplus.com/reference/locale/
+// http://www.cplusplus.com/reference/locale/codecvt/
+// System independent, universal utf8 file loading
 std::wstring LoadUtf8FileToString(const char* filename)
 {
 	LOG("Opening file: " << filename);
-
-	// http://www.cplusplus.com/reference/locale/
-	// http://www.cplusplus.com/reference/locale/codecvt/
+	
 	std::wifstream wif(filename);
-	if (wif.is_open())
-	{
-		std::wcout << "wifstream open" << std::endl;
-	}
+	if(!wif.is_open())
+		return {};
 
 	std::locale loc(std::locale(), new std::codecvt_utf8<wchar_t>);
 	wif.imbue(loc);
-	//std::cout << loc.name() << std::endl;
 
 	std::wstringstream wss;
 	wss << wif.rdbuf();
@@ -71,7 +70,6 @@ void Dictionary::sortWordsByLength()
 	}
 }
 
-
 void Dictionary::printAllWords()
 {
     for (auto& w : words_)
@@ -83,7 +81,8 @@ void Dictionary::printAllWords()
 
 std::wstring Dictionary::randomWord(int length)
 {
-    return wordsByLength_[length].at(RandomMachine::GetRange<size_t>(0, wordsByLength_[length].size() - 1));
+    return wordsByLength_[length].at(
+		framework::RandomMachine::GetRange<size_t>(0, wordsByLength_[length].size() - 1));
 }
 
 void Dictionary::prepareLines()
