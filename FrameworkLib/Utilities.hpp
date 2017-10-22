@@ -103,7 +103,7 @@ struct RemoveSpaces
 	}
 };
 
-}
+}   // charutils
 
 // Check intersection with two shapes
 template<class T1, class T2>

@@ -5,30 +5,35 @@ namespace framework
 {
 
 Game::Game()
-	: window_({1280, 720}, "GameNameHere")
+    : window_({1280, 720}, "ExampleHere")
 {
     window_.setFramerateLimit(60);
     pushState<StateMenu>(*this);
 }
 
+Game::~Game()
+{
+
+}
+
 void Game::update(sf::Time deltaTime)
 {
-	auto& state = getCurrentState();
-	state.draw(window_);
-	state.handleInput();
-	state.update(deltaTime);
-	fpsCounter_.update(deltaTime);
+    auto& state = getCurrentState();
+    state.draw(window_);
+    state.handleInput();
+    state.update(deltaTime);
+    fpsCounter_.update(deltaTime);
 }
 
 void Game::draw(sf::RenderTarget& renderer)
 {
-	window_.clear();
-	
-	auto& state = getCurrentState();
-	state.draw(window_);
-	fpsCounter_.draw(window_);
-	
-	window_.display();
+    window_.clear();
+
+    auto& state = getCurrentState();
+    state.draw(window_);
+    fpsCounter_.draw(window_);
+
+    window_.display();
 }
 
 int Game::run()
@@ -39,28 +44,28 @@ int Game::run()
 
     sf::Clock timer;
     auto lastTime = sf::Time::Zero;
-    auto lag      = sf::Time::Zero;
+    auto lag = sf::Time::Zero;
 
     while (window_.isOpen() && !states_.empty())
     {
         auto& state = getCurrentState();
 
-        //Get times
+        // Get times, TODO: move elsewhere
         auto time = timer.getElapsedTime();
         auto elapsed = time - lastTime;
         lastTime = time;
         lag += elapsed;
 
-        //Real time update
-		update(elapsed); 
+        // Real time update
+        update(elapsed); 
 
-        //Fixed time update
+        // Fixed time update
         while (lag >= timePerUpdate)
         {
             ticks++;
             lag -= timePerUpdate;
             
-			state.fixedUpdate(elapsed);
+        state.fixedUpdate(elapsed);
         }
 
         //Render
@@ -71,12 +76,12 @@ int Game::run()
         tryPop();
     }
 
-	return 0;
+    return 0;
 }
 
 void Game::close()
 {
-	window_.close();
+    window_.close();
 }
 
 void Game::tryPop()
@@ -99,10 +104,8 @@ void Game::handleEvent()
             case sf::Event::Closed:
                 window_.close();
                 break;
-
             default:
                 break;
-
         }
     }
 }

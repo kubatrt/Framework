@@ -1,5 +1,4 @@
-#ifndef ANIMATION_H_INCLUDED
-#define ANIMATION_H_INCLUDED
+#pragma once
 
 #include <SFML/Graphics.hpp>
 #include <vector>
@@ -10,27 +9,24 @@ class Animation
         struct Frame
         {
             Frame(const sf::IntRect& bnds, sf::Time dly)
-            :   bounds  (bnds)
-            ,   delay   (dly) {}
+                : bounds(bnds)
+                , delay(dly) {}
 
             sf::IntRect bounds;
-            sf::Time    delay;
+            sf::Time delay;
         };
 
         Animation(unsigned frameSize);
 
         void addFrame(unsigned index, sf::Time delay);
-
         const sf::IntRect& getFrame();
 
     private:
-        sf::Clock m_timer;
+        sf::Clock timer_;
 
-        std::vector<Frame> m_frames;
+        std::vector<Frame> frames_;
 
-        unsigned m_framePointer = 0;
+        unsigned framePointer_ = 0;
         const unsigned FRAME_SIZE;
 
 };
-
-#endif // ANIMATION_H_INCLUDED

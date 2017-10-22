@@ -85,8 +85,7 @@ int CourseGame::run(int argc, char* argv)
     //if(!fs::exists(courseFile))
     //    LOG("FILE DOESNT EXISTS!");
 
-    Dictionary dictw;
-    dictw.loadFromFile(courseFile);
+    Dictionary dictw(courseFile);
 
     //CourseText courseText(dictw);
 	unsigned int currentline = 0;

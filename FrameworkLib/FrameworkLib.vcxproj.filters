@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Util\Animation.h">
-      <Filter>Util</Filter>
-    </ClInclude>
     <ClInclude Include="Util\ToggleKey.h">
       <Filter>Util</Filter>
     </ClInclude>
@@ -47,9 +44,6 @@
     <ClInclude Include="Util\Random.hpp">
       <Filter>Util</Filter>
     </ClInclude>
-    <ClInclude Include="Util\FileUtil.hpp">
-      <Filter>Util</Filter>
-    </ClInclude>
     <ClInclude Include="States\StateBase.hpp">
       <Filter>States</Filter>
     </ClInclude>
@@ -68,6 +62,12 @@
     <ClInclude Include="IEntity.hpp" />
     <ClInclude Include="IGameState.hpp" />
     <ClInclude Include="IState.hpp" />
+    <ClInclude Include="Util\Files.hpp">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\Animation.hpp">
+      <Filter>Util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GUI\Button.cpp">
@@ -85,9 +85,6 @@
     <ClCompile Include="Util\Animation.cpp">
       <Filter>Util</Filter>
     </ClCompile>
-    <ClCompile Include="Util\FileUtil.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
     <ClCompile Include="Util\FPSCounter.cpp">
       <Filter>Util</Filter>
     </ClCompile>
@@ -101,5 +98,8 @@
       <Filter>ResourceManager</Filter>
     </ClCompile>
     <ClCompile Include="StateManager.cpp" />
+    <ClCompile Include="Util\Files.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

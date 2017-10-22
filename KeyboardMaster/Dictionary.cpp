@@ -1,56 +1,36 @@
 #include "Dictionary.hpp"
+#include "../FrameworkLib/Util/Files.hpp"
 
 
 namespace KM
 {
 
-namespace
+Dictionary::Dictionary(const std::string& filePath)
+    : shortestWord_(3)
+    , longestWord_(0)
+    , lettersCount_(0)
+    , wordsCount_(0)
 {
-// http://www.cplusplus.com/reference/locale/
-// http://www.cplusplus.com/reference/locale/codecvt/
-// System independent, universal utf8 file loading
-std::wstring LoadUtf8FileToString(const char* filename)
-{
-	LOG("Opening file: " << filename);
-	
-	std::wifstream wif(filename);
-	if(!wif.is_open())
-		return {};
+    loadFromFile(filePath);
 
-	std::locale loc(std::locale(), new std::codecvt_utf8<wchar_t>);
-	wif.imbue(loc);
-
-	std::wstringstream wss;
-	wss << wif.rdbuf();
-	return wss.str();
-}
-}
-
-
-Dictionary::Dictionary()
-	: shortestWord_(3)
-	, longestWord_(0)
-	, lettersCount_(0)
-	, wordsCount_(0)
-{
+    std::wcout << "Loaded text: " << text_ << std::endl;
+    std::wcout << "letters count: " << lettersCount_ << std::endl;
+    std::wcout << "longest word: " << longestWord_ << std::endl;
+    std::wcout << "shortest word: " << shortestWord_ << std::endl;
 }
 
 Dictionary::~Dictionary()
 {
 }
 
-void Dictionary::loadFromFile(const char* filename)
+void Dictionary::loadFromFile(const std::string& filePath)
 {
-    text_ = LoadUtf8FileToString(filename);
+    
+    text_ = framework::loadTextFromUtf8File(filePath);
     prepareWords();
     prepareLines();
-	prepareCount();
-	sortWordsByLength();
-
-	std::wcout << "Loaded text: " << text_ << std::endl;
-    std::wcout << "letters count: " << lettersCount_ << std::endl;
-    std::wcout << "longest word: " << longestWord_ << std::endl;
-    std::wcout << "shortest word: " << shortestWord_ << std::endl;
+    prepareCount();
+    sortWordsByLength();
 }
 
 void Dictionary::prepareCount()
@@ -82,7 +62,7 @@ void Dictionary::printAllWords()
 std::wstring Dictionary::randomWord(int length)
 {
     return wordsByLength_[length].at(
-		framework::RandomMachine::getRange<size_t>(0, wordsByLength_[length].size() - 1));
+        framework::RandomMachine::getRange<size_t>(0, wordsByLength_[length].size() - 1));
 }
 
 void Dictionary::prepareLines()

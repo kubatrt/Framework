@@ -1,8 +1,8 @@
-#include "Animation.h"
+#include "Animation.hpp"
 
 
 Animation::Animation(unsigned frameSize)
-:   FRAME_SIZE  (frameSize)
+    :   FRAME_SIZE  (frameSize)
 { }
 
 void Animation::addFrame(unsigned index, sf::Time delay)
@@ -13,19 +13,19 @@ void Animation::addFrame(unsigned index, sf::Time delay)
     bounds.width  = FRAME_SIZE;
     bounds.left   = index * FRAME_SIZE;
 
-    m_frames.emplace_back(bounds, delay);
+    frames_.emplace_back(bounds, delay);
 }
 
 
 const sf::IntRect& Animation::getFrame()
 {
-    if (m_timer.getElapsedTime() >= m_frames[m_framePointer].delay)
+    if (timer_.getElapsedTime() >= frames_[framePointer_].delay)
     {
-        m_timer.restart();
-        m_framePointer++;
-        if (m_framePointer == m_frames.size())
-            m_framePointer = 0;
+        timer_.restart();
+        framePointer_++;
+        if (framePointer_ == frames_.size())
+            framePointer_ = 0;
     }
 
-    return m_frames[m_framePointer].bounds;
+    return frames_[framePointer_].bounds;
 }

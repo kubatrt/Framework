@@ -134,8 +134,8 @@
     <ClInclude Include="StateManager.hpp" />
     <ClInclude Include="States\StateBase.hpp" />
     <ClInclude Include="Utilities.hpp" />
-    <ClInclude Include="Util\Animation.h" />
-    <ClInclude Include="Util\FileUtil.hpp" />
+    <ClInclude Include="Util\Animation.hpp" />
+    <ClInclude Include="Util\Files.hpp" />
     <ClInclude Include="Util\FPSCounter.hpp" />
     <ClInclude Include="Util\Maths.hpp" />
     <ClInclude Include="Util\NonCopyable.hpp" />
@@ -151,7 +151,7 @@
     <ClCompile Include="ResourceManager\ResourceHolder.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="Util\Animation.cpp" />
-    <ClCompile Include="Util\FileUtil.cpp" />
+    <ClCompile Include="Util\Files.cpp" />
     <ClCompile Include="Util\FPSCounter.cpp" />
     <ClCompile Include="Util\Maths.cpp" />
     <ClCompile Include="Util\ToggleKey.cpp" />

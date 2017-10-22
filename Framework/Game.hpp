@@ -11,11 +11,15 @@
 namespace framework
 {
 
-class Game : public NonCopyable
+class Game
 {
     public:
         Game();
-        //virtual ~Game();
+        ~Game();
+        Game(const Game&) = delete;
+        Game& operator= (const Game&) = delete;
+        Game(Game&&) = delete;
+        Game&& operator= (Game&&) = delete;
 
         void update(sf::Time deltaTime);
         void draw(sf::RenderTarget& renderer);
