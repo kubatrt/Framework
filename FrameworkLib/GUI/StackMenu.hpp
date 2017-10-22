@@ -13,25 +13,27 @@ namespace gui
 {
 
 
-class StackMenu : public framework::NonCopyable
+class StackMenu : public Widget, framework::NonCopyable
 {
     public:
         StackMenu(const sf::Vector2f& position);
         
-		StackMenu(StackMenu&& other);
+        StackMenu(StackMenu&& other);
         StackMenu& operator =(StackMenu&& other);
 
         ~StackMenu() = default;
 
         void addWidget(std::unique_ptr<Widget>);
 
-        void handleEvent(sf::Event e, const sf::RenderWindow& window);
-        void draw(sf::RenderTarget& renderer);
+        void handleEvent(sf::Event e, const sf::RenderWindow& window) override;
+        void draw(sf::RenderTarget& renderer) override;
+        virtual void setPosition(const sf::Vector2f& pos) override;
+        virtual sf::Vector2f getSize() const override;
 
     protected:
 
         void initWidget(Widget& w);
-		void alignSize();
+        void alignSize();
 
         std::vector<std::unique_ptr<Widget>> widgets_;
         sf::RectangleShape background_;

@@ -4,7 +4,10 @@
 #include <stdexcept>
 #include <locale>
 #include <codecvt>
+#include <vector>
+#include <string>
 #include "Files.hpp"
+
 
 namespace framework
 {

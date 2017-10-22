@@ -3,14 +3,20 @@
   <ItemGroup>
     <ClInclude Include="CatchGame.hpp" />
     <ClInclude Include="Game.hpp" />
-    <ClInclude Include="States\StateMenu.hpp">
+    <ClInclude Include="CourseMenu.hpp">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.hpp">
       <Filter>States</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="States\StateMenu.cpp">
+    <ClCompile Include="CourseMenu.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
       <Filter>States</Filter>
     </ClCompile>
   </ItemGroup>

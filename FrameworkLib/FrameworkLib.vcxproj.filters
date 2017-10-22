@@ -101,5 +101,6 @@
     <ClCompile Include="Util\Files.cpp">
       <Filter>Util</Filter>
     </ClCompile>
+    <ClCompile Include="Utilities.cpp" />
   </ItemGroup>
 </Project>

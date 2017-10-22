@@ -150,6 +150,7 @@
     <ClCompile Include="GUI\Widget.cpp" />
     <ClCompile Include="ResourceManager\ResourceHolder.cpp" />
     <ClCompile Include="StateManager.cpp" />
+    <ClCompile Include="Utilities.cpp" />
     <ClCompile Include="Util\Animation.cpp" />
     <ClCompile Include="Util\Files.cpp" />
     <ClCompile Include="Util\FPSCounter.cpp" />

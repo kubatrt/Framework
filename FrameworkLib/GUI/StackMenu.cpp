@@ -52,13 +52,23 @@ void StackMenu::addWidget(std::unique_ptr<Widget> w)
 
 void StackMenu::initWidget(Widget& widget)
 {
-	// move widget accordingly menu bounds
+    // move widget accordingly menu bounds
     widget.setPosition({basePosition_.x - widget.getSize().x / 2, basePosition_.y});
 
-	// set size of menu accordingly to wigets inside
+    // set size of menu accordingly to wigets inside
     basePosition_.y += widget.getSize().y + offset;
     baseSize_.y += widget.getSize().y + offset;
     background_.setSize(baseSize_);
+}
+
+void StackMenu::setPosition(const sf::Vector2f& pos)
+{
+    background_.setPosition(pos);
+}
+
+sf::Vector2f StackMenu::getSize() const
+{
+    return background_.getSize();
 }
 
 void StackMenu::alignSize()

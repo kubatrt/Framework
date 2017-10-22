@@ -1,5 +1,6 @@
 #include "Game.hpp"
-#include "States/StateMenu.hpp"
+#include "MainMenu.hpp"
+#include "CourseMenu.hpp"
 
 namespace framework
 {
@@ -8,7 +9,8 @@ Game::Game()
     : window_({1280, 720}, "ExampleHere")
 {
     window_.setFramerateLimit(60);
-    pushState<StateMenu>(*this);
+    pushState<MainMenu>(*this);
+    //pushState<CourseMenu>(*this);
 }
 
 Game::~Game()
@@ -90,6 +92,7 @@ void Game::tryPop()
     {
         states_.pop_back();
     }
+    shouldPopState_ = false;
 }
 
 void Game::handleEvent()

@@ -5,6 +5,7 @@
 #include <chrono>
 #include <cwctype>
 #include <random>
+#include <sstream>
 
 #include "Util\NonCopyable.hpp"
 #include "Util\NonMoveable.hpp"
@@ -21,24 +22,26 @@ typedef unsigned int uint;
 namespace framework
 {
 
+std::vector<std::string> getLinesFromText(const std::string& text);
+
 // old
 struct RandomMachine
 {
-	template<class T>
-	static T getRange(T min, T max)
-	{
-		std::random_device rd;
-		std::default_random_engine re(rd());	//std::mt19937
+    template<class T>
+    static T getRange(T min, T max)
+    {
+	    std::random_device rd;
+	    std::default_random_engine re(rd());	//std::mt19937
 
-												// use epoch time as seed for random generator
-		long int seed = static_cast<long int>(
-			std::chrono::duration_cast<std::chrono::nanoseconds>(
-				std::chrono::high_resolution_clock::now().time_since_epoch()).count());
-		re.seed(seed);
-		std::uniform_int_distribution<T> unif_dist_wordlength(min, max);
+        // use epoch time as seed for random generator
+    long int seed = static_cast<long int>(
+	    std::chrono::duration_cast<std::chrono::nanoseconds>(
+		    std::chrono::high_resolution_clock::now().time_since_epoch()).count());
+    re.seed(seed);
+    std::uniform_int_distribution<T> unif_dist_wordlength(min, max);
 
-		return unif_dist_wordlength(re);
-	}
+    return unif_dist_wordlength(re);
+    }
 };
 
 
@@ -47,14 +50,14 @@ namespace charutils	// unused
 
 struct Capitalize
 {
-	void operator()(std::string &str)
-	{
-		str[0] = toupper(str[0]);
-	}
-	void operator()(std::wstring &str)
-	{
-		str[0] = towupper(str[0]);
-	}
+    void operator()(std::string &str)
+    {
+        str[0] = toupper(str[0]);
+    }
+    void operator()(std::wstring &str)
+    {
+        str[0] = towupper(str[0]);
+    }
 };
 
 struct ToUpper

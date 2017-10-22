@@ -6,18 +6,19 @@
 namespace KM
 {
 
-//namespace fs = boost::filesystem;
+constexpr int windowWidth = 1024, windowHeight = 768;
+constexpr int gameAreaWidth = 1024, gameAreaHeight = 640;
+constexpr int courseAreaWidth = 1024, courseAreaHeight = 400;
+constexpr int courseLevelMax = 20;
+constexpr int fontSize = 18;
+constexpr int textLineVerticalOffset = 2;
+
 
 int CourseGame::run(int argc, char* argv)
 {
     const char* appName = "KeyboardMaster";
     const char* courseFile = "data/texts-pl";
-    constexpr int windowWidth = 1024, windowHeight = 768;
-    constexpr int gameAreaWidth = 1024, gameAreaHeight = 640;
-    constexpr int courseAreaWidth = 1024, courseAreaHeight = 400;
-    constexpr int courseLevelMax = 20;
-    constexpr int fontSize = 18;
-    constexpr int textLineVerticalOffset = 2;
+
 
     // get executable path
     //fs::path full_path(fs::initial_path<fs::path>());
@@ -49,7 +50,7 @@ int CourseGame::run(int argc, char* argv)
 
 
     // currently typed text by user
-    std::wstring	typingText;
+    std::wstring typingText;
 
     // graphics 
     mainFont.loadFromFile(exec_path + "media/CourierNew.ttf");
@@ -88,11 +89,11 @@ int CourseGame::run(int argc, char* argv)
     Dictionary dictw(courseFile);
 
     //CourseText courseText(dictw);
-	unsigned int currentline = 0;
+    unsigned int currentline = 0;
     unsigned int currentletter = 0;
-	unsigned int currentword = 0;
-	unsigned int correct = 0;
-	unsigned int mistakes = 0;
+    unsigned int currentword = 0;
+    unsigned int correct = 0;
+    unsigned int mistakes = 0;
 
     std::vector<sf::Text> courseTextLines;
     std::vector<sf::Text> courseInputTextLines;
