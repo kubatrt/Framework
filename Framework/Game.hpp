@@ -15,10 +15,10 @@ class Game : public NonCopyable
 {
     public:
         Game();
-		//virtual ~Game();
+        //virtual ~Game();
 
-		void update(sf::Time deltaTime);
-		void draw(sf::RenderTarget& renderer);
+        void update(sf::Time deltaTime);
+        void draw(sf::RenderTarget& renderer);
         int run();
 
         template<typename T, typename... Args>
@@ -27,7 +27,7 @@ class Game : public NonCopyable
 
         const sf::RenderWindow& getWindow() const;
 
-		void close();
+        void close();
 
     private:
         void handleEvent();
