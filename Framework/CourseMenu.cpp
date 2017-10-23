@@ -2,17 +2,15 @@
 #include <string>
 #include <memory>
 #include "CourseMenu.hpp"
-#include "Game.hpp"
 #include "../FrameworkLib/GUI/Button.hpp"
 #include "../FrameworkLib/GUI/Textbox.hpp"
 #include "../FrameworkLib/Util/Files.hpp"
 #include "../FrameworkLib/Utilities.hpp"
 
-
-namespace framework
+namespace example
 {
 
-CourseMenu::CourseMenu(Game& game)
+CourseMenu::CourseMenu(fw::BaseGame& game)
     : StateBase(game)
     , courseMenu_({ game.getWindow().getSize().x / 2.f, 90.f })
 {
@@ -21,7 +19,7 @@ CourseMenu::CourseMenu(Game& game)
 
     for(const auto line : coursesLines)
     {
-        auto button = std::make_unique<gui::Button>();
+        auto button = std::make_unique<fw::gui::Button>();
         button->setText(line);
         button->setFunction([&] ()
         {
@@ -30,7 +28,7 @@ CourseMenu::CourseMenu(Game& game)
         courseMenu_.addWidget(std::move(button));
     }
 
-    auto bback = std::make_unique<gui::Button>();
+    auto bback = std::make_unique<fw::gui::Button>();
     bback->setText("Back");
     bback->setFunction([&]()
     {

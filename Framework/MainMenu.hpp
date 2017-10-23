@@ -1,15 +1,18 @@
 #pragma once
 
+#include "../FrameworkLib/BaseGame.hpp"
 #include "../FrameworkLib/States/StateBase.hpp"
 #include "../FrameworkLib/GUI/StackMenu.hpp"
 
-namespace framework
+namespace example
 {
 
-class MainMenu : public StateBase
+namespace fw = framework;
+
+class MainMenu : public fw::StateBase
 {
 public:
-    MainMenu(Game& game);
+    MainMenu(fw::BaseGame& game);
 
     void handleEvent(sf::Event e) override;
     void handleInput() override;
@@ -18,7 +21,7 @@ public:
     void draw(sf::RenderTarget& renderer) override;
 
 private:
-    gui::StackMenu testMenu_;
+    fw::gui::StackMenu testMenu_;
 };
 
 }

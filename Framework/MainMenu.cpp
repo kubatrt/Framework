@@ -1,6 +1,5 @@
 #include "MainMenu.hpp"
 #include "CourseMenu.hpp"
-#include "Game.hpp"
 #include "../FrameworkLib/GUI/Button.hpp"
 #include "../FrameworkLib/GUI/Textbox.hpp"
 
@@ -8,35 +7,34 @@
 #include <string>
 #include <memory>
 
-
-namespace framework
+namespace example
 {
 
-MainMenu::MainMenu(Game& game)
+MainMenu::MainMenu(fw::BaseGame& game)
     : StateBase(game)
     , testMenu_({ game.getWindow().getSize().x / 2.f, 90.f })
 {
-    auto b = std::make_unique<gui::Button>();
+    auto b = std::make_unique<fw::gui::Button>();
     b->setText("Course game");
     b->setFunction([&]() {
         game_.pushState<CourseMenu>(game_);
     });
 
-    auto b2 = std::make_unique<gui::Button>();
+    auto b2 = std::make_unique<fw::gui::Button>();
     b2->setText("Words attack!");
     b2->setFunction([&] ()
     {
 
     });
 
-    auto b3 = std::make_unique<gui::Button>();
+    auto b3 = std::make_unique<fw::gui::Button>();
     b3->setText("Gallery game");
     b3->setFunction([&] ()
     {
 
     });
 
-    auto bquit = std::make_unique<gui::Button>();
+    auto bquit = std::make_unique<fw::gui::Button>();
     bquit->setText("Quit");
     bquit->setFunction([&] ()
     {
@@ -83,4 +81,4 @@ void MainMenu::draw(sf::RenderTarget& renderer)
     testMenu_.draw(renderer);
 }
 
-}   // framework
+}

@@ -2,20 +2,18 @@
 
 #include <memory>
 #include <SFML/Graphics.hpp>
-
-#include "../Util/NonCopyable.hpp"
 #include "../IState.hpp"
 
 
 namespace framework
 {
 
-class Game;
+class BaseGame;
 
-class StateBase : public NonCopyable, IState
+class StateBase : IState
 {
 public:
-    StateBase(Game& game)
+    StateBase(BaseGame& game)
     : game_(game)
     {}
     virtual ~StateBase() = default;
@@ -30,8 +28,9 @@ public:
     virtual void draw(sf::RenderTarget& renderer) = 0;
 
 protected:
-    Game& game_;
+    BaseGame& game_;
 };
 using StateBasePtr = std::unique_ptr<StateBase> ;
+using StateBaseSPtr = std::shared_ptr<StateBase>;
 
 }

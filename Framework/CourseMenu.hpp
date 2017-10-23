@@ -2,14 +2,17 @@
 
 #include "../FrameworkLib/States/StateBase.hpp"
 #include "../FrameworkLib/GUI/StackMenu.hpp"
+#include "../FrameworkLib/BaseGame.hpp"
 
-namespace framework
+namespace example
 {
 
-class CourseMenu : public StateBase
+namespace fw = framework;
+
+class CourseMenu : public framework::StateBase
 {
 public:
-    CourseMenu(Game& game);
+    CourseMenu(framework::BaseGame& game);
 
     void handleEvent(sf::Event e) override;
     void handleInput() override;
@@ -18,7 +21,7 @@ public:
     void draw(sf::RenderTarget& renderer) override;
 
 private:
-    gui::StackMenu courseMenu_;
+    fw::gui::StackMenu courseMenu_;
 };
 
 }

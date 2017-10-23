@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include <cassert>
 #include <SFML/Graphics.hpp>
 #include "States\StateBase.hpp"
@@ -28,9 +29,9 @@ public:
     const BaseGame& operator=(const BaseGame&) = delete;
 
 
-    void update(sf::Time deltaTime) override {};
-    void draw(sf::RenderTarget& renderer) override {};
-    int run() override { return 0; };
+    void update(sf::Time deltaTime) override { std::cout << "Base update " << std::endl; };
+    void draw(sf::RenderTarget& renderer) override { std::cout << "Base draw" << std::endl; };
+    int run() override { std::cout << "Base run" << std::endl; return 0; };
 
     template<typename T, typename... Args>
     void pushState(Args&&... args)
@@ -39,7 +40,7 @@ public:
     };
     void popState()
     {
-        states_.pop_back();
+        popState_ = true;
     };
 
     const sf::RenderWindow& getWindow() const { return window_; };
