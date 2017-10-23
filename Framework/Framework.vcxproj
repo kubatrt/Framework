@@ -144,7 +144,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CatchGame.hpp" />
     <ClInclude Include="CourseMenu.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="MainMenu.hpp" />

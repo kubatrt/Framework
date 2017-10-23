@@ -68,6 +68,7 @@
     <ClInclude Include="Util\Animation.hpp">
       <Filter>Util</Filter>
     </ClInclude>
+    <ClInclude Include="BaseGame.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GUI\Button.cpp">

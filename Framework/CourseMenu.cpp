@@ -25,7 +25,7 @@ CourseMenu::CourseMenu(Game& game)
         button->setText(line);
         button->setFunction([&] ()
         {
-
+            // empty  action
         });
         courseMenu_.addWidget(std::move(button));
     }
