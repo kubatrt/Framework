@@ -8,7 +8,7 @@ namespace example
 CatchGame::CatchGame(sf::RenderWindow& window)
     : fw::BaseGame(window)
 {
-    window_.setFramerateLimit(60);
+    window_.setFramerateLimit(60);  // instead separate fixedUpdate
     pushState<MainMenu>(*this);
     //pushState<CourseMenu>(*this);
 }
@@ -19,6 +19,7 @@ void CatchGame::update(sf::Time deltaTime)
     state.draw(window_);
     state.handleInput();
     state.update(deltaTime);
+
     fpsCounter_.update(deltaTime);
 }
 
@@ -47,7 +48,7 @@ int CatchGame::run()
     {
         auto& state = getCurrentState();
 
-        // Get times, TODO: move elsewhere
+        // TODO: (time) move elsewhere
         auto time = timer.getElapsedTime();
         auto elapsed = time - lastTime;
         lastTime = time;

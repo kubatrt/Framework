@@ -1,5 +1,6 @@
 #include "MainMenu.hpp"
 #include "CourseMenu.hpp"
+#include "GameSate.hpp"
 #include "../FrameworkLib/GUI/Button.hpp"
 #include "../FrameworkLib/GUI/Textbox.hpp"
 
@@ -21,10 +22,10 @@ MainMenu::MainMenu(fw::BaseGame& game)
     });
 
     auto b2 = std::make_unique<fw::gui::Button>();
-    b2->setText("Words attack!");
+    b2->setText("Catch game");
     b2->setFunction([&] ()
     {
-
+        game_.pushState<GameState>(game_);
     });
 
     auto b3 = std::make_unique<fw::gui::Button>();

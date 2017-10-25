@@ -25,7 +25,7 @@ class CatchGame : public fw::BaseGame
         int run() override;
 
     private:
-        fw::FPSCounter fpsCounter_;
+        fw::FPSCounter fpsCounter_; // as 'game component'
 
 };
 
