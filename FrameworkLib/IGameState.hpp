@@ -4,6 +4,7 @@
 namespace framework
 {
 
+//TODO: not used
 struct IGameState
 {
     virtual void onEnter() = 0;

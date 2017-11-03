@@ -11,22 +11,19 @@
 
 namespace example
 {
-
 namespace fw = framework;
 
 class CatchGame : public fw::BaseGame
 {
-    public:
-        CatchGame(sf::RenderWindow& window);
-        ~CatchGame() = default;
+public:
+    CatchGame(sf::RenderWindow& window);
 
-        void update(sf::Time deltaTime) override;
-        void draw(sf::RenderTarget& renderer) override;
-        int run() override;
+    void update(sf::Time deltaTime) override;
+    void draw(sf::RenderTarget& renderer) override;
+    int run() override;
 
-    private:
-        fw::FPSCounter fpsCounter_; // as 'game component'
-
+private:
+    fw::FPSCounter fpsCounter_; // as 'game component'
 };
 
 }

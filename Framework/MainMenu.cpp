@@ -51,20 +51,20 @@ MainMenu::MainMenu(fw::BaseGame& game)
 void MainMenu::handleEvent(sf::Event e)
 {
     testMenu_.handleEvent(e, game_.getWindow());
+    handleInput(e);
+}
+
+void MainMenu::handleInput(sf::Event e)
+{
     switch (e.type)
     {
     case sf::Event::KeyPressed:
-        if(e.key.code == sf::Keyboard::Escape)
+        if (e.key.code == sf::Keyboard::Escape)
             game_.close();
         break;
     default:
         break;
     }
-}
-
-void MainMenu::handleInput()
-{
-    
 }
 
 void MainMenu::update(sf::Time deltaTime)

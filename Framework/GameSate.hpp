@@ -9,8 +9,8 @@ namespace example
 
 namespace fw = framework;
 
-// Helpers
-
+// Game helpers
+// TODO: Move
 struct Point
 {
     float x;
@@ -32,8 +32,8 @@ struct Rectangle
 template <typename TPoint, typename TRect>
 bool collision2d(TPoint a, TRect b)
 {
-    return ((a.x >= b.right() && a.y >= b.top())
-        && (a.x < b.left() && a.y < b.bottom()));
+    return ((a.x >= b.left() && a.y >= b.top())
+        && (a.x < b.right() && a.y < b.bottom()));
 }
 
 // Game logic implementation within state
@@ -43,19 +43,40 @@ public:
     GameState(fw::BaseGame& game);
 
     void handleEvent(sf::Event e) override;
-    void handleInput() override;
     void update(sf::Time deltaTime) override;
     void fixedUpdate(sf::Time deltaTime) override;
     void draw(sf::RenderTarget& renderer) override;
 
-private:
-    const unsigned boxSize = 60;
+protected:
+    void handleInput(sf::Event e) override;
 
+private:
+    void dropBox(sf::Vector2f position, float speed);
+    void destroyBoxes();
+    void checkCollisions();
+    void initPlayer();
+    
+    
     struct Box
     {
         Rectangle rect;
         float speed;
-        bool markDestroy;
+        bool destroyed;
+
+        Box(sf::Vector2f position, float speed)
+        {
+            destroyed = false;
+            this->speed = speed;
+            rect.shape.setPosition(position);
+            rect.shape.setSize({ 48.f, 48.f });
+            rect.shape.setFillColor(sf::Color::Red);
+        }
+
+        void update(sf::Time deltaTime)
+        {
+            sf::Vector2f velocity{ 0.f, speed };
+            rect.shape.move(velocity);
+        }
     };
 
     struct Player
@@ -66,15 +87,17 @@ private:
         float speed;
     };
 
-    void dropBox(float locationX, float speed);
-    void checkCollisions();
 
-    
-    Player  player_;
+    const unsigned boxSize = 60;
+
+    Player player_;
     std::vector<Box> boxes_;
-    
+    sf::Time dropLastTime_;
     sf::Time dropInterval_;
-    float dropThreshold_;
+
+    sf::Font font_;
+    sf::Text scoreText_;
+    sf::Text livesText_;
 };
 
 }

@@ -43,7 +43,7 @@ void CourseMenu::handleEvent(sf::Event e)
     courseMenu_.handleEvent(e, game_.getWindow());
 }
 
-void CourseMenu::handleInput()
+void CourseMenu::handleInput(sf::Event e)
 {
 
 }

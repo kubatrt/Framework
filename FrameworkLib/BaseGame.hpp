@@ -25,13 +25,16 @@ public:
     {
     }
     virtual ~BaseGame() = default;
+
     BaseGame(const BaseGame&) = delete;
     const BaseGame& operator=(const BaseGame&) = delete;
+    BaseGame(BaseGame&&) = delete;
+    BaseGame&& operator=(BaseGame&&) = delete;
 
 
-    void update(sf::Time deltaTime) override { std::cout << "Base update " << std::endl; };
-    void draw(sf::RenderTarget& renderer) override { std::cout << "Base draw" << std::endl; };
-    int run() override { std::cout << "Base run" << std::endl; return 0; };
+    virtual void update(sf::Time deltaTime) = 0;
+    virtual void draw(sf::RenderTarget& renderer) = 0;
+    virtual int run() = 0;
 
     template<typename T, typename... Args>
     void pushState(Args&&... args)
@@ -43,19 +46,18 @@ public:
         popState_ = true;
     };
 
+    // access in States
     const sf::RenderWindow& getWindow() const { return window_; };
     void close() { window_.close(); };
 
 protected:
-    sf::RenderWindow& window_;
-    std::vector<std::unique_ptr<StateBase>> states_;
-    bool popState_;
-
     StateBase& getCurrentState()
     {
         // minimum one state required
         // if want return reference...
+        // or throw exception?
         assert(states_.size()); // poddaj siê z asercjami! :) ~Mayers
+        // can be null? use pointer instead
         return *states_.back();
     };
 
@@ -65,7 +67,7 @@ protected:
 
         while (window_.pollEvent(e))
         {
-            getCurrentState().handleEvent(e);
+            getCurrentState().handleEvent(e);   // implicite
 
             switch (e.type)
             {
@@ -87,6 +89,12 @@ protected:
         }
         popState_ = false;
     };
+
+    sf::RenderWindow& window_;
+
+private:
+    std::vector<std::unique_ptr<StateBase>> states_;
+    bool popState_;
 };
 
 
