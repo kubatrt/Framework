@@ -19,10 +19,13 @@ struct IGame
 class BaseGame : IGame
 {
 public:
-    BaseGame(sf::RenderWindow& window)
+    BaseGame(sf::RenderWindow& window)  //  const std::string title
         : window_(window)
+        , windowTitle_("")
         , popState_(false)
     {
+        windowWidth_ = window_.getSize().x;
+        windowHeight_ = window_.getSize().y;
     }
     virtual ~BaseGame() = default;
 
@@ -49,6 +52,17 @@ public:
     // access in States
     const sf::RenderWindow& getWindow() const { return window_; };
     void close() { window_.close(); };
+    void create()
+    {
+        auto style = isFullscreen_ ? sf::Style::Fullscreen : sf::Style::Default;
+        window_.create({windowWidth_, windowHeight_}, windowTitle_, style);
+    }
+    void toggleFullscreen()
+    {
+        isFullscreen_ = !isFullscreen_;
+        close();
+        create();
+    }
 
 protected:
     StateBase& getCurrentState()
@@ -95,6 +109,10 @@ protected:
 private:
     std::vector<std::unique_ptr<StateBase>> states_;
     bool popState_;
+    bool isFullscreen_;
+    std::string windowTitle_;
+    sf::Uint32 windowWidth_;
+    sf::Uint32 windowHeight_;
 };
 
 
