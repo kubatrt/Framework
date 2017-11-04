@@ -9,10 +9,10 @@
 namespace framework
 {
 
-class BaseGame : IApplication
+class GameBase : IApplication
 {
 public:
-    BaseGame(sf::Vector2u windowSize, std::string windowTitle)
+    GameBase(sf::Vector2u windowSize, std::string windowTitle)
         : window_(sf::VideoMode(windowSize.x, windowSize.y), windowTitle)
         , windowWidth_(windowSize.x)
         , windowHeight_(windowSize.y)
@@ -21,19 +21,19 @@ public:
         , isFullscreen_(false)
     {
     }
-    virtual ~BaseGame() = default;
+    virtual ~GameBase() = default;
 
-    BaseGame(const BaseGame&) = delete;
-    const BaseGame& operator=(const BaseGame&) = delete;
-    BaseGame(BaseGame&&) = delete;
-    BaseGame&& operator=(BaseGame&&) = delete;
+    GameBase(const GameBase&) = delete;
+    const GameBase& operator=(const GameBase&) = delete;
+    GameBase(GameBase&&) = delete;
+    GameBase&& operator=(GameBase&&) = delete;
 
     //-------------------------------------------------------------------------
     // This interface should not be able to call within a state
     virtual void update(sf::Time deltaTime) = 0;
     virtual void draw(sf::RenderTarget& renderer) = 0;
 
-    // this hould be defined elswhere, outside this class. I can call in some state public method run()
+    // this hould be defined elsewhere, outside this class. I can call it in some state public method run()
     virtual int run()
     {
         sf::Clock timer;
@@ -57,6 +57,7 @@ public:
     virtual void handleEvents() = 0;
     //-------------------------------------------------------------------------
 
+    // State management
     template<typename T, typename... Args>
     void pushState(Args&&... args)
     {
@@ -67,7 +68,7 @@ public:
         popState_ = true;
     };
 
-    // access in States
+    // Access in States
     const sf::RenderWindow& getWindow() const { return window_; };
     void close() { window_.close(); };
     void create()
@@ -85,14 +86,10 @@ public:
 protected:
     StateBase& getCurrentState()
     {
-        // minimum one state required
-        // or throw exception?
+        // Atleast one state required - or throw exception? or can be null? use pointer instead!
         assert(states_.size()); // give up with assertions... ~Mayers
-        // can be null? use pointer instead!
         return *states_.back(); // return reference
     };
-
-
 
     void tryPop()
     {

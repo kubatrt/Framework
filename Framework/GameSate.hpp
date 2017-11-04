@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../FrameworkLib/States/StateBase.hpp"
-#include "../FrameworkLib/BaseGame.hpp"
+#include "../FrameworkLib/GameBase.hpp"
 #include "../FrameworkLib/Utilities.hpp"
 
 namespace example
@@ -10,7 +10,6 @@ namespace example
 namespace fw = framework;
 
 // Game helpers
-// TODO: Move
 struct Point
 {
     float x;
@@ -32,28 +31,27 @@ struct Rectangle
 template <typename TPoint, typename TRect>
 bool collision2d(TPoint a, TRect b)
 {
-    return ( a.x > b.left() && a.x < b.right()) &&
-        (a.y >= b.top() && a.y < b.bottom() );
+    return (a.x > b.left() && a.x < b.right()) &&
+        (a.y >= b.top() && a.y < b.bottom());
 }
+
+//-----------------------------------------------------------------------------
 
 // Game logic implementation within state
 class GameState : public fw::StateBase
 {
 public:
-    GameState(fw::BaseGame& game);
+    GameState(fw::GameBase& game);
 
     void handleEvent(sf::Event e) override;
     void update(sf::Time deltaTime) override;
-    void fixedUpdate(sf::Time deltaTime) override;
     void draw(sf::RenderTarget& renderer) override;
 
 private:
-    void handleInput();
     void dropBox(sf::Vector2f position, float speed);
     void destroyBoxes();
     void checkCollisions();
     void initPlayer();
-    
     
     struct Box
     {

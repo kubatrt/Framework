@@ -5,7 +5,7 @@
 namespace example
 {
 
-GameState::GameState(fw::BaseGame& game)
+GameState::GameState(fw::GameBase& game)
     : StateBase(game)
     , player_({ game_.getWindow().getSize().x / 2.f, game_.getWindow().getSize().y - 60.f })
     , dropLastTime_(sf::Time::Zero)
@@ -48,12 +48,6 @@ void GameState::handleEvent(sf::Event e)
     default:
         break;
     }
-}
-
-void GameState::handleInput()
-{
-    // TODO: currently in handleEvent
-    // TODO: remove
 }
 
 void GameState::dropBox(sf::Vector2f position, float speed)
@@ -118,11 +112,6 @@ void GameState::update(sf::Time deltaTime)
 
     scoreText_.setString("Score: " + std::to_string(player_.score));
     livesText_.setString("Lives: " + std::to_string(player_.lives));
-}
-
-void GameState::fixedUpdate(sf::Time deltaTime)
-{
-
 }
 
 void GameState::draw(sf::RenderTarget& renderer)

@@ -10,7 +10,7 @@
 namespace example
 {
 
-CourseMenu::CourseMenu(fw::BaseGame& game)
+CourseMenu::CourseMenu(fw::GameBase& game)
     : StateBase(game)
     , courseMenu_({ game.getWindow().getSize().x / 2.f, 90.f })
 {
@@ -41,15 +41,9 @@ CourseMenu::CourseMenu(fw::BaseGame& game)
 void CourseMenu::handleEvent(sf::Event e)
 {
     courseMenu_.handleEvent(e, game_.getWindow());
-
 }
 
 void CourseMenu::update(sf::Time deltaTime)
-{
-
-}
-
-void CourseMenu::fixedUpdate(sf::Time deltaTime)
 {
 
 }

@@ -7,13 +7,13 @@
 #include "../FrameworkLib/Util/FPSCounter.hpp"
 #include "../FrameworkLib/States/StateBase.hpp"
 #include "../FrameworkLib/Utilities.hpp"
-#include "../FrameworkLib/BaseGame.hpp"
+#include "../FrameworkLib/GameBase.hpp"
 
 namespace example
 {
 namespace fw = framework;
 
-class CatchGame : public fw::BaseGame
+class CatchGame : public fw::GameBase
 {
 public:
     CatchGame();
@@ -22,6 +22,7 @@ public:
     void draw(sf::RenderTarget& renderer) override;
     void handleEvents() override;
 private:
+
     // game components
     fw::FPSCounter fpsCounter_; 
 };

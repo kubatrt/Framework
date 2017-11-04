@@ -7,7 +7,7 @@ namespace example
 {
 
 CatchGame::CatchGame()
-    : fw::BaseGame({ 1280, 720 }, "Catch game")
+    : fw::GameBase({ 1280, 720 }, "Catch game")
 {
     window_.setFramerateLimit(60);  // instead of separate fixedUpdate
     pushState<MainMenu>(*this);

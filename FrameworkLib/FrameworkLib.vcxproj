@@ -119,7 +119,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="BaseGame.hpp" />
+    <ClInclude Include="GameBase.hpp" />
     <ClInclude Include="GUI\Button.hpp" />
     <ClInclude Include="GUI\StackMenu.hpp" />
     <ClInclude Include="GUI\Textbox.hpp" />

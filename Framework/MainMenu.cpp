@@ -11,7 +11,7 @@
 namespace example
 {
 
-MainMenu::MainMenu(fw::BaseGame& game)
+MainMenu::MainMenu(fw::GameBase& game)
     : StateBase(game)
     , testMenu_({ game.getWindow().getSize().x / 2.f, 90.f })
 {
@@ -66,11 +66,6 @@ void MainMenu::handleEvent(sf::Event e)
 }
 
 void MainMenu::update(sf::Time deltaTime)
-{
-
-}
-
-void MainMenu::fixedUpdate(sf::Time deltaTime)
 {
 
 }
