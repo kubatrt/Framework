@@ -19,13 +19,14 @@ struct IGame
 class BaseGame : IGame
 {
 public:
-    BaseGame(sf::RenderWindow& window)  //  const std::string title
-        : window_(window)
-        , windowTitle_("")
+    BaseGame(sf::Vector2u windowSize, std::string windowTitle)
+        : window_(sf::VideoMode(windowSize.x, windowSize.y), windowTitle)
+        , windowWidth_(windowSize.x)
+        , windowHeight_(windowSize.y)
+        , windowTitle_(windowTitle)
         , popState_(false)
+        , isFullscreen_(false)
     {
-        windowWidth_ = window_.getSize().x;
-        windowHeight_ = window_.getSize().y;
     }
     virtual ~BaseGame() = default;
 
@@ -104,7 +105,7 @@ protected:
         popState_ = false;
     };
 
-    sf::RenderWindow& window_;
+    sf::RenderWindow window_;
 
 private:
     std::vector<std::unique_ptr<StateBase>> states_;

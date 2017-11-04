@@ -61,6 +61,8 @@ void MainMenu::handleInput(sf::Event e)
     case sf::Event::KeyPressed:
         if (e.key.code == sf::Keyboard::Escape)
             game_.close();
+        else if (e.key.code == sf::Keyboard::F12)
+            game_.toggleFullscreen();
         break;
     default:
         break;
