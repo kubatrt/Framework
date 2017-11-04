@@ -1,6 +1,6 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
+#include "IWidget.hpp"
 #include "../ResourceManager/ResourceHolder.hpp"
 
 
@@ -12,54 +12,46 @@ namespace gui
 // warning pressure C4244
 sf::Vector2f itof(sf::Vector2i vec);
 
-struct IWidget
-{;
-    virtual void handleEvent(sf::Event e, const sf::RenderWindow& window) = 0;
-    virtual void draw(sf::RenderTarget& renderer) = 0;
-    virtual void setPosition(const sf::Vector2f& pos) = 0;
-    virtual sf::Vector2f getSize() const = 0;
-};
-
 class Widget : IWidget
 {
+public:
+    Widget();
+    virtual ~Widget() = default;
+
+    virtual void handleEvent(sf::Event e, const sf::RenderWindow& window) {};
+    virtual void draw(sf::RenderTarget& renderer) {};
+    virtual void setPosition(const sf::Vector2f& pos) {};
+    virtual sf::Vector2f getSize() const = 0;
+
+    // Selection
+    void setSelection(bool selected) { isSelected_ = selected; }
+    bool isSelected() const { return isSelected_; }
+
+    void setActive(bool active) { isActive_ = active; }
+    bool isActive() const { return isActive_; }
+
+    static unsigned int selectionIdndexCounter;
+    static unsigned int currentSelectionIndex;
+
+protected:
+    static const unsigned defaultCharacterSize = 20;
+
+    class Text : public sf::Text
+    {
     public:
-        Widget();
-        virtual ~Widget() = default;
+        Text();
+    };
 
-        virtual void handleEvent(sf::Event e, const sf::RenderWindow& window) {};
-        virtual void draw(sf::RenderTarget& renderer) {};
-        virtual void setPosition(const sf::Vector2f& pos) {};
-        virtual sf::Vector2f getSize() const = 0;
+    class Rectangle : public sf::RectangleShape
+    {
+    public:
+        bool isRolledOn(const sf::RenderWindow& window) const;
+        bool isClicked(sf::Event, const sf::RenderWindow& window);
+    };
 
-        void setSelection(bool selected) { isSelected_ = selected; }
-        bool isSelected() const { return isSelected_; }
-
-        void setActive(bool active) { isActive_ = active; }
-        bool isActive() const { return isActive_; }
-
-        static unsigned int selectionIdndexCounter;
-        static unsigned int currentSelectionIndex;
-        protected:
-        class Text : public sf::Text
-        {
-        public:
-            Text();
-        };
-
-        class Rectangle : public sf::RectangleShape
-        {
-        public:
-	        bool isRolledOn(const sf::RenderWindow& window) const;
-	        bool isClicked(sf::Event, const sf::RenderWindow& window);
-        };
-
-        static const unsigned defaultCharacterSize = 20;
-
-
-
-        unsigned int selectionIndex_;
-        bool isSelected_;
-        bool isActive_;
+    unsigned int selectionIndex_;
+    bool isSelected_;
+    bool isActive_;
 };
 
 }

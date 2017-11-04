@@ -121,6 +121,7 @@
   <ItemGroup>
     <ClInclude Include="GameBase.hpp" />
     <ClInclude Include="GUI\Button.hpp" />
+    <ClInclude Include="GUI\IWidget.hpp" />
     <ClInclude Include="GUI\StackMenu.hpp" />
     <ClInclude Include="GUI\Textbox.hpp" />
     <ClInclude Include="GUI\Widget.hpp" />
@@ -128,11 +129,10 @@
     <ClInclude Include="GameState.hpp" />
     <ClInclude Include="IEntity.hpp" />
     <ClInclude Include="IState.hpp" />
+    <ClInclude Include="IWidget.hpp" />
     <ClInclude Include="Observer.hpp" />
     <ClInclude Include="ResourceManager\ResourceHolder.hpp" />
     <ClInclude Include="ResourceManager\ResourceManager.hpp" />
-    <ClInclude Include="IGameState.hpp" />
-    <ClInclude Include="StateManager.hpp" />
     <ClInclude Include="States\StateBase.hpp" />
     <ClInclude Include="Utilities.hpp" />
     <ClInclude Include="Util\Animation.hpp" />
@@ -150,7 +150,6 @@
     <ClCompile Include="GUI\Textbox.cpp" />
     <ClCompile Include="GUI\Widget.cpp" />
     <ClCompile Include="ResourceManager\ResourceHolder.cpp" />
-    <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="Utilities.cpp" />
     <ClCompile Include="Util\Animation.cpp" />
     <ClCompile Include="Util\Files.cpp" />

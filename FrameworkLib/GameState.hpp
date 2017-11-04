@@ -21,7 +21,7 @@ class StateManager;
 class GameState;
 
 
-class GameState : public IGameState
+class GameState
 {
 public:
 	GameState() = default;
@@ -41,9 +41,9 @@ public:
 	virtual void onPause() {};
 	virtual void onStop() {};
 
-	virtual void handleEvent(const sf::Event& event) {};
-	virtual void update(float dt) {};
-	virtual void draw(sf::RenderWindow&) {};
+	virtual void handleEvent(const sf::Event& event) = 0;
+	virtual void update(float dt) = 0;
+	virtual void draw(sf::RenderWindow&) = 0;
 
 protected:
 	StateManager& sm_;

@@ -51,7 +51,7 @@ public:
 	}
 
 private:
-	std::map<Event, std::vector<Observer&> > observers;
+    std::map<Event, std::vector<Observer&> > observers;
 };
 
 } // framework
