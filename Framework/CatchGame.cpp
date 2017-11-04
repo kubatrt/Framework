@@ -6,8 +6,8 @@
 namespace example
 {
 
-CatchGame::CatchGame(sf::RenderWindow& window)
-    : fw::BaseGame(window)
+CatchGame::CatchGame()
+    : fw::BaseGame({ 1280, 720 }, "Catch game")
 {
     window_.setFramerateLimit(60);  // instead of separate fixedUpdate
     pushState<MainMenu>(*this);

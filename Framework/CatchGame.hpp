@@ -16,7 +16,7 @@ namespace fw = framework;
 class CatchGame : public fw::BaseGame
 {
 public:
-    CatchGame(sf::RenderWindow& window);
+    CatchGame();
 
     void update(sf::Time deltaTime) override;
     void draw(sf::RenderTarget& renderer) override;
