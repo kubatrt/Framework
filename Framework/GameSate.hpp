@@ -51,13 +51,11 @@ private:
     void dropBox(sf::Vector2f position, float speed);
     void destroyBoxes();
     void checkCollisions();
-    void initPlayer();
     
-    struct Box
+    struct Box : public Rectangle   // inheritance?
     {
         static const unsigned size = 48;
 
-        Rectangle rect;
         float speed;
         bool destroyed;
 
@@ -65,24 +63,25 @@ private:
         {
             destroyed = false;
             this->speed = speed;
-            rect.shape.setPosition(position);
-            rect.shape.setSize( sf::Vector2f{ 
+            shape.setPosition(position);
+            shape.setSize( sf::Vector2f{
                 static_cast<float>(size), static_cast<float>(size) });
-            rect.shape.setOrigin(rect.shape.getSize().x / 2.f, rect.shape.getSize().y / 2.f);
-            rect.shape.setFillColor(sf::Color::Red);
+            shape.setOrigin(shape.getSize().x / 2.f, shape.getSize().y / 2.f);
+            shape.setFillColor(sf::Color::Red);
         }
 
         void update(sf::Time deltaTime)
         {
             sf::Vector2f velocity{ 0.f, speed };
-            rect.shape.move(velocity);
+            shape.move(velocity);
         }
     };
 
     struct Player
     {
+        Rectangle rect; // or composition?
         const float playerWidth = 200.f;
-        Rectangle rect;
+        
         unsigned lives;
         unsigned score;
         float speed;

@@ -28,15 +28,8 @@ GameState::GameState(fw::GameBase& game)
     livesText_.setString("Lives: 0");
 }
 
-void GameState::initPlayer()
-{
-    // TODO: remove
-}
-
 void GameState::handleEvent(sf::Event e)
 {
-    //handleInput();
-
     switch (e.type)
     {
     case sf::Event::KeyPressed:
@@ -60,13 +53,13 @@ void GameState::checkCollisions()
 {
     for (auto& box : boxes_)
     {
-        if (collision2d(Point{box.rect.left(), box.rect.bottom()}, player_.rect) ||
-            collision2d(Point{box.rect.right(), box.rect.bottom() }, player_.rect))
+        if (collision2d(Point{box.left(), box.bottom()}, player_.rect) ||
+            collision2d(Point{box.right(), box.bottom() }, player_.rect))
         {
             box.destroyed = true;
             player_.score += 100;
         }
-        else if (box.rect.bottom() >= game_.getWindow().getSize().y )
+        else if (box.bottom() >= game_.getWindow().getSize().y )
         {
             box.destroyed = true;
             player_.lives--;
@@ -118,7 +111,7 @@ void GameState::draw(sf::RenderTarget& renderer)
 {
     for (auto& box : boxes_)
     {
-        renderer.draw(box.rect.shape);
+        renderer.draw(box.shape);
     }
     renderer.draw(player_.rect.shape);
 
