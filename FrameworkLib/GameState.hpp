@@ -20,6 +20,7 @@ namespace framework
 class StateManager;
 class GameState;
 
+
 class GameState : public IGameState
 {
 public:

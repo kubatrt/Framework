@@ -20,10 +20,10 @@ public:
 
     void update(sf::Time deltaTime) override;
     void draw(sf::RenderTarget& renderer) override;
-    int run() override;
-
+    void handleEvents() override;
 private:
-    fw::FPSCounter fpsCounter_; // as 'game component'
+    // game components
+    fw::FPSCounter fpsCounter_; 
 };
 
 }

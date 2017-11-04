@@ -4,19 +4,12 @@
 #include <cassert>
 #include <SFML/Graphics.hpp>
 #include "States\StateBase.hpp"
+#include "IApplication.hpp"
 
 namespace framework
 {
 
-struct IGame
-{
-    virtual void update(sf::Time deltaTime) = 0;
-    virtual void draw(sf::RenderTarget& renderer) = 0;
-    virtual int run() = 0;
-};
-
-
-class BaseGame : IGame
+class BaseGame : IApplication
 {
 public:
     BaseGame(sf::Vector2u windowSize, std::string windowTitle)
@@ -35,10 +28,34 @@ public:
     BaseGame(BaseGame&&) = delete;
     BaseGame&& operator=(BaseGame&&) = delete;
 
-
+    //-------------------------------------------------------------------------
+    // This interface should not be able to call within a state
     virtual void update(sf::Time deltaTime) = 0;
     virtual void draw(sf::RenderTarget& renderer) = 0;
-    virtual int run() = 0;
+
+    // this hould be defined elswhere, outside this class. I can call in some state public method run()
+    virtual int run()
+    {
+        sf::Clock timer;
+        auto lastTime = sf::Time::Zero;
+
+        while (window_.isOpen())
+        {
+            auto time = timer.getElapsedTime();
+            auto elapsed = time - lastTime;
+            lastTime = time;
+
+            update(elapsed);
+            draw(window_);
+
+            handleEvents();
+            tryPop();
+        }
+        return 0;
+    }
+
+    virtual void handleEvents() = 0;
+    //-------------------------------------------------------------------------
 
     template<typename T, typename... Args>
     void pushState(Args&&... args)
@@ -69,32 +86,13 @@ protected:
     StateBase& getCurrentState()
     {
         // minimum one state required
-        // if want return reference...
         // or throw exception?
-        assert(states_.size()); // poddaj siê z asercjami! :) ~Mayers
-        // can be null? use pointer instead
-        return *states_.back();
+        assert(states_.size()); // give up with assertions... ~Mayers
+        // can be null? use pointer instead!
+        return *states_.back(); // return reference
     };
 
-    void handleEvents()
-    {
-        sf::Event e;
 
-        while (window_.pollEvent(e))
-        {
-            getCurrentState().handleEvent(e);   // implicite
-
-            switch (e.type)
-            {
-            case sf::Event::Closed:
-                window_.close();
-                break;
-            default:
-                // debug
-                break;
-            }
-        }
-    };
 
     void tryPop()
     {

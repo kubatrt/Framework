@@ -15,7 +15,7 @@ public:
     MainMenu(fw::BaseGame& game);
 
     void handleEvent(sf::Event e) override;
-    void handleInput(sf::Event e) override;
+    //void handleInput(sf::Event e) override;
     void update(sf::Time deltaTime) override;
     void fixedUpdate(sf::Time deltaTime) override;
     void draw(sf::RenderTarget& renderer) override;

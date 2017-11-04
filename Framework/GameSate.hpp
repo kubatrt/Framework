@@ -32,8 +32,8 @@ struct Rectangle
 template <typename TPoint, typename TRect>
 bool collision2d(TPoint a, TRect b)
 {
-    return ((a.x >= b.left() && a.y >= b.top())
-        && (a.x < b.right() && a.y < b.bottom()));
+    return ( a.x > b.left() && a.x < b.right()) &&
+        (a.y >= b.top() && a.y < b.bottom() );
 }
 
 // Game logic implementation within state
@@ -47,10 +47,8 @@ public:
     void fixedUpdate(sf::Time deltaTime) override;
     void draw(sf::RenderTarget& renderer) override;
 
-protected:
-    void handleInput(sf::Event e) override;
-
 private:
+    void handleInput();
     void dropBox(sf::Vector2f position, float speed);
     void destroyBoxes();
     void checkCollisions();
@@ -59,6 +57,8 @@ private:
     
     struct Box
     {
+        static const unsigned size = 48;
+
         Rectangle rect;
         float speed;
         bool destroyed;
@@ -68,7 +68,9 @@ private:
             destroyed = false;
             this->speed = speed;
             rect.shape.setPosition(position);
-            rect.shape.setSize({ 48.f, 48.f });
+            rect.shape.setSize( sf::Vector2f{ 
+                static_cast<float>(size), static_cast<float>(size) });
+            rect.shape.setOrigin(rect.shape.getSize().x / 2.f, rect.shape.getSize().y / 2.f);
             rect.shape.setFillColor(sf::Color::Red);
         }
 
@@ -81,14 +83,44 @@ private:
 
     struct Player
     {
+        const float playerWidth = 200.f;
         Rectangle rect;
         unsigned lives;
         unsigned score;
         float speed;
+        sf::Vector2f velocity;
+
+        Player(sf::Vector2f position)
+        {
+            rect.shape = sf::RectangleShape{ sf::Vector2f(playerWidth, 40.f) };
+            rect.shape.setPosition(position);
+            rect.shape.setOrigin(rect.shape.getSize().x / 2.f, rect.shape.getSize().y / 2.f);
+            rect.shape.setFillColor(sf::Color::Blue);
+            lives = 3;
+            speed = 20.f;
+            score = 0;
+        }
+
+        void update()
+        {
+            rect.shape.move(velocity);
+
+            sf::Vector2f v;
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && rect.left() > 0)
+            {
+                v.x = -speed;
+            }
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+            {
+                v.x = speed;
+            }
+            else
+                v.x = 0;
+
+            velocity = v;
+        }
+
     };
-
-
-    const unsigned boxSize = 60;
 
     Player player_;
     std::vector<Box> boxes_;

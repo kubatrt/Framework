@@ -7,39 +7,35 @@ namespace example
 
 GameState::GameState(fw::BaseGame& game)
     : StateBase(game)
+    , player_({ game_.getWindow().getSize().x / 2.f, game_.getWindow().getSize().y - 60.f })
     , dropLastTime_(sf::Time::Zero)
     , dropInterval_(sf::seconds(2.f))
 {
-    initPlayer();
-    
-    dropBox({100.f, 30.f}, 0.5f);
-    dropBox({game.getWindow().getSize().x - 100.f, 30.f }, 0.5f);
+
+    dropBox({100.f, 30.f}, 2.0f);
+    dropBox({game.getWindow().getSize().x - 100.f, 30.f }, 2.5f);
 
     scoreText_.setFont(framework::ResourceHolder::get().fonts.get("arial"));
-    scoreText_.setCharacterSize(16);
+    scoreText_.setCharacterSize(24);
     scoreText_.setStyle(sf::Text::Regular);
-    scoreText_.setPosition({20.f, 50.f});
+    scoreText_.setPosition({10.f, 100.f});
+    scoreText_.setString("Score: 0");
 
     livesText_.setFont(framework::ResourceHolder::get().fonts.get("arial"));
-    livesText_.setCharacterSize(16);
+    livesText_.setCharacterSize(24);
     livesText_.setStyle(sf::Text::Regular);
-    livesText_.setPosition({20.f, 80.f});
+    livesText_.setPosition({10.f, 130.f});
+    livesText_.setString("Lives: 0");
 }
 
 void GameState::initPlayer()
 {
-    float playerWidth = 200.f;
-    player_.rect.shape = sf::RectangleShape{ sf::Vector2f(playerWidth, 40.f) };
-    player_.rect.shape.setPosition({ game_.getWindow().getSize().x / 2.f, game_.getWindow().getSize().y - 60.f });
-    player_.rect.shape.setFillColor(sf::Color::Blue);
-    player_.lives = 3;
-    player_.speed = 20.f;
-    player_.score = 0;
+    // TODO: remove
 }
 
 void GameState::handleEvent(sf::Event e)
 {
-    handleInput(e);
+    //handleInput();
 
     switch (e.type)
     {
@@ -54,24 +50,10 @@ void GameState::handleEvent(sf::Event e)
     }
 }
 
-void GameState::handleInput(sf::Event e)
+void GameState::handleInput()
 {
     // TODO: currently in handleEvent
-    sf::Vector2f velocity;
-    if(sf::Keyboard::isKeyPressed( sf::Keyboard::Left))
-    {
-        velocity = { -player_.speed, 0};
-        std::cout << "Left" << std::endl;
-    }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-    {
-        velocity = { player_.speed, 0 };
-        std::cout << "Right" << std::endl;
-    }
-    else
-        velocity = {0,0};
-
-    player_.rect.shape.move(velocity);
+    // TODO: remove
 }
 
 void GameState::dropBox(sf::Vector2f position, float speed)
@@ -84,20 +66,18 @@ void GameState::checkCollisions()
 {
     for (auto& box : boxes_)
     {
-        if (collision2d(Point{box.rect.x(), box.rect.y()}, player_.rect))
+        if (collision2d(Point{box.rect.left(), box.rect.bottom()}, player_.rect) ||
+            collision2d(Point{box.rect.right(), box.rect.bottom() }, player_.rect))
         {
             box.destroyed = true;
             player_.score += 100;
         }
-        if (box.rect.bottom() <= 0)
+        else if (box.rect.bottom() >= game_.getWindow().getSize().y )
         {
             box.destroyed = true;
             player_.lives--;
         }
     }
-
-
- 
 }
 
 void GameState::destroyBoxes()
@@ -111,15 +91,17 @@ void GameState::update(sf::Time deltaTime)
     dropLastTime_ += deltaTime;
     if (dropLastTime_ > dropInterval_)
     {
-        int minX = 0 + (boxSize / 2);
-        int maxX = game_.getWindow().getSize().x - (boxSize / 2);
-        float locationX = fw::RandomMachine::getRange<int>(48, game_.getWindow().getSize().x - 48);
-        float speed = fw::RandomMachine::getRange<int>(1, 10) * 0.4f;
-
-        dropBox({locationX, 30.f}, speed);
+        {
+            int min = 0 + (Box::size / 2);
+            int max = game_.getWindow().getSize().x - Box::size;
+            float positionX = static_cast<float>(fw::RandomMachine::getRange<int>(min, max));
+            float speed = static_cast<float>(fw::RandomMachine::getRange<int>(1, 4));
+            dropBox({positionX, 30.f}, speed);
+        }
         dropLastTime_ = sf::Time::Zero;
     }
 
+    player_.update();
     for (auto& box : boxes_)
     {
         box.update(deltaTime);
@@ -133,7 +115,9 @@ void GameState::update(sf::Time deltaTime)
         std::cout << "Game score: " << player_.score << std::endl;
         game_.popState();
     }
-    
+
+    scoreText_.setString("Score: " + std::to_string(player_.score));
+    livesText_.setString("Lives: " + std::to_string(player_.lives));
 }
 
 void GameState::fixedUpdate(sf::Time deltaTime)

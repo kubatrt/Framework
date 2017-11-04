@@ -27,7 +27,7 @@ public:
     virtual void draw(sf::RenderTarget& renderer) = 0;
 
 protected:
-    virtual void handleInput(sf::Event e) = 0; // does it have sens?
+    //virtual void handleInput(sf::Event e) = 0; // does it have sens?
 
     BaseGame& game_;
 };

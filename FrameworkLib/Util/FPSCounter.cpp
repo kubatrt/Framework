@@ -9,10 +9,10 @@ FPSCounter::FPSCounter()
 {
     text_.move(10, 10);
     text_.setOutlineColor (sf::Color::Black);
-    text_.setFillColor({255,255,255});
+    text_.setFillColor(sf::Color::Yellow);
     text_.setOutlineThickness  (2);
     text_.setFont(ResourceHolder::get().fonts.get("arial"));
-    text_.setCharacterSize(25);
+    text_.setCharacterSize(24);
 }
 
 

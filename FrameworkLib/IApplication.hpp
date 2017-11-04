@@ -1,13 +1,13 @@
 #pragma once
 
+#include <SFML/Graphics.hpp>
+
 namespace framework
 {
 
 struct IApplication
 {
-	virtual void update() = 0;
-	virtual void draw() = 0;
-	virtual int run() = 0;
+    virtual int run() = 0;
 };
 
 }

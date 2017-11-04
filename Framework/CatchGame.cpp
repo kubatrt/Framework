@@ -18,9 +18,7 @@ CatchGame::CatchGame()
 
 void CatchGame::update(sf::Time deltaTime)
 {
-    auto& state = getCurrentState();
-    state.update(deltaTime);
-
+    getCurrentState().update(deltaTime);
     fpsCounter_.update(deltaTime);
 }
 
@@ -28,13 +26,32 @@ void CatchGame::draw(sf::RenderTarget& renderer)
 {
     window_.clear();
 
-    auto& state = getCurrentState();
-    state.draw(window_);
+    getCurrentState().draw(window_);
     fpsCounter_.draw(window_);
 
     window_.display();
 }
 
+void CatchGame::handleEvents()
+{
+    sf::Event e;
+
+    while (window_.pollEvent(e))
+    {
+        getCurrentState().handleEvent(e);
+
+        switch (e.type)
+        {
+        case sf::Event::Closed:
+            window_.close();
+            break;
+        default:
+            break;
+        }
+    }
+}
+
+/*
 int CatchGame::run()
 {
     //constexpr unsigned ticksPerSecond = 60;	//ticks per seconds for fixedTimeUpdate
@@ -57,13 +74,13 @@ int CatchGame::run()
         update(elapsed); 
 
         // Fixed time update
-        /*while (lag >= timePerUpdate)
+        while (lag >= timePerUpdate)
         {
             ticks++;
             lag -= timePerUpdate;
             auto& state = getCurrentState();
             state.fixedUpdate(elapsed);
-        }*/
+        }
 
         // Render
         draw(window_);
@@ -75,5 +92,5 @@ int CatchGame::run()
 
     return 0;
 }
-
+*/
 }
