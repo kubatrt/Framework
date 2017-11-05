@@ -10,17 +10,11 @@
     <Filter Include="ResourceManager">
       <UniqueIdentifier>{184c2bd6-7de6-40a6-8acc-1c2c43870e69}</UniqueIdentifier>
     </Filter>
-    <Filter Include="States">
-      <UniqueIdentifier>{616356a6-22c4-410d-ad13-de64dec5b5ad}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Util\ToggleKey.h">
       <Filter>Util</Filter>
     </ClInclude>
-    <ClInclude Include="GameState.hpp" />
-    <ClInclude Include="IApplication.hpp" />
-    <ClInclude Include="Observer.hpp" />
     <ClInclude Include="Utilities.hpp" />
     <ClInclude Include="ResourceManager\ResourceHolder.hpp">
       <Filter>ResourceManager</Filter>
@@ -43,9 +37,6 @@
     <ClInclude Include="Util\Random.hpp">
       <Filter>Util</Filter>
     </ClInclude>
-    <ClInclude Include="States\StateBase.hpp">
-      <Filter>States</Filter>
-    </ClInclude>
     <ClInclude Include="GUI\Widget.hpp">
       <Filter>GUI</Filter>
     </ClInclude>
@@ -58,21 +49,26 @@
     <ClInclude Include="GUI\Button.hpp">
       <Filter>GUI</Filter>
     </ClInclude>
-    <ClInclude Include="IEntity.hpp" />
-    <ClInclude Include="IState.hpp" />
     <ClInclude Include="Util\Files.hpp">
       <Filter>Util</Filter>
     </ClInclude>
     <ClInclude Include="Util\Animation.hpp">
       <Filter>Util</Filter>
     </ClInclude>
-    <ClInclude Include="GameBase.hpp" />
-    <ClInclude Include="IWidget.hpp">
-      <Filter>GUI</Filter>
-    </ClInclude>
     <ClInclude Include="GUI\IWidget.hpp">
       <Filter>GUI</Filter>
     </ClInclude>
+    <ClInclude Include="Util\Observer.hpp">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\Observer2.hpp">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\Singleton.hpp">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="GameBase.hpp" />
+    <ClInclude Include="StateBase.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GUI\Button.cpp">
@@ -106,5 +102,8 @@
       <Filter>Util</Filter>
     </ClCompile>
     <ClCompile Include="Utilities.cpp" />
+    <ClCompile Include="Util\Observer2.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

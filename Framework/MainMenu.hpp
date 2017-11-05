@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../FrameworkLib/GameBase.hpp"
-#include "../FrameworkLib/States/StateBase.hpp"
+#include "../FrameworkLib/StateBase.hpp"
 #include "../FrameworkLib/GUI/StackMenu.hpp"
 
 namespace example
@@ -14,7 +14,7 @@ class MainMenu : public fw::StateBase
 public:
     MainMenu(fw::GameBase& game);
 
-    void handleEvent(sf::Event e) override;
+    void handleEvents(sf::Event e) override;
     void update(sf::Time deltaTime) override;
     void draw(sf::RenderTarget& renderer) override;
 

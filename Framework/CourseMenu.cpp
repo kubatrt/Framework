@@ -38,7 +38,7 @@ CourseMenu::CourseMenu(fw::GameBase& game)
     courseMenu_.addWidget(std::move(bback));
 }
 
-void CourseMenu::handleEvent(sf::Event e)
+void CourseMenu::handleEvents(sf::Event e)
 {
     courseMenu_.handleEvent(e, game_.getWindow());
 }

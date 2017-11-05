@@ -28,7 +28,7 @@ GameState::GameState(fw::GameBase& game)
     livesText_.setString("Lives: 0");
 }
 
-void GameState::handleEvent(sf::Event e)
+void GameState::handleEvents(sf::Event e)
 {
     switch (e.type)
     {

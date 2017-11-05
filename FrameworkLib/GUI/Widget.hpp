@@ -18,9 +18,9 @@ public:
     Widget();
     virtual ~Widget() = default;
 
-    virtual void handleEvent(sf::Event e, const sf::RenderWindow& window) {};
-    virtual void draw(sf::RenderTarget& renderer) {};
-    virtual void setPosition(const sf::Vector2f& pos) {};
+    virtual void handleEvent(sf::Event e, const sf::RenderWindow& window) = 0;
+    virtual void draw(sf::RenderTarget& renderer) = 0;
+    virtual void setPosition(const sf::Vector2f& pos) = 0;
     virtual sf::Vector2f getSize() const = 0;
 
     // Selection
@@ -29,6 +29,12 @@ public:
 
     void setActive(bool active) { isActive_ = active; }
     bool isActive() const { return isActive_; }
+
+    Widget* getParent() { return nullptr; }
+    void attach(Widget* widget)
+    {
+        childrens_.push_back(widget);
+    }
 
     static unsigned int selectionIdndexCounter;
     static unsigned int currentSelectionIndex;
@@ -49,6 +55,7 @@ protected:
         bool isClicked(sf::Event, const sf::RenderWindow& window);
     };
 
+    std::vector<Widget*> childrens_;
     unsigned int selectionIndex_;
     bool isSelected_;
     bool isActive_;

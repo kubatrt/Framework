@@ -1,18 +1,17 @@
 #pragma once
 
 #include <SFML\Graphics.hpp>
-#include "..\IEntity.hpp"
 
 namespace framework
 {
 
-class FPSCounter : IEntity
+class FPSCounter
 {
     public:
         FPSCounter();
 
-        void update(sf::Time) override;
-        void draw(sf::RenderTarget& renderer) override;
+        void update(sf::Time deltaTime);
+        void draw(sf::RenderTarget& renderer);
 
     private:
         sf::Text text_;

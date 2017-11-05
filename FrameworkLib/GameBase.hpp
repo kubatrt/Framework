@@ -3,13 +3,12 @@
 #include <iostream>
 #include <cassert>
 #include <SFML/Graphics.hpp>
-#include "States\StateBase.hpp"
-#include "IApplication.hpp"
+#include "StateBase.hpp"
 
 namespace framework
 {
 
-class GameBase : IApplication
+class GameBase
 {
 public:
     GameBase(sf::Vector2u windowSize, std::string windowTitle)
@@ -28,13 +27,13 @@ public:
     GameBase(GameBase&&) = delete;
     GameBase&& operator=(GameBase&&) = delete;
 
-    //-------------------------------------------------------------------------
-    // This interface should not be able to call within a state
+    // These methods define an interface, should not be called within a state
     virtual void update(sf::Time deltaTime) = 0;
     virtual void draw(sf::RenderTarget& renderer) = 0;
+    virtual void handleEvents() = 0;
 
-    // this hould be defined elsewhere, outside this class. I can call it in some state public method run()
-    virtual int run()
+    // This should be defined elsewhere, outside this class. I can call it in some state public method run()
+    virtual int run() final
     {
         sf::Clock timer;
         auto lastTime = sf::Time::Zero;
@@ -53,9 +52,6 @@ public:
         }
         return 0;
     }
-
-    virtual void handleEvents() = 0;
-    //-------------------------------------------------------------------------
 
     // State management
     template<typename T, typename... Args>

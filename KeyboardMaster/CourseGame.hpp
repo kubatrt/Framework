@@ -20,8 +20,7 @@
 #include "CourseText.hpp"
 #include "KeyboardTyper.hpp"
 #include "Dictionary.hpp"
-#include "Utilities.hpp"
-#include "Miscellaneous.hpp"
+#include "Misc.hpp"
 #include "WordBlock.hpp"
 
 namespace KM
@@ -30,14 +29,7 @@ namespace KM
 class CourseGame : public SimpleApplication
 {
     public:
-		CourseGame() = default;
-		~CourseGame() = default;
-        CourseGame(const CourseGame&) = delete;
-        const CourseGame& operator=(const CourseGame&) = delete;
-		CourseGame(CourseGame&&) = delete;
-		CourseGame&& operator=(CourseGame&&) = delete;
-
-        int run(int argc, char* argv);
+        int run(int argc, char* argv) override;
 };
 
 }

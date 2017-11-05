@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../FrameworkLib/States/StateBase.hpp"
+#include "../FrameworkLib/StateBase.hpp"
 #include "../FrameworkLib/GameBase.hpp"
 #include "../FrameworkLib/Utilities.hpp"
 
@@ -43,7 +43,7 @@ class GameState : public fw::StateBase
 public:
     GameState(fw::GameBase& game);
 
-    void handleEvent(sf::Event e) override;
+    void handleEvents(sf::Event e) override;
     void update(sf::Time deltaTime) override;
     void draw(sf::RenderTarget& renderer) override;
 

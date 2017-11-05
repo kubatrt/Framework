@@ -1,38 +1,37 @@
-#include "MainMenu.hpp"
-#include "CourseMenu.hpp"
-#include "GameSate.hpp"
-#include "../FrameworkLib/GUI/Button.hpp"
-#include "../FrameworkLib/GUI/Textbox.hpp"
-
 #include <iostream>
 #include <string>
 #include <memory>
 
-namespace example
+#include "MainMenu.hpp"
+#include "../FrameworkLib/GUI/Button.hpp"
+#include "../FrameworkLib/GUI/Textbox.hpp"
+
+namespace km
 {
 
 MainMenu::MainMenu(fw::GameBase& game)
     : StateBase(game)
-    , testMenu_({ game.getWindow().getSize().x / 2.f, 90.f })
+    , menu_({ game.getWindow().getSize().x / 2.f, 90.f })
 {
     auto b = std::make_unique<fw::gui::Button>();
-    b->setText("Course game");
-    b->setFunction([&]() {
-        game_.pushState<CourseMenu>(game_);
+    b->setText("Go to course");
+    b->setFunction([&] ()
+    {
+        //game_.pushState<CourseMenu>(game_);
     });
 
     auto b2 = std::make_unique<fw::gui::Button>();
-    b2->setText("Catch game");
+    b2->setText("Words attack!");
     b2->setFunction([&] ()
     {
-        game_.pushState<GameState>(game_);
+        //game_.pushState<WordsGame>(game_);
     });
 
     auto b3 = std::make_unique<fw::gui::Button>();
-    b3->setText("Gallery game");
+    b3->setText("Gallery");
     b3->setFunction([&] ()
     {
-
+        //game_.pushState<GalleryGame>(game_);
     });
 
     auto bquit = std::make_unique<fw::gui::Button>();
@@ -42,15 +41,15 @@ MainMenu::MainMenu(fw::GameBase& game)
         game_.close();
     });
 
-    testMenu_.addWidget(std::move(b));
-    testMenu_.addWidget(std::move(b2));
-    testMenu_.addWidget(std::move(b3));
-    testMenu_.addWidget(std::move(bquit));
+    menu_.addWidget(std::move(b));
+    menu_.addWidget(std::move(b2));
+    menu_.addWidget(std::move(b3));
+    menu_.addWidget(std::move(bquit));
 }
 
 void MainMenu::handleEvents(sf::Event e)
 {
-    testMenu_.handleEvent(e, game_.getWindow());
+    menu_.handleEvent(e, game_.getWindow());
 
     switch (e.type)
     {
@@ -72,7 +71,7 @@ void MainMenu::update(sf::Time deltaTime)
 
 void MainMenu::draw(sf::RenderTarget& renderer)
 {
-    testMenu_.draw(renderer);
+    menu_.draw(renderer);
 }
 
 }

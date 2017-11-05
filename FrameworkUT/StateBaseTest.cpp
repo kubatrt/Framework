@@ -1,7 +1,7 @@
 #include "gtest/gtest.h"
-#include "../FrameworkLib/States/StateBase.hpp"
-//#include "GameMock.hpp"
 #include "StateBaseMock.hpp"
+#include "../FrameworkLib/StateBase.hpp"
+
 
 using namespace framework;
 using namespace testing;

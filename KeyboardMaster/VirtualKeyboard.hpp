@@ -2,7 +2,7 @@
 
 #include <map>
 #include <SFML/Graphics.hpp>
-#include "Miscellaneous.hpp"
+#include "Misc.hpp"
 
 namespace KM
 {

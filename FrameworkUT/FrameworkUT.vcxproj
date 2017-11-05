@@ -122,7 +122,6 @@
   <ItemGroup>
     <ClCompile Include="StateBaseTest.cpp" />
     <ClCompile Include="UtilitiesTest.cpp" />
-    <ClCompile Include="ApplicationTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FrameworkLib\FrameworkLib.vcxproj">
@@ -133,7 +132,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ApplicationMock.hpp" />
     <ClInclude Include="StateBaseMock.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

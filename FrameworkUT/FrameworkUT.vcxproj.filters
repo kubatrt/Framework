@@ -3,10 +3,8 @@
   <ItemGroup>
     <ClCompile Include="StateBaseTest.cpp" />
     <ClCompile Include="UtilitiesTest.cpp" />
-    <ClCompile Include="ApplicationTest.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ApplicationMock.hpp" />
     <ClInclude Include="StateBaseMock.hpp" />
   </ItemGroup>
 </Project>

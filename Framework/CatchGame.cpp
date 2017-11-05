@@ -38,7 +38,7 @@ void CatchGame::handleEvents()
 
     while (window_.pollEvent(e))
     {
-        getCurrentState().handleEvent(e);
+        getCurrentState().handleEvents(e);
 
         switch (e.type)
         {

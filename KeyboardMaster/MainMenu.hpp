@@ -1,25 +1,25 @@
 #pragma once
 
+#include "../FrameworkLib/GameBase.hpp"
 #include "../FrameworkLib/StateBase.hpp"
 #include "../FrameworkLib/GUI/StackMenu.hpp"
-#include "../FrameworkLib/GameBase.hpp"
 
-namespace example
+namespace km
 {
 
 namespace fw = framework;
 
-class CourseMenu : public framework::StateBase
+class MainMenu : public fw::StateBase
 {
 public:
-    CourseMenu(framework::GameBase& game);
+    MainMenu(fw::GameBase& game);
 
     void handleEvents(sf::Event e) override;
     void update(sf::Time deltaTime) override;
     void draw(sf::RenderTarget& renderer) override;
 
 private:
-    fw::gui::StackMenu courseMenu_;
+    fw::gui::StackMenu menu_;
 };
 
 }

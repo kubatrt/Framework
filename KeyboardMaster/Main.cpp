@@ -1,6 +1,4 @@
-#include "CourseGame.hpp"
-#include "WordsAttackGame.hpp"
-#include "GalleryGame.hpp"
+#include "KeyboardMaster.hpp"
 
 /* 
 	Let's begin from...
@@ -10,11 +8,11 @@
 	* simple "log to file" system - I really encourage you to do this now!
 */
 
-using namespace KM;
+using namespace km;
 
 // int wmain_t(int argc, wchar_t* awgv) // on windows
 int main(int argc, char* argv)
 {
-	CourseGame game;
-	return game.run(argc, argv);
+	KeyboardMaster game;
+	return game.run();    // consider passing args
 }

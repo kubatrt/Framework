@@ -1,22 +1,19 @@
- #pragma once
+#pragma once
 
-#include <memory>
-#include <vector>
 #include <SFML/Graphics.hpp>
-
 #include "../FrameworkLib/Util/FPSCounter.hpp"
 #include "../FrameworkLib/StateBase.hpp"
-#include "../FrameworkLib/Utilities.hpp"
 #include "../FrameworkLib/GameBase.hpp"
+#include "../FrameworkLib/Utilities.hpp"
 
-namespace example
+namespace km
 {
 namespace fw = framework;
 
-class CatchGame : public fw::GameBase
+class KeyboardMaster : public fw::GameBase
 {
 public:
-    CatchGame();
+    KeyboardMaster();
 
     void update(sf::Time deltaTime) override;
     void draw(sf::RenderTarget& renderer) override;
@@ -24,7 +21,7 @@ public:
 private:
 
     // game components
-    fw::FPSCounter fpsCounter_; 
+    fw::FPSCounter fpsCounter_;
 };
 
 }

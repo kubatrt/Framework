@@ -125,15 +125,9 @@
     <ClInclude Include="GUI\StackMenu.hpp" />
     <ClInclude Include="GUI\Textbox.hpp" />
     <ClInclude Include="GUI\Widget.hpp" />
-    <ClInclude Include="IApplication.hpp" />
-    <ClInclude Include="GameState.hpp" />
-    <ClInclude Include="IEntity.hpp" />
-    <ClInclude Include="IState.hpp" />
-    <ClInclude Include="IWidget.hpp" />
-    <ClInclude Include="Observer.hpp" />
     <ClInclude Include="ResourceManager\ResourceHolder.hpp" />
     <ClInclude Include="ResourceManager\ResourceManager.hpp" />
-    <ClInclude Include="States\StateBase.hpp" />
+    <ClInclude Include="StateBase.hpp" />
     <ClInclude Include="Utilities.hpp" />
     <ClInclude Include="Util\Animation.hpp" />
     <ClInclude Include="Util\Files.hpp" />
@@ -141,7 +135,10 @@
     <ClInclude Include="Util\Maths.hpp" />
     <ClInclude Include="Util\NonCopyable.hpp" />
     <ClInclude Include="Util\NonMoveable.hpp" />
+    <ClInclude Include="Util\Observer.hpp" />
+    <ClInclude Include="Util\Observer2.hpp" />
     <ClInclude Include="Util\Random.hpp" />
+    <ClInclude Include="Util\Singleton.hpp" />
     <ClInclude Include="Util\ToggleKey.h" />
   </ItemGroup>
   <ItemGroup>
@@ -155,6 +152,7 @@
     <ClCompile Include="Util\Files.cpp" />
     <ClCompile Include="Util\FPSCounter.cpp" />
     <ClCompile Include="Util\Maths.cpp" />
+    <ClCompile Include="Util\Observer2.cpp" />
     <ClCompile Include="Util\ToggleKey.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

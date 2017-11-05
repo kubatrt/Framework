@@ -2,7 +2,6 @@
 
 #include <memory>
 #include <SFML/Graphics.hpp>
-#include "../IState.hpp"
 
 
 namespace framework
@@ -10,20 +9,25 @@ namespace framework
 
 class GameBase;
 
-class StateBase : IState
+class StateBase
 {
 public:
     StateBase(GameBase& game)
     : game_(game)
-    {}
+    {
+    }
     virtual ~StateBase() = default;
     StateBase(const StateBase&) = delete;
     const StateBase& operator=(const StateBase&) = delete;
 
-
-    virtual void handleEvent(sf::Event e) = 0;
+    virtual void handleEvents(sf::Event e) = 0;
     virtual void update(sf::Time deltaTime) = 0;
     virtual void draw(sf::RenderTarget& renderer) = 0;
+
+    /*void OnEnter();
+    void OnPause();
+    void OnResume();
+    void OnExit();*/
 
 protected:
     GameBase& game_;

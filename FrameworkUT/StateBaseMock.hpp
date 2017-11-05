@@ -3,7 +3,7 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
-#include "../FrameworkLib/States/StateBase.hpp"
+#include "../FrameworkLib/StateBase.hpp"
 
 
 class StateBaseMock : public framework::StateBase

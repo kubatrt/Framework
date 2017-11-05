@@ -9,7 +9,6 @@
 #include <SFML/System.hpp>
 
 #include "Dictionary.hpp"
-#include "Utilities.hpp"
 
 namespace KM
 {

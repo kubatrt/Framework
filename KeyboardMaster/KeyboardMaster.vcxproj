@@ -131,29 +131,27 @@
   <ItemGroup>
     <ClCompile Include="CourseGame.cpp" />
     <ClCompile Include="Dictionary.cpp" />
-    <ClCompile Include="framework\Observer.cpp" />
+    <ClCompile Include="KeyboardMaster.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CourseGame.hpp" />
+    <ClInclude Include="CourseMenu.hpp" />
     <ClInclude Include="CourseText.hpp" />
     <ClInclude Include="Dictionary.hpp" />
-    <ClInclude Include="framework\Application.hpp" />
-    <ClInclude Include="framework\Observer.hpp" />
-    <ClInclude Include="framework\Singleton.hpp" />
     <ClInclude Include="GalleryGame.hpp" />
-    <ClInclude Include="GameBase.hpp" />
-    <ClInclude Include="GameSettings.hpp" />
-    <ClInclude Include="GameStateManager.hpp" />
+    <ClInclude Include="KeyboardMaster.hpp" />
     <ClInclude Include="KeyboardTyper.hpp" />
+    <ClInclude Include="MainMenu.hpp" />
     <ClInclude Include="Metronome.hpp" />
-    <ClInclude Include="Miscellaneous.hpp" />
+    <ClInclude Include="Misc.hpp" />
     <ClInclude Include="PictureElement.hpp" />
     <ClInclude Include="SimpleApplication.hpp" />
     <ClInclude Include="tinyutf.h" />
     <ClInclude Include="VirtualKeyboard.hpp" />
     <ClInclude Include="WordBlock.hpp" />
-    <ClInclude Include="WordsAttackGame.hpp" />
+    <ClInclude Include="WordsGame.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
