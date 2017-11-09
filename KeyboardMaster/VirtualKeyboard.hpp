@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "Misc.hpp"
 
-namespace KM
+namespace km
 {
 
 namespace 

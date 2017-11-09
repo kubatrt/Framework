@@ -1,7 +1,27 @@
 #pragma once
 
-namespace KM
+namespace km
 {
+
+struct Rectangle
+{
+    sf::RectangleShape shape;
+
+    float x() const noexcept { return shape.getPosition().x; }
+    float y() const noexcept { return shape.getPosition().y; }
+    float left() const noexcept { return x() - shape.getSize().x / 2.f; }
+    float right() const noexcept { return x() + shape.getSize().x / 2.f; }
+    float top() const noexcept { return y() - shape.getSize().y / 2.f; }
+    float bottom() const noexcept { return y() + shape.getSize().y / 2.f; }
+};
+
+struct PictureElement : public Rectangle
+{
+    std::wstring word;
+    sf::Text wordText;
+
+    PictureElement() = default;
+};
 
 enum KeyCode : int
 {
@@ -46,25 +66,7 @@ enum KeyCode : int
 	slash = 47
 };
 
-struct Rectangle
-{
-	sf::RectangleShape shape;
 
-	float x() const noexcept { return shape.getPosition().x; }
-	float y() const noexcept { return shape.getPosition().y; }
-	float left() const noexcept { return x() - shape.getSize().x / 2.f; }
-	float right() const noexcept { return x() + shape.getSize().x / 2.f; }
-	float top() const noexcept { return y() - shape.getSize().y / 2.f; }
-	float bottom() const noexcept { return y() + shape.getSize().y / 2.f; }
-};
-
-struct PictureElement : public Rectangle
-{
-	std::wstring	word;
-	sf::Text		wordText;
-
-	PictureElement() {}
-};
 
 
 namespace experimental
@@ -72,8 +74,8 @@ namespace experimental
 
 struct User
 {
-	std::string name;
-	unsigned int courseLevel;   // 0 - 20
+    std::string name;
+    unsigned int courseLevel;   // 0 - 20
 };
 
 // player's game representative
@@ -90,24 +92,18 @@ struct GameSession
 	float time;
 };
 
-class IGameEntity
-{
-	virtual void update() = 0;
-	virtual void draw() = 0;
-};
-
 class ILetterTyped
 {
 public:
-	virtual void typedLetter(const wchar_t letter) = 0;
+    virtual void typedLetter(const wchar_t letter) = 0;
 };
 
 class IWordTyped
 {
 public:
-	virtual void typedWord(const std::wstring word) = 0;
+    virtual void typedWord(const std::wstring word) = 0;
 };
 
 }
 
-}	// KM
+} // namespace km

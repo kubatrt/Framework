@@ -4,7 +4,7 @@
 #include "Misc.hpp"
 
 
-namespace KM
+namespace km
 {
 
 class WordBlock : public Rectangle

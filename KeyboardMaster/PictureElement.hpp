@@ -3,9 +3,9 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <iostream>
-#include "Miscellaneous.hpp"
+#include "Misc.hpp"
 
-namespace KM
+namespace km
 {
 
 class PictureElement : public Rectangle
@@ -16,11 +16,11 @@ private:
 	static const int charHeight = 24;
 
 public:
-	std::wstring	word;
-	wchar_t			nextLetter;
+	std::wstring word;
+	wchar_t nextLetter;
 
-	sf::Text		wordText;
-	sf::Sprite		sprite;
+	sf::Text wordText;
+	sf::Sprite sprite;
 
 	bool isActive;
 	bool isRevealed;

@@ -9,9 +9,10 @@ namespace km
 {
 
 KeyboardMaster::KeyboardMaster()
-    : fw::GameBase({ 1280, 720 }, "Catch game")
+    : fw::GameBase({ 1024, 768 }, "KeyboardMaster")
 {
-    window_.setFramerateLimit(60);  // instead of separate fixedUpdate
+    window_.setFramerateLimit(60);
+
     pushState<MainMenu>(*this);
     //pushState<CourseMenu>(*this);
 

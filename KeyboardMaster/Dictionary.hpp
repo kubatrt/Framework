@@ -9,7 +9,7 @@
 #include "../FrameworkLib/Utilities.hpp"
 
 
-namespace KM
+namespace km
 {
 
 // Class responsible for loading words from file, UTF-8
@@ -53,4 +53,3 @@ private:
 };
 
 }
-

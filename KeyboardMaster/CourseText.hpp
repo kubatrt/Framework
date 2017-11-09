@@ -10,7 +10,7 @@
 
 #include "Dictionary.hpp"
 
-namespace KM
+namespace km
 {
 
 // Structure for text typed for player

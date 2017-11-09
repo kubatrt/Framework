@@ -2,7 +2,7 @@
 #include "../FrameworkLib/Util/Files.hpp"
 
 
-namespace KM
+namespace km
 {
 
 Dictionary::Dictionary(const std::string& filePath)
