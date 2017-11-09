@@ -19,8 +19,6 @@ public:
     void draw(sf::RenderTarget& renderer) override;
     void handleEvents() override;
 private:
-
-    // game components
     fw::FPSCounter fpsCounter_;
 };
 

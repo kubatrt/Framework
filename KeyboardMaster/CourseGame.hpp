@@ -12,8 +12,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Audio.hpp>
-//#include <boost/filesystem/operations.hpp>
-//#include <boost/filesystem/path.hpp>
+
 
 #include "SimpleApplication.hpp"
 #include "VirtualKeyboard.hpp"

@@ -22,8 +22,8 @@ int CourseGame::run(int argc, char* argv)
 
     // get executable path
     //fs::path full_path(fs::initial_path<fs::path>());
-    //	FIXME
-//		full_path = fs::system_complete(fs::path(std::string(argv[0])));
+    // FIXME
+    // ull_path = fs::system_complete(fs::path(std::string(argv[0])));
     std::string exec_path = ""; // "D:\\Workspace\\Projects\\Framework\\Debug";//full_path.remove_filename().string() + "/";
     std::cout << "exec_path = " << exec_path << std::endl;
 
@@ -43,10 +43,14 @@ int CourseGame::run(int argc, char* argv)
 
     // play all buffers by one audio /temp/
     sf::Sound sound;
-    sf::SoundBuffer audioKeytype; audioKeytype.loadFromFile(exec_path + "media/keytype.wav");
-    sf::SoundBuffer audioMistake; audioMistake.loadFromFile(exec_path + "media/mistake.wav");
-    sf::SoundBuffer audioNewline; audioNewline.loadFromFile(exec_path + "media/newline.wav");
-    sf::SoundBuffer audioBell; audioBell.loadFromFile(exec_path + "media/bell.wav");
+    sf::SoundBuffer audioKeytype; 
+    audioKeytype.loadFromFile(exec_path + "media/keytype.wav");
+    sf::SoundBuffer audioMistake; 
+    audioMistake.loadFromFile(exec_path + "media/mistake.wav");
+    sf::SoundBuffer audioNewline; 
+    audioNewline.loadFromFile(exec_path + "media/newline.wav");
+    sf::SoundBuffer audioBell; 
+    audioBell.loadFromFile(exec_path + "media/bell.wav");
 
 
     // currently typed text by user
