@@ -37,6 +37,38 @@ public:
     void draw(sf::RenderTarget& renderer) override;
 
 private:
+    void textEntered();
+    void prepareDebugText();
+    inline sf::Uint32 inPenultimateLine() { return dictionary_.getLines()[currentline_].size() -1; };
+    void moveToNewLine();
+    void backspace();
+    void calculateCoretness();
+
+    struct SoundPlayer
+    {
+        SoundPlayer()
+        {
+            sounds_["keytype"].loadFromFile("media/keytype.wav");
+            sounds_["mistake"].loadFromFile("media/mistake.wav");
+            sounds_["newline"].loadFromFile("media/newline.wav");
+            sounds_["bell"].loadFromFile("media/bell.wav");
+        }
+
+        void play(const std::string sound)
+        {
+            if (sounds_.count(sound))
+            {
+                sound_.setBuffer(sounds_[sound]);
+                sound_.play();
+            }
+                
+        }
+    private:
+        std::map<std::string, sf::SoundBuffer> sounds_;
+        sf::Sound sound_;
+    };
+    SoundPlayer soundPlayer_;
+
     Virtualkeyboard vkb_;
     Dictionary dictionary_;
 
@@ -47,10 +79,7 @@ private:
     sf::Texture backgroundTexture;
     sf::Sprite backgroundSprite;
 
-    sf::SoundBuffer audioKeytype;
-    sf::SoundBuffer audioMistake;
-    sf::SoundBuffer audioNewline;
-    sf::SoundBuffer audioBell;
+
 
 
     std::wstring typingText;
@@ -60,18 +89,18 @@ private:
     std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
     std::vector<sf::Text> courseTextLines;
     std::vector<sf::Text> courseInputTextLines;
-    unsigned int currentline = 0;
-    unsigned int currentletter = 0;
-    unsigned int currentword = 0;
-    unsigned int correct = 0;
-    unsigned int mistakes = 0;
-    wchar_t nextLetter;
-    int omittedLetters = 0;
-    int keysTyped = 0;
-    float kpm = 0;
-    float correctness = 100.f;
-    wchar_t typedLetter;
-    int backspaces = 0;
+    unsigned int currentline_ = 0;
+    unsigned int currentletter_ = 0;
+    unsigned int currentword_ = 0;
+    unsigned int correct_ = 0;
+    unsigned int mistakes_ = 0;
+    wchar_t nextLetter_;
+    int omittedLetters_ = 0;
+    int keysTyped_ = 0;
+    float kpm_ = 0;
+    float correctnessPercentage_ = 100.f;
+    wchar_t typedLetter_;
+    int backspaces_ = 0;
 
 };
 
