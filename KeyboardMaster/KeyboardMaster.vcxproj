@@ -139,6 +139,7 @@
     <ClCompile Include="WritingGame.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CommentCloud.hpp" />
     <ClInclude Include="CourseGame.hpp" />
     <ClInclude Include="CourseMenu.hpp" />
     <ClInclude Include="CourseText.hpp" />

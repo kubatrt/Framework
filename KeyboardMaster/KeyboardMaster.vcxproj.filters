@@ -66,6 +66,9 @@
     <ClInclude Include="WritingGame.hpp">
       <Filter>States</Filter>
     </ClInclude>
+    <ClInclude Include="CommentCloud.hpp">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="3rdparty">
