@@ -6,11 +6,11 @@ Visual Studio 2017
 Framework project
 =================
 - FrameworkLib
--- Singleton
--- Observer
--- Utilities
--- States handling
--- Base game class
+- Singleton
+- Observer
+- Utilities
+- States handling
+- Base game class
 - FrameworkUT
 
 Modules
@@ -51,6 +51,7 @@ It's c++ so braces should be open/closed in new lines.
 Game Objects - for these type of objects is acceptable to use public memebers variables.
 Use structures for general pure data objects.
 Remember aobut KISS, DRY, SOLID...
+Write unit tests for utilities code.
 
 Settings - some of the classes needs to hold default settins. Is it strict related to objects, like default values for instances,
 should be use 'static const' type. For general purpose constants to be used by one or more specific classes, constexpr variables
