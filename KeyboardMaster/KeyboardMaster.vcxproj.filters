@@ -12,6 +12,15 @@
     <ClCompile Include="MainMenu.cpp">
       <Filter>States</Filter>
     </ClCompile>
+    <ClCompile Include="WordsAttackGame.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="GalleryGame.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="WritingGame.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tinyutf.h">
@@ -45,13 +54,16 @@
     <ClInclude Include="Misc.hpp" />
     <ClInclude Include="SimpleApplication.hpp" />
     <ClInclude Include="KeyboardMaster.hpp" />
-    <ClInclude Include="WordsGame.hpp">
-      <Filter>States</Filter>
-    </ClInclude>
     <ClInclude Include="MainMenu.hpp">
       <Filter>States</Filter>
     </ClInclude>
     <ClInclude Include="CourseMenu.hpp">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="WordsAttackGame.hpp">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="WritingGame.hpp">
       <Filter>States</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,8 +1,5 @@
 #include "KeyboardMaster.hpp"
 #include "MainMenu.hpp"
-#include "CourseGame.hpp"
-#include "WordsGame.hpp"
-#include "GalleryGame.hpp"
 #include "../FrameworkLib/ResourceManager/ResourceManager.hpp"
 
 namespace km

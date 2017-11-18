@@ -48,6 +48,7 @@ private:
     {
         SoundPlayer()
         {
+            // framework::ResourceHolder::get().audio.get
             sounds_["keytype"].loadFromFile("media/keytype.wav");
             sounds_["mistake"].loadFromFile("media/mistake.wav");
             sounds_["newline"].loadFromFile("media/newline.wav");
@@ -79,9 +80,6 @@ private:
     sf::Texture backgroundTexture;
     sf::Sprite backgroundSprite;
 
-
-
-
     std::wstring typingText;
     sf::Text nextLetterText;
     sf::Text debugText;
@@ -89,6 +87,7 @@ private:
     std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
     std::vector<sf::Text> courseTextLines;
     std::vector<sf::Text> courseInputTextLines;
+
     unsigned int currentline_ = 0;
     unsigned int currentletter_ = 0;
     unsigned int currentword_ = 0;
@@ -101,7 +100,6 @@ private:
     float correctnessPercentage_ = 100.f;
     wchar_t typedLetter_;
     int backspaces_ = 0;
-
 };
 
 }

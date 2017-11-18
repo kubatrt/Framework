@@ -1,4 +1,28 @@
 #pragma once
+
+#include "../FrameworkLib/GameBase.hpp"
+#include "../FrameworkLib/StateBase.hpp"
+
+namespace km
+{
+
+namespace fw = framework;
+
+class GalleryGame : public fw::StateBase
+{
+public:
+    GalleryGame(fw::GameBase& game);
+
+    void handleEvents(sf::Event e) override;
+    void update(sf::Time deltaTime) override;
+    void draw(sf::RenderTarget& renderer) override;
+
+private:
+};
+
+}
+
+
 /*
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>

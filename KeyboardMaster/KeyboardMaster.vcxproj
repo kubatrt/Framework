@@ -131,9 +131,12 @@
   <ItemGroup>
     <ClCompile Include="CourseGame.cpp" />
     <ClCompile Include="Dictionary.cpp" />
+    <ClCompile Include="GalleryGame.cpp" />
     <ClCompile Include="KeyboardMaster.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="WordsAttackGame.cpp" />
+    <ClCompile Include="WritingGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CourseGame.hpp" />
@@ -151,7 +154,8 @@
     <ClInclude Include="tinyutf.h" />
     <ClInclude Include="VirtualKeyboard.hpp" />
     <ClInclude Include="WordBlock.hpp" />
-    <ClInclude Include="WordsGame.hpp" />
+    <ClInclude Include="WordsAttackGame.hpp" />
+    <ClInclude Include="WritingGame.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
