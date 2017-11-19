@@ -1,92 +1,97 @@
-#pragma	once
+#pragma once
 
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
-#include <iostream>
 #include "Misc.hpp"
+#include "../FrameworkLib/Utilities.hpp"
+
 
 namespace km
 {
 
+// fontSize 24, 15 / 22, 14 / 18, 12
+
+constexpr int charFontSize = 22;
+constexpr int charWidth = 14;
+constexpr int charHeight = 24;
+
+class Picture;
+
 class PictureElement : public Rectangle
 {
-private:
-	static const int charFontSize = 22;
-	static const int charWidth = 14;
-	static const int charHeight = 24;
-
 public:
-	std::wstring word;
-	wchar_t nextLetter;
-
-	sf::Text wordText;
-	sf::Sprite sprite;
-
-	bool isActive;
-	bool isRevealed;
-	bool isMissed;
-	int index;
-
-	// fontSize, 
-	// 24, 15
-	// 22, 14
-	// 18, 12
-	size_t getWordLength() { return word.length(); }
-
-	sf::Clock	timer;
-	float timeToDestroy = 3.f;
 
 
-	PictureElement(int index, std::wstring word, sf::Vector2f pos, sf::Font& font, sf::Sprite elementSprite)
-	{
-		isMissed = false;
-		timer.restart();
-		this->index = index;
-		this->word = word;
-		nextLetter = word.front();
-		isRevealed = false;
-		isActive = false;
+    size_t getWordLength() { return word_.length(); }
 
-		wordText.setFont(font);
-		wordText.setString(word);
-		wordText.setCharacterSize(charFontSize);
-		wordText.setColor(sf::Color::White);
-		wordText.setStyle(sf::Text::Bold);
-		wordText.setOrigin(0, 0);
-		wordText.setPosition(sf::Vector2f( pos.x + elementSprite.getTextureRect().width / 2.f , pos.y + elementSprite.getTextureRect().height/ 2.f));
 
-		sprite = elementSprite;
-		sprite.setPosition(pos);
 
-		//shape.setSize(sf::Vector2f(word.length() * charWidth, charHeight));
+PictureElement(sf::Sprite element, int index, std::wstring word, sf::Vector2f pos, sf::Vector2f size, )
+    : missed_(false)
+    , revealed_(false)
+    , active_(false)
+    , index_(index)
+    , word_(word)
+    , nextLetter_(word.front())
+{
+    sf::Font font;
+    wordText.setFont(font);
+    wordText.setString(word);
+    wordText.setCharacterSize(charFontSize);
+    wordText.setColor(sf::Color::White);
+    wordText.setStyle(sf::Text::Bold);
+    wordText.setOrigin(0, 0);
+    wordText.setPosition(sf::Vector2f( pos.x + element.getTextureRect().width / 2.f ,
+                                       pos.y + element.getTextureRect().height/ 2.f));
+    timer_.restart();
+    sprite_ = element;
+    sprite_.setPosition(pos);
 
-		std::wcout << "create wordblock:" << word << std::endl;
-	}
+    //shape.setSize(sf::Vector2f(word.length() * charWidth, charHeight));
 
-	// WordBlock(const WordBlock& wordBlock) = default;
-	PictureElement(const PictureElement& wordBlock)
-	{
-		std::wcout << "copy constructor: " << word << std::endl;
-	}
+    log_info("create wordblock:" << word);
+}
 
-	~PictureElement()
-	{
-		std::wcout << "destroy wordblock:" << word << std::endl;
-	}
+PictureElement(const PictureElement& pictureElement)
+{
+    log_info("copy constructor: " << word_);
+}
 
-	void activate()
-	{
-		isActive = true;
-		timer.restart();
-	}
+~PictureElement()
+{
+    log_info("destroy wordblock:" << word_);
+}
 
-	void update()
-	{
-		if (isActive && (timer.getElapsedTime().asSeconds() >= timeToDestroy))
-		{
-			isMissed = true;
-		}
-	}
+bool isRevealed() { return revealed_; }
+bool isActive() { return active_; }
+
+void reveal()
+{
+    active_ = true;
+    revealed_ = true;
+    timer_.restart();
+}
+
+void update()
+{
+    if (active_ && (timer_.getElapsedTime().asSeconds() >= lifeTime))
+    {
+        missed_ = true;
+    }
+}
+
+private:
+    sf::Sprite sprite_;
+    sf::Clock timer_;
+    sf::Text wordText;
+    std::wstring word_;
+    wchar_t nextLetter_;
+
+    bool active_;
+    bool revealed_;
+    bool missed_;
+    int index_;
+    float lifeTime = 3.f;
 };
 
 }	// KM

@@ -6,7 +6,9 @@
 #include <algorithm>
 #include <map>
 #include <set>
+#include <SFML\System.hpp>
 #include "../FrameworkLib/Utilities.hpp"
+#include "Misc.hpp"
 
 
 namespace km
@@ -16,24 +18,24 @@ namespace km
 class Dictionary
 {
 public:
-    Dictionary(const std::string& filePath);
-    ~Dictionary();
+    Dictionary(FilePath filePath);
+    ~Dictionary() = default;
     Dictionary(const Dictionary&) = delete;
     const Dictionary& operator=(const Dictionary) = delete;
     Dictionary(Dictionary&&) = delete;
     Dictionary&& operator=(Dictionary&&) = delete;
 
-    void loadFromFile(const std::string& filePath);
+    void loadFromFile(FilePath filePath);
     void printAllWords();
-    std::wstring randomWord(int length);
+    std::wstring getRandomWord(int length);
 
     const std::wstring getText() const { return text_; }
     const std::vector<std::wstring> getLines() const { return lines_; }
     const std::set<std::wstring> getWords() const { return words_; }
-    unsigned int getLettersCount() const { return lettersCount_; }
-    unsigned int getWordsCount() const { return wordsCount_; }
-    unsigned int getLongestWord() const { return longestWord_; }
-    unsigned int getShortestWord() const { return shortestWord_; }
+    uint getLettersCount() const { return lettersCount_; }
+    uint getWordsCount() const { return wordsCount_; }
+    uint getLongestWord() const { return longestWord_; }
+    uint getShortestWord() const { return shortestWord_; }
 
 private:
     void prepareLines();

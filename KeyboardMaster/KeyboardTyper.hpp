@@ -1,28 +1,28 @@
 #pragma once
 
-#include <vector>
+#include "Misc.hpp"
 
-namespace KM
+namespace km
 {
 
 class KeyboardTyper
 {
 public:
-	// sf::Clock   clock;
-	//std::vector<Word>   words;
-	
-	float getKPM() { return kpm; }
-	float getKPW() { return kpw; }
+    KeyboardTyper() = default;
+    ~KeyboardTyper() = default;
 
-	void start() {};
-	void pause() {};
-	void stop() {};
+    float getKPM() { return keysPerMinute_; }
+    float getKPW() { return keysPerWord_; }
+
+    void start() {};
+    void pause() {};
+    void stop() {};
 
 private:
-	unsigned int keysTyped;
-	unsigned int wordsTyped;
-	float kpm;  // keys per minute
-	float kpw;  // keys per word
+    uint keysTyped_;
+    uint wordsTyped_;
+    float keysPerMinute_;
+    float keysPerWord_;
 };
 
-}	// KM
+} // km

@@ -7,72 +7,72 @@
 namespace km
 {
 
+float spawnHorizontalPositions[5] { 0.f, 200.f, 400.f, 600.f, 800.f };
+constexpr uint charFontSize = 22;
+constexpr uint charWidth = 14;
+constexpr uint charHeight = 24;
+
 class WordBlock : public Rectangle
 {
 private:
-	float spawnHorizontalPositions[5] { 0.f, 200.f, 400.f, 600.f, 800.f };
-	static const int charFontSize = 22;
-	static const int charWidth = 14;
-	static const int charHeight = 24;
+
 
 public:
-	std::wstring	word;
-	wchar_t			nextLetter;
+    std::wstring word;
+    wchar_t nextLetter;
 
-	sf::Vector2f	velocity;
-	sf::Text		wordText;
-	
-	bool isAlive;
-	int spawn;
+    sf::Vector2f velocity;
+    sf::Text wordText;
 
-	// fontSize, // 24, 15 // 22, 14 // 18, 12
-	size_t getWordLength() { return word.length(); }
-	
-	WordBlock(int spawnPosition, std::wstring word, sf::Vector2f velocity, sf::Color color, sf::Font& font)
-	{	
-		spawn = spawnPosition;
-		this->word = word;
-		nextLetter = word.front();
-		this->velocity = velocity;
-		isAlive = true;
+    bool isAlive;
+    int spawn;
 
-		wordText.setFont(font);
-		wordText.setString(word);
-		wordText.setCharacterSize(charFontSize);
-		wordText.setFillColor(sf::Color::White);
-		wordText.setStyle(sf::Text::Bold);
-		wordText.setPosition(spawnHorizontalPositions[spawn], 0.f);
-		shape.setPosition(spawnHorizontalPositions[spawn], 0.f);
-		shape.setFillColor(color);
-		shape.setSize(sf::Vector2f( word.length() * charWidth, charHeight));
+// fontSize, // 24, 15 // 22, 14 // 18, 12
+size_t getWordLength() { return word.length(); }
 
-		std::wcout << "create wordblock:" << word << std::endl;
-	}
-	
-	// WordBlock(const WordBlock& wordBlock) = default;
-	WordBlock(const WordBlock& wordBlock)
-	{
-		std::wcout << "copy constructor: " << word << std::endl;
-	}
+    WordBlock(int spawnPosition, std::wstring word, sf::Vector2f velocity, sf::Color color, sf::Font& font)
+    {
+        spawn = spawnPosition;
+        this->word = word;
+        nextLetter = word.front();
+        this->velocity = velocity;
+        isAlive = true;
 
-	~WordBlock()
-	{
-		std::wcout << "destroy wordblock:" << word << std::endl;
-	}
+        wordText.setFont(font);
+        wordText.setString(word);
+        wordText.setCharacterSize(charFontSize);
+        wordText.setFillColor(sf::Color::White);
+        wordText.setStyle(sf::Text::Bold);
+        wordText.setPosition(spawnHorizontalPositions[spawn], 0.f);
+        shape.setPosition(spawnHorizontalPositions[spawn], 0.f);
+        shape.setFillColor(color);
+        shape.setSize(sf::Vector2f( word.length() * charWidth, charHeight));
+
+        log_info("CTOR wordblock:" << word)s;
+    }
+    
+    // WordBlock(const WordBlock& wordBlock) = default;
+    WordBlock(const WordBlock& wordBlock)
+    {
+        log_info("CPY constructor: " << word);
+    }
+
+    ~WordBlock()
+    {
+        log_info("DTOR wordblock:" << word);
+    }
 
 
-	bool checkBoundaries(float windowWidth)
-	{
-		//if (bottom() > windowWidth)
-		//	return false; // fall of the bottom
-		return true;
-	}
+    bool checkBoundaries(float windowWidth)
+    {
+        return false;
+    }
 
-	void update()
-	{
-		shape.move(velocity);
-		wordText.move(velocity);
-	}
+    void update()
+    {
+        shape.move(velocity);
+        wordText.move(velocity);
+    }
 };
 
-}	// KM
+} // km

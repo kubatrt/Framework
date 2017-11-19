@@ -5,38 +5,41 @@
 #include <chrono>
 #include <cwctype>
 #include <random>
-#include <sstream>
+//#include <sstream>
 
 #include "Util\NonCopyable.hpp"
 #include "Util\NonMoveable.hpp"
 #include "Util\Maths.hpp"
 #include "Util\Random.hpp"
 
-// old
-#define LOG(msg)    std::wcout << msg << " ::" << __FILE__ << ":" << __LINE__ << std::endl;
-#define DEBUG(msg)  std::wcout << "DEBUG: " << msg << std::endl;
-#define ERROR(msg)  std::wcerr << "ERROR: " << msg << std::endl;
+// !depracted
+#define log_info(msg)   std::wcout << msg << std::endl;
+#define log_debug(msg)  std::wcout << "(DEBUG): " << msg " ::" << __FILE__ << ":" << __LINE__ << std::endl;
+#define log_error(msg)  std::wcerr << "(ERROR): " << msg << std::endl;
 
 typedef unsigned int uint;
+using WChar = wchar_t;
+using WStr = std::wstring;
+using FilePath = std::string;
 
 namespace framework
 {
 
 std::vector<std::string> getLinesFromText(const std::string& text);
 
-// old
+// !old
 struct RandomMachine
 {
     template<class T>
     static T getRange(T min, T max)
     {
-	    std::random_device rd;
-	    std::default_random_engine re(rd());	//std::mt19937
+        std::random_device rd;
+        std::default_random_engine re(rd());	//std::mt19937
 
         // use epoch time as seed for random generator
     long int seed = static_cast<long int>(
-	    std::chrono::duration_cast<std::chrono::nanoseconds>(
-		    std::chrono::high_resolution_clock::now().time_since_epoch()).count());
+        std::chrono::duration_cast<std::chrono::nanoseconds>(
+            std::chrono::high_resolution_clock::now().time_since_epoch()).count());
     re.seed(seed);
     std::uniform_int_distribution<T> unif_dist_wordlength(min, max);
 
@@ -44,8 +47,8 @@ struct RandomMachine
     }
 };
 
-
-namespace charutils	// unused
+// unused
+namespace charutils
 {
 
 struct Capitalize
@@ -108,13 +111,6 @@ struct RemoveSpaces
 
 }   // charutils
 
-// Check intersection with two shapes
-template<class T1, class T2>
-bool isIntersecting(T1& a, T2& b)
-{
-	return  a.right() >= b.left() && a.left() <= b.right()
-		&& a.top() <= b.bottom() && a.bottom() >= b.top();
-}
 
 
 // print Vector2f
@@ -124,6 +120,7 @@ void printVec(T vec)
 	std::cout << "("<< vec.x << ", " << vec.y << ")";
 }
 
+// print variadic argument pack
 template <typename... Args>
 void printVA(std::ostream& out, Args&&... args)
 {

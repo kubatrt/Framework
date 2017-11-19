@@ -21,17 +21,12 @@ public:
     {
     }
     virtual ~GameBase() = default;
-
     GameBase(const GameBase&) = delete;
     const GameBase& operator=(const GameBase&) = delete;
     GameBase(GameBase&&) = delete;
     GameBase&& operator=(GameBase&&) = delete;
 
-    // These methods define an interface, should not be called within a state
-    virtual void update(sf::Time deltaTime) = 0;
-    virtual void draw(sf::RenderTarget& renderer) = 0;
-    virtual void handleEvents() = 0;
-
+    // TOP interface
     // This should be defined elsewhere, outside this class. I can call it in some state public method run()
     virtual int run() final
     {
@@ -59,12 +54,13 @@ public:
     {
         states_.push_back(std::make_unique<T>(std::forward<Args>(args)...));
     };
+
     void popState()
     {
         popState_ = true;
     };
 
-    // Access in States
+    // In state access
     const sf::RenderWindow& getWindow() const { return window_; };
     void close() { window_.close(); };
     void create()
@@ -80,6 +76,11 @@ public:
     }
 
 protected:
+    // These methods define an interface, should not be called within a state
+    virtual void update(sf::Time deltaTime) = 0;
+    virtual void draw(sf::RenderTarget& renderer) = 0;
+    virtual void handleEvents() = 0;
+
     StateBase& getCurrentState()
     {
         // Atleast one state required - or throw exception? or can be null? use pointer instead!

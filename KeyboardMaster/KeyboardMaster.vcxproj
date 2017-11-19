@@ -150,6 +150,7 @@
     <ClInclude Include="MainMenu.hpp" />
     <ClInclude Include="Metronome.hpp" />
     <ClInclude Include="Misc.hpp" />
+    <ClInclude Include="Picture.hpp" />
     <ClInclude Include="PictureElement.hpp" />
     <ClInclude Include="SimpleApplication.hpp" />
     <ClInclude Include="tinyutf.h" />

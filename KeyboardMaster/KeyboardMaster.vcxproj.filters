@@ -69,6 +69,9 @@
     <ClInclude Include="CommentCloud.hpp">
       <Filter>GameObjects</Filter>
     </ClInclude>
+    <ClInclude Include="Picture.hpp">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="3rdparty">

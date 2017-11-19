@@ -1,13 +1,13 @@
 #include "Dictionary.hpp"
 #include "../FrameworkLib/Util/Files.hpp"
-
+#include "Misc.hpp"
 
 namespace km
 {
 
-Dictionary::Dictionary(const std::string& filePath)
+Dictionary::Dictionary(FilePath filePath)
     : shortestWord_(3)
-    , longestWord_(0)
+    , longestWord_(8)
     , lettersCount_(0)
     , wordsCount_(0)
 {
@@ -19,13 +19,8 @@ Dictionary::Dictionary(const std::string& filePath)
     std::wcout << "shortest word: " << shortestWord_ << std::endl;
 }
 
-Dictionary::~Dictionary()
+void Dictionary::loadFromFile(FilePath filePath)
 {
-}
-
-void Dictionary::loadFromFile(const std::string& filePath)
-{
-    
     text_ = framework::loadTextFromUtf8File(filePath);
     prepareWords();
     prepareLines();
@@ -59,7 +54,7 @@ void Dictionary::printAllWords()
     std::wcout << std::endl;
 }
 
-std::wstring Dictionary::randomWord(int length)
+std::wstring Dictionary::getRandomWord(int length)
 {
     return wordsByLength_[length].at(
         framework::RandomMachine::getRange<size_t>(0, wordsByLength_[length].size() - 1));
