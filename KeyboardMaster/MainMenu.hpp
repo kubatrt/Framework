@@ -3,6 +3,7 @@
 #include "../FrameworkLib/GameBase.hpp"
 #include "../FrameworkLib/StateBase.hpp"
 #include "../FrameworkLib/GUI/StackMenu.hpp"
+#include "../FrameworkLib/Util/Animation.hpp"
 
 namespace km
 {
@@ -20,6 +21,7 @@ public:
 
 private:
     fw::gui::StackMenu menu_;
+    fw::Animation animation_;
 };
 
 }

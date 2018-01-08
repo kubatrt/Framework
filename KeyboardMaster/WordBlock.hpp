@@ -6,8 +6,6 @@
 
 namespace km
 {
-
-float spawnHorizontalPositions[5] { 0.f, 200.f, 400.f, 600.f, 800.f };
 constexpr uint charFontSize = 22;
 constexpr uint charWidth = 14;
 constexpr uint charHeight = 24;
@@ -15,7 +13,6 @@ constexpr uint charHeight = 24;
 class WordBlock : public Rectangle
 {
 private:
-
 
 public:
     std::wstring word;
@@ -26,9 +23,6 @@ public:
 
     bool isAlive;
     int spawn;
-
-// fontSize, // 24, 15 // 22, 14 // 18, 12
-size_t getWordLength() { return word.length(); }
 
     WordBlock(int spawnPosition, std::wstring word, sf::Vector2f velocity, sf::Color color, sf::Font& font)
     {
@@ -43,12 +37,15 @@ size_t getWordLength() { return word.length(); }
         wordText.setCharacterSize(charFontSize);
         wordText.setFillColor(sf::Color::White);
         wordText.setStyle(sf::Text::Bold);
+
+        float spawnHorizontalPositions[5]{ 0.f, 200.f, 400.f, 600.f, 800.f };
         wordText.setPosition(spawnHorizontalPositions[spawn], 0.f);
+
         shape.setPosition(spawnHorizontalPositions[spawn], 0.f);
         shape.setFillColor(color);
         shape.setSize(sf::Vector2f( word.length() * charWidth, charHeight));
 
-        log_info("CTOR wordblock:" << word)s;
+        log_info("CTOR wordblock:" << word);
     }
     
     // WordBlock(const WordBlock& wordBlock) = default;
@@ -62,6 +59,8 @@ size_t getWordLength() { return word.length(); }
         log_info("DTOR wordblock:" << word);
     }
 
+    // fontSize, // 24, 15 // 22, 14 // 18, 12
+    size_t getWordLength() { return word.length(); }
 
     bool checkBoundaries(float windowWidth)
     {

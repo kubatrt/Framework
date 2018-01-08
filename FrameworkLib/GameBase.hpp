@@ -60,7 +60,7 @@ public:
         popState_ = true;
     };
 
-    // In state access
+    // In-state access
     const sf::RenderWindow& getWindow() const { return window_; };
     void close() { window_.close(); };
     void create()

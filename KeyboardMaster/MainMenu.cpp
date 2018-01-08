@@ -9,6 +9,7 @@
 #include "../FrameworkLib/GUI/Button.hpp"
 #include "../FrameworkLib/GUI/Textbox.hpp"
 
+
 namespace km
 {
 
@@ -56,6 +57,8 @@ MainMenu::MainMenu(fw::GameBase& game)
     menu_.addWidget(std::move(b3));
     menu_.addWidget(std::move(b4));
     menu_.addWidget(std::move(bquit));
+
+    
 }
 
 void MainMenu::handleEvents(sf::Event e)
@@ -77,7 +80,7 @@ void MainMenu::handleEvents(sf::Event e)
 
 void MainMenu::update(sf::Time deltaTime)
 {
-
+    
 }
 
 void MainMenu::draw(sf::RenderTarget& renderer)

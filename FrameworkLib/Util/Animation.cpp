@@ -1,5 +1,7 @@
 #include "Animation.hpp"
 
+namespace framework
+{
 
 Animation::Animation(unsigned frameSize)
     :   FRAME_SIZE  (frameSize)
@@ -19,13 +21,15 @@ void Animation::addFrame(unsigned index, sf::Time delay)
 
 const sf::IntRect& Animation::getFrame()
 {
-    if (timer_.getElapsedTime() >= frames_[framePointer_].delay)
+    if (timer_.getElapsedTime() >= frames_[currentFrame_].delay)
     {
         timer_.restart();
-        framePointer_++;
-        if (framePointer_ == frames_.size())
-            framePointer_ = 0;
+        currentFrame_++;
+        if (currentFrame_ == frames_.size())
+            currentFrame_ = 0;
     }
 
-    return frames_[framePointer_].bounds;
+    return frames_[currentFrame_].bounds;
+}
+
 }

@@ -147,7 +147,7 @@ void CourseGame::textEntered()
             nextLetter_ = dictionary_.getLines()[currentline_][currentletter_];
             //nextLetterText.setString(nextLetter_);
 
-            // TODO we should consider ommited letters in line
+            // TODO ommited letters in line
         }
         else
         {

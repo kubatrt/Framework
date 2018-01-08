@@ -6,6 +6,7 @@
 namespace framework
 {
 
+// new
 template <typename TEngine = std::mt19937>
 class Random
 {

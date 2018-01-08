@@ -3,14 +3,18 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 
+namespace framework
+{
+
+// TODO
 class Animation
 {
     public:
         struct Frame
         {
-            Frame(const sf::IntRect& bnds, sf::Time dly)
+            Frame(const sf::IntRect& bnds, sf::Time dlay)
                 : bounds(bnds)
-                , delay(dly) {}
+                , delay(dlay) {}
 
             sf::IntRect bounds;
             sf::Time delay;
@@ -23,10 +27,9 @@ class Animation
 
     private:
         sf::Clock timer_;
-
         std::vector<Frame> frames_;
-
-        unsigned framePointer_ = 0;
+        unsigned currentFrame_ = 0;
         const unsigned FRAME_SIZE;
-
 };
+
+}

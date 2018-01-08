@@ -6,10 +6,10 @@ namespace KM
 class SimpleApplication
 {
 public:
-	SimpleApplication() {};
-	virtual ~SimpleApplication() {};
+    SimpleApplication() = default;
+    virtual ~SimpleApplication() = default;
 
-	virtual int run(int argc, char* argv) = 0;
+    virtual int run(int argc, char* argv) = 0;
 };
 
 }

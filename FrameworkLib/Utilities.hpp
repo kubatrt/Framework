@@ -5,7 +5,7 @@
 #include <chrono>
 #include <cwctype>
 #include <random>
-//#include <sstream>
+#include <sstream>
 
 #include "Util\NonCopyable.hpp"
 #include "Util\NonMoveable.hpp"

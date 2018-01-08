@@ -85,10 +85,11 @@ void Dictionary::prepareWords()
     {
         if (*it == ' ' || *it == '\n')
         {
-			// longest
+            // longest word
             if (buffer.length() > longestWord_)
                 longestWord_ = buffer.length();
-			// shortest
+
+            // shortest word
             if (buffer.length() != 0 && buffer.length() < shortestWord_)
                 shortestWord_ = buffer.length();
 

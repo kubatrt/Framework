@@ -10,9 +10,9 @@ ResourceHolder& ResourceHolder::get()
 }
 
 ResourceHolder::ResourceHolder()
-	: fonts("fonts", "ttf")
-	, textures("textures", "png")
-	, soundBuffers("sfx", "ogg")
+    : fonts("fonts", "ttf")
+    , textures("textures", "png")
+    , soundBuffers("sfx", "ogg")
 {
 
 }

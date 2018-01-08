@@ -5,6 +5,7 @@
 namespace km
 {
 
+// TODO
 class KeyboardTyper
 {
 public:
