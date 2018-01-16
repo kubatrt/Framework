@@ -21,7 +21,7 @@ public:
 
 private:
     fw::gui::StackMenu menu_;
-    fw::Animation animation_;
+    //fw::Animation animation_;
 };
 
 }

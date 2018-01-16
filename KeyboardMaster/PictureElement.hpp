@@ -4,88 +4,125 @@
 #include <SFML/System.hpp>
 #include "Misc.hpp"
 #include "../FrameworkLib/Utilities.hpp"
-
+#include "../FrameworkLib/ResourceManager/ResourceHolder.hpp"
+#include "Scheduler.hpp"
 
 namespace km
 {
 
 // fontSize 24, 15 / 22, 14 / 18, 12
 
-constexpr int charFontSize = 22;
-constexpr int charWidth = 14;
-constexpr int charHeight = 24;
+
 
 class Picture;
 
 class PictureElement : public Rectangle
 {
 public:
-
-
     size_t getWordLength() { return word_.length(); }
 
-
-
-PictureElement(sf::Sprite element, int index, std::wstring word, sf::Vector2f pos, sf::Vector2f size, )
+PictureElement(sf::Texture& texture, sf::IntRect textureRect, int index, std::wstring word, 
+    sf::Vector2f pos )
     : missed_(false)
     , revealed_(false)
     , active_(false)
     , index_(index)
     , word_(word)
     , nextLetter_(word.front())
+    //, scheduler_(sf::seconds(3.f), []() {  })
 {
-    sf::Font font;
-    wordText.setFont(font);
-    wordText.setString(word);
-    wordText.setCharacterSize(charFontSize);
-    wordText.setColor(sf::Color::White);
-    wordText.setStyle(sf::Text::Bold);
-    wordText.setOrigin(0, 0);
-    wordText.setPosition(sf::Vector2f( pos.x + element.getTextureRect().width / 2.f ,
-                                       pos.y + element.getTextureRect().height/ 2.f));
-    timer_.restart();
-    sprite_ = element;
+    constexpr int charFontSize = 22;
+    constexpr int charWidth = 14;
+    constexpr int charHeight = 24;
+
+    sprite_.setTexture(texture);
+    sprite_.setTextureRect(textureRect);
     sprite_.setPosition(pos);
 
+    //sf::Font font;
+    wordText_.setFont(framework::ResourceHolder::get().fonts.get("arial")); // framework::ResourceHolder::get().fonts.get("arial")
+    wordText_.setString(word);
+    wordText_.setCharacterSize(charFontSize);
+    //wordText.setColor(sf::Color::White);
+    wordText_.setStyle(sf::Text::Bold);
+    wordText_.setOrigin(0, 0);
+
+    wordText_.setPosition(sf::Vector2f( pos.x + sprite_.getTextureRect().width / 2.f ,
+                                       pos.y + sprite_.getTextureRect().height/ 2.f));
+    //timer_.restart();
+    
     //shape.setSize(sf::Vector2f(word.length() * charWidth, charHeight));
 
-    log_info("create wordblock:" << word);
+    log_info("PictureElement:" << word_);
 }
 
 PictureElement(const PictureElement& pictureElement)
 {
-    log_info("copy constructor: " << word_);
+    this->sprite_ = pictureElement.sprite_;
+    this->index_ = pictureElement.index_;
+    this->word_ = pictureElement.word_;
+    this->nextLetter_= pictureElement.nextLetter_;
+
+    log_info("PictureElement CPY: " << word_);
 }
 
 ~PictureElement()
 {
-    log_info("destroy wordblock:" << word_);
+    log_info("PictureElement DTOR:" << word_);
 }
+
+int getIndex() const { return index_; }
 
 bool isRevealed() { return revealed_; }
 bool isActive() { return active_; }
 
-void reveal()
+void setActive()
 {
     active_ = true;
-    revealed_ = true;
-    timer_.restart();
+    //scheduler_.start();
 }
 
-void update()
+std::wstring getWord() const
 {
-    if (active_ && (timer_.getElapsedTime().asSeconds() >= lifeTime))
-    {
-        missed_ = true;
-    }
+    return word_;
+}
+
+void reveal()
+{
+    active_ = false;
+    revealed_ = true;
+}
+
+void miss()
+{
+    active_ = false;
+    revealed_ = false;
+}
+
+void update(sf::Time deltaTime)
+{
+    //if (active_ && (timer_.getElapsedTime().asSeconds() >= lifeTime))
+    //{
+    //    miss();
+        // play FAIL audio
+    //}
+}
+
+void draw(sf::RenderTarget& renderer)
+{
+    if(revealed_)
+        renderer.draw(sprite_);
+    if(active_)
+        renderer.draw(wordText_);
 }
 
 private:
     sf::Sprite sprite_;
     sf::Clock timer_;
-    sf::Text wordText;
+    sf::Text wordText_;
     std::wstring word_;
     wchar_t nextLetter_;
+    //Scheduler scheduler_;
 
     bool active_;
     bool revealed_;

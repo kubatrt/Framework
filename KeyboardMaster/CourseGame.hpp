@@ -39,7 +39,7 @@ public:
 private:
     void textEntered();
     void prepareDebugText();
-    inline sf::Uint32 inPenultimateLine() { return dictionary_.getLines()[currentline_].size() -1; };
+    inline sf::Uint32 inPenultimateLine() { return dictionary_.getLines()[currentline_].size() -1; };   // przedostatnia linia
     void moveToNewLine();
     void backspace();
     void calculateCoretness();

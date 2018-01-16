@@ -13,7 +13,7 @@ Dictionary::Dictionary(FilePath filePath)
 {
     loadFromFile(filePath);
 
-    std::wcout << "Loaded text: " << text_ << std::endl;
+    std::wcout << "Loaded text: " << textFromFile_ << std::endl;
     std::wcout << "letters count: " << lettersCount_ << std::endl;
     std::wcout << "longest word: " << longestWord_ << std::endl;
     std::wcout << "shortest word: " << shortestWord_ << std::endl;
@@ -21,7 +21,7 @@ Dictionary::Dictionary(FilePath filePath)
 
 void Dictionary::loadFromFile(FilePath filePath)
 {
-    text_ = framework::loadTextFromUtf8File(filePath);
+    textFromFile_ = framework::loadTextFromUtf8File(filePath);
     prepareWords();
     prepareLines();
     prepareCount();
@@ -54,6 +54,11 @@ void Dictionary::printAllWords()
     std::wcout << std::endl;
 }
 
+std::wstring Dictionary::getRandomWord()
+{
+    return wordsAll_.at( framework::RandomMachine::getRange<size_t>(0, wordsAll_.size() - 1) );
+}
+
 std::wstring Dictionary::getRandomWord(int length)
 {
     return wordsByLength_[length].at(
@@ -63,7 +68,7 @@ std::wstring Dictionary::getRandomWord(int length)
 void Dictionary::prepareLines()
 {
     std::wstring buffer;
-    for (std::wstring::iterator it = text_.begin(); it != text_.end(); ++it)
+    for (std::wstring::iterator it = textFromFile_.begin(); it != textFromFile_.end(); ++it)
     {
         if (*it == '\n')
         {
@@ -81,7 +86,7 @@ void Dictionary::prepareLines()
 void Dictionary::prepareWords()
 {
     std::wstring buffer;
-    for (std::wstring::iterator it = text_.begin(); it != text_.end(); ++it)
+    for (std::wstring::iterator it = textFromFile_.begin(); it != textFromFile_.end(); ++it)
     {
         if (*it == ' ' || *it == '\n')
         {
@@ -95,6 +100,7 @@ void Dictionary::prepareWords()
 
             wordsCount_++;
             words_.insert(buffer);
+            
             buffer.clear();
         }
         else
@@ -108,6 +114,12 @@ void Dictionary::prepareWords()
     {
         wordsCount_++;
         words_.insert(buffer);
+    }
+
+    // just all words
+    for(auto word : words_)
+    {
+        wordsAll_.push_back(word);
     }
 }
 

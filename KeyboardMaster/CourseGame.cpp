@@ -5,7 +5,6 @@
 namespace km
 {
 
-const char* courseFile = "data/texts-pl";
 constexpr int 
     windowWidth = 1024,
     windowHeight = 768,
@@ -20,7 +19,7 @@ constexpr int
 
 CourseGame::CourseGame(fw::GameBase& game)
     : StateBase(game)
-    , dictionary_(courseFile)
+    , dictionary_("data/texts-pl")
 {
     clock_.restart();
 
@@ -32,7 +31,7 @@ CourseGame::CourseGame(fw::GameBase& game)
 
     vkb_.layoutTexture.loadFromFile("media/kbl_48.png");
     vkb_.layoutSprite.setTexture(vkb_.layoutTexture);
-    vkb_.layoutSprite.setPosition(0, windowHeight - vkb_.layoutTexture.getSize().y);
+    vkb_.layoutSprite.setPosition(0.f, static_cast<float>(windowHeight - vkb_.layoutTexture.getSize().y));
     vkb_.maskTexture.loadFromFile("media/mask.png");
     vkb_.maskSprite.setTexture(vkb_.maskTexture);
     vkb_.maskSprite.setColor(sf::Color(255, 255, 255, 100));

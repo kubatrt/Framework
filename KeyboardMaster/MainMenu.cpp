@@ -35,7 +35,7 @@ MainMenu::MainMenu(fw::GameBase& game)
     b3->setText("Gallery");
     b3->setFunction([&] ()
     {
-        //game_.pushState<GalleryGame>(game_);
+        game_.pushState<GalleryGame>(game_);
     });
 
     auto b4 = std::make_unique<fw::gui::Button>();

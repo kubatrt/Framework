@@ -27,9 +27,10 @@ public:
 
     void loadFromFile(FilePath filePath);
     void printAllWords();
+    std::wstring getRandomWord();
     std::wstring getRandomWord(int length);
 
-    const std::wstring getText() const { return text_; }
+    const std::wstring getText() const { return textFromFile_; }
     const std::vector<std::wstring> getLines() const { return lines_; }
     const std::set<std::wstring> getWords() const { return words_; }
     uint getLettersCount() const { return lettersCount_; }
@@ -48,10 +49,11 @@ private:
     unsigned int longestWord_;
     unsigned int shortestWord_;
 
-    std::wstring text_;
+    std::wstring textFromFile_;
     std::vector <std::wstring> lines_;
-    std::set <std::wstring> words_;
-    std::map<int, std::vector<std::wstring>> wordsByLength_;
+    std::set <std::wstring> words_; // readed from file
+    std::vector<std::wstring> wordsAll_; // store all words
+    std::map<int, std::vector<std::wstring>> wordsByLength_; // store words by length
 };
 
 }

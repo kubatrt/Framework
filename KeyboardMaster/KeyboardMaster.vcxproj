@@ -135,6 +135,7 @@
     <ClCompile Include="KeyboardMaster.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="Picture.cpp" />
     <ClCompile Include="WordsAttackGame.cpp" />
     <ClCompile Include="WritingGame.cpp" />
   </ItemGroup>
@@ -152,6 +153,7 @@
     <ClInclude Include="Misc.hpp" />
     <ClInclude Include="Picture.hpp" />
     <ClInclude Include="PictureElement.hpp" />
+    <ClInclude Include="Scheduler.hpp" />
     <ClInclude Include="SimpleApplication.hpp" />
     <ClInclude Include="tinyutf.h" />
     <ClInclude Include="VirtualKeyboard.hpp" />

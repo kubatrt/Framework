@@ -21,6 +21,9 @@
     <ClCompile Include="WritingGame.cpp">
       <Filter>States</Filter>
     </ClCompile>
+    <ClCompile Include="Picture.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tinyutf.h">
@@ -72,6 +75,7 @@
     <ClInclude Include="Picture.hpp">
       <Filter>GameObjects</Filter>
     </ClInclude>
+    <ClInclude Include="Scheduler.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="3rdparty">

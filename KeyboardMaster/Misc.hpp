@@ -89,8 +89,8 @@ struct Session
     sf::Time    timeStarted;
     std::string saveFile;
 
-    void save();
-    void load();
+    void save() {};
+    void load() {};
 };
 
 // player game representative object
@@ -104,9 +104,9 @@ struct PlayerShip
 };
 struct GameSession
 {
-	int score;
-	int lives;
-	float time;
+    int score;
+    int lives;
+    float time;
 };
 
 class ILetterTyped

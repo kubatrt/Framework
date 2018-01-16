@@ -43,7 +43,7 @@ public:
 
         shape.setPosition(spawnHorizontalPositions[spawn], 0.f);
         shape.setFillColor(color);
-        shape.setSize(sf::Vector2f( word.length() * charWidth, charHeight));
+        shape.setSize(sf::Vector2f( static_cast<float>(word.length() * charWidth), static_cast<float>(charHeight)));
 
         log_info("CTOR wordblock:" << word);
     }
