@@ -6,7 +6,7 @@
 #include <iostream>
 
 
-namespace KM
+namespace prototype
 {
 /*  Observer design pattern
 
@@ -54,25 +54,22 @@ protected:
 	std::vector<ObservedPtr> list;
 
 public:
-	void registerObserver(ObservedPtr object);
-	void unregisterObserver(ObservedPtr object);
-	void notify(int value);
-};
-
-
-
-/* example usage:
- * class ConcreteSubject : public Subject
-{
-	ConcreteSubject()
-	{
-
-	}
-
-	void changeValues(int value)
-	{
-		Notify(value);
-	}
-};
-*/
+    void registerObserver(ObservedPtr object)
+    {
+        //list.push_back( std::move(object));
+    }
+    void unregisterObserver(ObservedPtr object)
+    {
+        list.erase(std::remove(list.begin(), list.end(), object), list.end());
+    }
+    void notify(int value)
+    {
+        for (std::vector<ObservedPtr>::const_iterator it = list.begin(); it != list.end(); ++it)
+        {
+            if (*it != nullptr)
+                (*it)->notify(); // value
+        }
+    }
+}
+;
 }

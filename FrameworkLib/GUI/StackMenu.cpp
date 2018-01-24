@@ -18,20 +18,19 @@ constexpr float offset = 25.f;
 
 
 StackMenu::StackMenu(const sf::Vector2f& position)
-	: basePosition_(position)
-	, baseSize_(defaultWidth, defaultHeight)
+    : basePosition_(position)
+    , baseSize_(defaultWidth, defaultHeight)
 {
     background_.setFillColor({127, 127, 127});
-	background_.setPosition(basePosition_.x - baseSize_.x / 2.f, 
-		defaultY - offset);
-	background_.setSize(baseSize_);
+    background_.setPosition(basePosition_.x - baseSize_.x / 2.f,  defaultY - offset);
+    background_.setSize(baseSize_);
 }
 
 StackMenu::StackMenu(StackMenu&& other)
-	: widgets_(std::move(other.widgets_))
-	, background_(std::move(other.background_))
-	, basePosition_(other.basePosition_)
-	, baseSize_(other.baseSize_)
+    : widgets_(std::move(other.widgets_))
+    , background_(std::move(other.background_))
+    , basePosition_(other.basePosition_)
+    , baseSize_(other.baseSize_)
 {
 }
 

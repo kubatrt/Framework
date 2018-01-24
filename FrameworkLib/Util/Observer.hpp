@@ -3,6 +3,8 @@
 #include <map>
 #include <vector>
 #include <utility>
+#include <memory>
+#include <algorithm>
 
 // Implementation:
 // https://juanchopanzacpp.wordpress.com/2013/02/24/simple-observer-pattern-implementation-c11/
@@ -10,48 +12,47 @@
 namespace framework
 {
 
-namespace prototype
-{
-enum class Event 
+enum class TextEvent
 { 
-	KeyDown, 
-	KeyUp, 
-	Word 
+    Word,
+    Letter
 };
-// prototype
-class GameEvent
-{
-	std::string	name;
-	size_t id;
-};
-}
+
 
 class Observer
 {
 public:
-	void notification() const {};
+    virtual void notif() = 0;
 };
 
-using namespace prototype;
+using ObserverObj = std::weak_ptr<Observer>;
 
 class Subject
 {
 public:
-	void addObserver(const Event& event, Observer& observer)
-	{
-		observers[event].push_back(observer);
-	}
+    void addObserver(const TextEvent& event, ObserverObj observer)
+    {
+        observers_[event].push_back(observer);
+    }
 
-	void notify(const Event& event)
-	{
-		for (const auto& obs : observers[event])
-		{
-			obs.notification();
-		}
-	}
+    void removeObserver(const TextEvent& event, ObserverObj observer)
+    {
+        //std::remove(observers_[event].begin(),  observers_[event].end(), observer), observers_.end();
+    }
+
+    void notify(const TextEvent& event)
+    {
+        for (auto& observer : observers_[event])
+        {
+            if (auto obj = observer.lock())
+            {
+                obj->notif();
+            }
+        }
+ }
 
 private:
-    std::map<Event, std::vector<Observer&> > observers;
+    std::map<TextEvent, std::vector< ObserverObj> > observers_;
 };
 
 } // framework

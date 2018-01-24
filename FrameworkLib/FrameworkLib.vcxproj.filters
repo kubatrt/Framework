@@ -102,8 +102,5 @@
       <Filter>Util</Filter>
     </ClCompile>
     <ClCompile Include="Utilities.cpp" />
-    <ClCompile Include="Util\Observer2.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

@@ -2,6 +2,8 @@
 
 #include "../FrameworkLib/GameBase.hpp"
 #include "../FrameworkLib/StateBase.hpp"
+#include "WordBlock.hpp"
+#include "Dictionary.hpp"
 
 namespace km
 {
@@ -17,7 +19,29 @@ public:
     void update(sf::Time deltaTime) override;
     void draw(sf::RenderTarget& renderer) override;
 
+    void textEntered();
+    void enterWord();
+
 private:
+    void spawnWordBlock();
+    void destroyWord();
+
+    std::vector<std::shared_ptr<WordBlock>> wordBlocks_;
+    Dictionary dictionary_;
+
+    wchar_t typedLetter_;
+    std::wstring typedWord_;
+
+    int lives = 3;
+    int missedWords = 0;
+    int maxWordsInGame = 5;
+    int wordsInGame = 0;
+
+    sf::Clock clock_;
+
+    // GUI
+    sf::RectangleShape horizontalLine;
+    std::wstring    typingText;
 };
 
 }

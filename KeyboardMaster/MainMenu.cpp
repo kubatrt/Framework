@@ -28,7 +28,7 @@ MainMenu::MainMenu(fw::GameBase& game)
     b2->setText("Words attack!");
     b2->setFunction([&] ()
     {
-        //game_.pushState<WordsGame>(game_);
+        game_.pushState<WordsAttackGame>(game_);
     });
 
     auto b3 = std::make_unique<fw::gui::Button>();

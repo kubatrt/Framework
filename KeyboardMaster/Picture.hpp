@@ -28,8 +28,8 @@ public:
     bool isComplete();
 
     // TODO:
-    // corectness
-    // totalTime
+    // corectness()
+    // totalTime()
 
 private:
     bool visible_;
@@ -44,10 +44,8 @@ private:
     bool complete_;
     int activeIndex_;
     std::set<int> indexesLeft;
-    
-    std::vector<PictureElement> elements_;
+
     std::vector<std::shared_ptr<PictureElement>> elementsSPtr_;
-    std::vector<sf::Sprite> elementsSprites_;
     Dictionary dictionary_;
 };
 

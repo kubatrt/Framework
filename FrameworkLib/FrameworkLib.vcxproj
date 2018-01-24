@@ -152,7 +152,6 @@
     <ClCompile Include="Util\Files.cpp" />
     <ClCompile Include="Util\FPSCounter.cpp" />
     <ClCompile Include="Util\Maths.cpp" />
-    <ClCompile Include="Util\Observer2.cpp" />
     <ClCompile Include="Util\ToggleKey.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

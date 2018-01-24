@@ -16,7 +16,7 @@ namespace km
 
 class Picture;
 
-class PictureElement : public Rectangle
+class PictureElement// : public Rectangle
 {
 public:
     size_t getWordLength() { return word_.length(); }
@@ -40,15 +40,16 @@ PictureElement(sf::Texture& texture, sf::IntRect textureRect, int index, std::ws
     sprite_.setPosition(pos);
 
     //sf::Font font;
-    wordText_.setFont(framework::ResourceHolder::get().fonts.get("arial")); // framework::ResourceHolder::get().fonts.get("arial")
+    wordText_.setFont(framework::ResourceHolder::get().fonts.get("arial")); 
+    // fw::ResourceHolder::get().fonts.get("arial")
     wordText_.setString(word);
     wordText_.setCharacterSize(charFontSize);
-    //wordText.setColor(sf::Color::White);
+    //wordText_.setColor(sf::Color::White);
     wordText_.setStyle(sf::Text::Bold);
     wordText_.setOrigin(0, 0);
 
     wordText_.setPosition(sf::Vector2f( pos.x + sprite_.getTextureRect().width / 2.f ,
-                                       pos.y + sprite_.getTextureRect().height/ 2.f));
+        pos.y + sprite_.getTextureRect().height/ 2.f));
     //timer_.restart();
     
     //shape.setSize(sf::Vector2f(word.length() * charWidth, charHeight));
