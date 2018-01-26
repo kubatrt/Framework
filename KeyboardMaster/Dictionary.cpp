@@ -61,8 +61,10 @@ std::wstring Dictionary::getRandomWord()
 
 std::wstring Dictionary::getRandomWord(int length)
 {
+    if(length == getLongestWord()) length--;
     return wordsByLength_[length].at(
-        framework::RandomMachine::getRange<size_t>(0, wordsByLength_[length].size() - 1));
+            framework::RandomMachine::getRange<size_t>(0, wordsByLength_[length].size() - 1));
+    
 }
 
 void Dictionary::prepareLines()

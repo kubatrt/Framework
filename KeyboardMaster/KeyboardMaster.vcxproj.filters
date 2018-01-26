@@ -24,6 +24,9 @@
     <ClCompile Include="Picture.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="WordBlock.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tinyutf.h">

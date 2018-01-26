@@ -5,28 +5,10 @@
 namespace km
 {
 
-// Check intersection with two shapes
-template<class T1, class T2>
-bool isIntersecting(T1& a, T2& b)
+struct IGameComponent
 {
-    return  a.right() >= b.left() && a.left() <= b.right()
-        && a.top() <= b.bottom() && a.bottom() >= b.top();
-}
-
-struct Rectangle
-{
-    sf::RectangleShape shape;
-
-    float x() const noexcept { return shape.getPosition().x; }
-    float y() const noexcept { return shape.getPosition().y; }
-    float left() const noexcept { return x() - shape.getSize().x / 2.f; }
-    float right() const noexcept { return x() + shape.getSize().x / 2.f; }
-    float top() const noexcept { return y() - shape.getSize().y / 2.f; }
-    float bottom() const noexcept { return y() + shape.getSize().y / 2.f; }
-};
-
-struct GameRect : Rectangle
-{
+    virtual void update(sf::Time deltaTime) = 0;
+    virtual void draw(sf::RenderTarget& renderer) = 0;
 };
 
 enum KeyCode : int
@@ -76,38 +58,52 @@ enum KeyCode : int
 namespace experimental
 {
 
+// Check intersection with two shapes
+template<class T1, class T2>
+bool isIntersecting(T1& a, T2& b)
+{
+    return  a.right() >= b.left() && a.left() <= b.right()
+        && a.top() <= b.bottom() && a.bottom() >= b.top();
+}
+
+
 struct User
 {
     std::string name;
-    unsigned int courseLevel;   // 0 - 20
-    // deterimnes players skill level
+    unsigned int courseLevel;   // 0 - 20 deterimnes players skill level
 };
+
 
 struct Session
 {
     User user;
-    sf::Time    timeStarted;
-    std::string saveFile;
+    sf::Time timeStarted;
+    std::string saveFilePath;
 
-    void save() {};
-    void load() {};
+    void save();
+    void load();
 };
 
-// player game representative object
-struct PlayerShip
-{
-    sf::Texture texture;
-    sf::Sprite  sprite;
-    // animation
-    // moving
-    // tween position
-};
+
 struct GameSession
 {
     int score;
     int lives;
     float time;
 };
+
+
+// player game representative object
+struct PlayerSpaceShip
+{
+    sf::Sprite  sprite;
+    // animation
+    // moving
+    // tween position
+};
+
+
+
 
 class ILetterTyped
 {

@@ -45,7 +45,6 @@ public:
             handleEvents();
             tryPop();
         }
-        getchar();  // TODO: remove
         return 0;
     }
 

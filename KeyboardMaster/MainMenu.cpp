@@ -42,7 +42,7 @@ MainMenu::MainMenu(fw::GameBase& game)
     b4->setText("Writing");
     b4->setFunction([&] ()
     {
-        //game_.pushState<GalleryGame>(game_);
+        //game_.pushState<WritingGame>(game_);
     });
 
     auto bquit = std::make_unique<fw::gui::Button>();

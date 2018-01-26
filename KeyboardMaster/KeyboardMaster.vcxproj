@@ -136,6 +136,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Picture.cpp" />
+    <ClCompile Include="WordBlock.cpp" />
     <ClCompile Include="WordsAttackGame.cpp" />
     <ClCompile Include="WritingGame.cpp" />
   </ItemGroup>

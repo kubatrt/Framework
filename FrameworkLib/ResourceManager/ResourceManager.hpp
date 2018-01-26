@@ -12,8 +12,8 @@ class ResourceManager
 {
 public:
     ResourceManager(const std::string& folder, const std::string& extention)
-        : m_folder("res/" + folder + "/")
-        , m_extention("." + extention)
+        : folder_(resFolder_ + folder + "/")
+        , extension_("." + extention)
     {
     }
 
@@ -38,7 +38,7 @@ public:
         if (!res.loadFromFile(getFullname(name)))
         {
             Resource fail;
-            fail.loadFromFile(m_folder + "_fail_" + m_extention);
+            fail.loadFromFile(folder_ + "_fail_" + extension_);
             m_resources.insert(std::make_pair(name, fail));
         }
         else
@@ -50,11 +50,12 @@ public:
 private:
     std::string getFullname(const std::string& name)
     {
-        return m_folder + name + m_extention;
+        return folder_ + name + extension_;
     }
 
-    const std::string m_folder;
-    const std::string m_extention;
+    const std::string resFolder_ = "D:\\Workspace\\Projects\\Framework\\Debug\\res\\";
+    const std::string folder_;
+    const std::string extension_;
 
     std::unordered_map<std::string, Resource> m_resources;
 };

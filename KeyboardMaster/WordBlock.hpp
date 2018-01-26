@@ -8,87 +8,35 @@
 namespace km
 {
 
+constexpr uint CHAR_FONT_SIZE = 22;
+constexpr uint CHAR_WIDTH = 14;
+constexpr uint CHAR_HEIGHT = 24;
 
-class WordBlock : public Rectangle
+
+class WordBlock
 {
+public:
+    WordBlock(int spawnX, std::wstring word, sf::Vector2f velocity);
+    WordBlock(const WordBlock& wordBlock);
+    ~WordBlock();
+
+    sf::RectangleShape getShape() const { return shape_; }
+    void setAlive(bool alive);
+    bool isAlive() const;
+    std::wstring getWord() const;
+    size_t getWordLength() const ;
+
+    void update(sf::Time deltaTime);
+    void draw(sf::RenderTarget& renderer);
+
 private:
-    wchar_t nextLetter_;
+//    wchar_t nextLetter_;
     std::wstring word_;
 
     sf::Vector2f velocity_;
-
+    sf::RectangleShape shape_;
     sf::Text wordText_;
     bool alive_;
-
-public:
-
-    WordBlock(int spawnX, std::wstring word, sf::Vector2f velocity)
-        : word_(word)
-        , nextLetter_(word.front())
-        , velocity_(velocity)
-        , alive_(true)
-    {
-        constexpr uint charFontSize = 22;
-        constexpr uint charWidth = 14;
-        constexpr uint charHeight = 24;
-
-        int spawn = spawnX;
-        this->word_ = word;
-        
-        this->velocity_ = velocity;
-        alive_ = true;
-
-        wordText_.setFont(framework::ResourceHolder::get().fonts.get("arial"));
-        wordText_.setString(word);
-        wordText_.setCharacterSize(charFontSize);
-        wordText_.setFillColor(sf::Color::White);
-        wordText_.setStyle(sf::Text::Bold);
-
-        //static float spawnHorizontalPositions[5]{ 0.f, 200.f, 400.f, 600.f, 800.f };
-        wordText_.setPosition(static_cast<float>(spawnX), 0.f);
-
-        shape.setPosition(static_cast<float>(spawnX), 0.f);
-        shape.setFillColor(sf::Color::Blue); // TODO: random, depend on length
-        shape.setSize(sf::Vector2f( static_cast<float>(word.length() * charWidth), static_cast<float>(charHeight)));
-
-        log_info("CTOR wordblock:" << word);
-    }
-
-    std::wstring getWord() const { return word_; }
-
-    void setAlive(bool alive) { alive_ = alive; }
-    bool isAlive() { return alive_; }
-    
-    // WordBlock(const WordBlock& wordBlock) = default;
-    WordBlock(const WordBlock& wordBlock)
-    {
-        log_info("CPY constructor: " << word_);
-    }
-
-    ~WordBlock()
-    {
-        log_info("DTOR wordblock:" << word_);
-    }
-
-    // fontSize, // 24, 15 // 22, 14 // 18, 12
-    size_t getWordLength() { return word_.length(); }
-
-    /*bool checkBoundaries(float windowWidth)
-    {
-        return false;   // TODO
-    }*/
-
-    void update(sf::Time deltaTime)
-    {
-        shape.move(velocity_);
-        wordText_.move(velocity_);
-    }
-
-    void draw(sf::RenderTarget& renderer)
-    {
-        renderer.draw(shape);
-        renderer.draw(wordText_);
-    }
 };
 
 } // km
