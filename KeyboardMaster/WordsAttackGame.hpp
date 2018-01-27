@@ -22,8 +22,6 @@ public:
     void textEntered(wchar_t letter);
     void enterWord(std::wstring word);
 
-    
-
 private:
     void spawnWordBlock();
     void destroyWord();

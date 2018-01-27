@@ -12,7 +12,7 @@ class ResourceManager
 {
 public:
     ResourceManager(const std::string& folder, const std::string& extention)
-        : folder_(resFolder_ + folder + "/")
+        : folder_(resFolder_ + folder + "\\")
         , extension_("." + extention)
     {
     }
@@ -38,7 +38,7 @@ public:
         if (!res.loadFromFile(getFullname(name)))
         {
             Resource fail;
-            fail.loadFromFile(folder_ + "_fail_" + extension_);
+            fail.loadFromFile(folder_ + "_fail_" + ".ogg");
             m_resources.insert(std::make_pair(name, fail));
         }
         else

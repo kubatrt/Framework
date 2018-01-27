@@ -42,7 +42,7 @@ private:
     uint elementsCorrect_;
 
     bool complete_;
-    int activeIndex_;
+    uint activeIndex_;
     std::set<int> indexesLeft;
 
     std::vector<std::shared_ptr<PictureElement>> elementsSPtr_;

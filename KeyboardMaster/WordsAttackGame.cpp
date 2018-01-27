@@ -66,7 +66,7 @@ void WordsAttackGame::handleEvents(sf::Event e)
     {
     case sf::Event::KeyPressed:
         if (e.key.code == sf::Keyboard::Escape)
-            game_.close();
+            game_.popState();
         else if (e.key.code == sf::Keyboard::F12)
             game_.toggleFullscreen();
         break;

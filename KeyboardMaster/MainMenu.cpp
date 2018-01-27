@@ -6,6 +6,7 @@
 #include "CourseGame.hpp"
 #include "GalleryGame.hpp"
 #include "WordsAttackGame.hpp"
+#include "WritingGame.hpp"
 #include "../FrameworkLib/GUI/Button.hpp"
 #include "../FrameworkLib/GUI/Textbox.hpp"
 
@@ -42,7 +43,7 @@ MainMenu::MainMenu(fw::GameBase& game)
     b4->setText("Writing");
     b4->setFunction([&] ()
     {
-        //game_.pushState<WritingGame>(game_);
+        game_.pushState<WritingGame>(game_);
     });
 
     auto bquit = std::make_unique<fw::gui::Button>();
@@ -57,8 +58,6 @@ MainMenu::MainMenu(fw::GameBase& game)
     menu_.addWidget(std::move(b3));
     menu_.addWidget(std::move(b4));
     menu_.addWidget(std::move(bquit));
-
-    
 }
 
 void MainMenu::handleEvents(sf::Event e)
@@ -80,7 +79,7 @@ void MainMenu::handleEvents(sf::Event e)
 
 void MainMenu::update(sf::Time deltaTime)
 {
-    
+
 }
 
 void MainMenu::draw(sf::RenderTarget& renderer)

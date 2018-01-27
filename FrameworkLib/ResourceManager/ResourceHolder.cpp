@@ -12,7 +12,7 @@ ResourceHolder& ResourceHolder::get()
 ResourceHolder::ResourceHolder()
     : fonts("fonts", "ttf")
     , textures("textures", "png")
-    , soundBuffers("sfx", "ogg")
+    , sounds("audio", "wav")
 {
 
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CourseGame.hpp"
+#include "../FrameworkLib/ResourceManager/ResourceHolder.hpp"
 
 namespace km
 {
@@ -17,23 +18,40 @@ constexpr int
     textLineVerticalOffset = 2;
 
 
+CourseGame::SoundPlayer::SoundPlayer()
+{
+    // framework::ResourceHolder::get().audio.get
+    sounds_["keytype"] = fw::ResourceHolder::get().sounds.get("keytype");
+    sounds_["mistake"] = fw::ResourceHolder::get().sounds.get("mistake");
+    sounds_["newline"] = fw::ResourceHolder::get().sounds.get("newline");
+    sounds_["bell"] = fw::ResourceHolder::get().sounds.get("bell");
+}
+
+void CourseGame::SoundPlayer::play(const std::string sound)
+{
+    if (sounds_.count(sound))
+    {
+        sound_.setBuffer(sounds_[sound]);
+        sound_.play();
+    }
+
+}
+
+
+
 CourseGame::CourseGame(fw::GameBase& game)
     : StateBase(game)
-    , dictionary_("data/texts-pl")
+    , dictionary_("D:\\Workspace\\Projects\\Framework\\Debug\\data\\texts-pl")
 {
     clock_.restart();
 
+    mainFont_ = fw::ResourceHolder::get().fonts.get("CourierNew");
 
-    mainFont_.loadFromFile("media/CourierNew.ttf");
-
-    backgroundTexture.loadFromFile("media/deep-blue-space.jpg");
-    backgroundSprite.setTexture(backgroundTexture);
-
-    vkb_.layoutTexture.loadFromFile("media/kbl_48.png");
+    backgroundSprite.setTexture(fw::ResourceHolder::get().textures.get("deep-blue-space"));
+    vkb_.layoutTexture = fw::ResourceHolder::get().textures.get("kbl_48");
     vkb_.layoutSprite.setTexture(vkb_.layoutTexture);
     vkb_.layoutSprite.setPosition(0.f, static_cast<float>(windowHeight - vkb_.layoutTexture.getSize().y));
-    vkb_.maskTexture.loadFromFile("media/mask.png");
-    vkb_.maskSprite.setTexture(vkb_.maskTexture);
+    vkb_.maskSprite.setTexture(fw::ResourceHolder::get().textures.get("mask"));
     vkb_.maskSprite.setColor(sf::Color(255, 255, 255, 100));
 
     //nextLetterText.setFont(mainFont_);
@@ -54,7 +72,7 @@ CourseGame::CourseGame(fw::GameBase& game)
 
 
     // create lines of text for this course
-    for (int i = 0; i < dictionary_.getLines().size(); ++i)
+    for (uint i = 0; i < dictionary_.getLines().size(); ++i)
     {
         sf::Text textField;
         textField.setFont(mainFont_);
@@ -62,19 +80,19 @@ CourseGame::CourseGame(fw::GameBase& game)
         textField.setCharacterSize(fontSize);
         textField.setFillColor(sf::Color::White);
         textField.setStyle(sf::Text::Bold);
-        textField.setPosition(4.f, i * (fontSize * 2) + textLineVerticalOffset);
+        textField.setPosition(4.f, static_cast<float>(i * (fontSize * 2.f) + textLineVerticalOffset));
         courseTextLines.push_back(textField);
     }
 
     // same for user input text, but empty
-    for (int i = 0; i < dictionary_.getLines().size(); ++i)
+    for (uint i = 0; i < dictionary_.getLines().size(); ++i)
     {
         sf::Text textField;
         textField.setFont(mainFont_);
         textField.setCharacterSize(fontSize);
         textField.setFillColor(sf::Color::Cyan);
         textField.setStyle(sf::Text::Bold);
-        textField.setPosition(4.f, i * (fontSize * 2) + textLineVerticalOffset + fontSize);
+        textField.setPosition(4.f, static_cast<float>(i * (fontSize * 2.f) + textLineVerticalOffset + fontSize));
         courseInputTextLines.push_back(textField);
     }
 

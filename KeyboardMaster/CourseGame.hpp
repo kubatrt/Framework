@@ -39,35 +39,22 @@ public:
 private:
     void textEntered();
     void prepareDebugText();
-    inline sf::Uint32 inPenultimateLine() { return dictionary_.getLines()[currentline_].size() -1; };   // przedostatnia linia
+    // przedostatnia linia
+    inline sf::Uint32 inPenultimateLine() { return dictionary_.getLines()[currentline_].size() -1; };
     void moveToNewLine();
     void backspace();
     void calculateCoretness();
 
     struct SoundPlayer
     {
-        SoundPlayer()
-        {
-            // framework::ResourceHolder::get().audio.get
-            sounds_["keytype"].loadFromFile("media/keytype.wav");
-            sounds_["mistake"].loadFromFile("media/mistake.wav");
-            sounds_["newline"].loadFromFile("media/newline.wav");
-            sounds_["bell"].loadFromFile("media/bell.wav");
-        }
+        SoundPlayer();
+        void play(const std::string sound);
 
-        void play(const std::string sound)
-        {
-            if (sounds_.count(sound))
-            {
-                sound_.setBuffer(sounds_[sound]);
-                sound_.play();
-            }
-                
-        }
     private:
         std::map<std::string, sf::SoundBuffer> sounds_;
         sf::Sound sound_;
     };
+
     SoundPlayer soundPlayer_;
 
     Virtualkeyboard vkb_;

@@ -11,13 +11,11 @@ WritingGame::WritingGame(fw::GameBase& game)
 
 void WritingGame::handleEvents(sf::Event e)
 {
-    // handle events
-
     switch (e.type)
     {
     case sf::Event::KeyPressed:
         if (e.key.code == sf::Keyboard::Escape)
-            game_.close();
+            game_.popState();
         else if (e.key.code == sf::Keyboard::F12)
             game_.toggleFullscreen();
         break;

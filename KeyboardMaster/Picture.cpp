@@ -23,9 +23,9 @@ Picture::Picture(sf::Texture texture, uint width, uint height, uint rows, uint c
     int picElemHeight = texture_.getSize().y / elementsInCol_;
 
     int index = 0;
-    for (int y = 0; y < elementsInCol_; ++y)
+    for (uint y = 0; y < elementsInCol_; ++y)
     {
-        for (int x = 0; x < elementsInRow_; ++x)
+        for (uint x = 0; x < elementsInRow_; ++x)
         {
             std::wstring word = dictionary_.getRandomWord();
             std::wcout << "Random word: " << word << std::endl;
@@ -33,7 +33,7 @@ Picture::Picture(sf::Texture texture, uint width, uint height, uint rows, uint c
             int picElemPositionY = y * picElemHeight;
 
             auto picElem = std::make_shared<PictureElement>(texture_, sf::IntRect(x * picElemWidth, y * picElemHeight, picElemWidth, picElemHeight),
-                  index, word, sf::Vector2f(picElemPositionX, picElemPositionY));
+                  index, word, sf::Vector2f(static_cast<float>(picElemPositionX), static_cast<float>(picElemPositionY)));
             elementsSPtr_.push_back(picElem);
             
             indexesLeft.insert(index);
