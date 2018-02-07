@@ -1,13 +1,18 @@
 #include "Dictionary.hpp"
-#include "../FrameworkLib/Util/Files.hpp"
-#include "Misc.hpp"
+
 
 namespace km
 {
 
+namespace
+{
+constexpr int SHORTEST_WORD = 3;
+constexpr int LONGEST_WORD = 8;
+}
+
 Dictionary::Dictionary(FilePath filePath)
-    : shortestWord_(3)
-    , longestWord_(8)
+    : shortestWord_(SHORTEST_WORD)
+    , longestWord_(LONGEST_WORD)
     , lettersCount_(0)
     , wordsCount_(0)
 {
@@ -30,28 +35,31 @@ void Dictionary::loadFromFile(FilePath filePath)
 
 void Dictionary::prepareCount()
 {
-	for (auto& line : lines_)
-	{
-		lettersCount_ += line.length();
-	}
+    for (auto& line : lines_)
+    {
+        lettersCount_ += line.length();
+    }
 }
 
 void Dictionary::sortWordsByLength()
 {
-	for (auto& word : words_)
-	{
-		if (word.length() != 0)
-			wordsByLength_[word.length()].push_back(word);
-	}
+    for (auto& word : words_)
+    {
+        if (word.length() != 0)
+        {
+            wordsByLength_[word.length()].push_back(word);
+        }
+    }
 }
 
-void Dictionary::printAllWords()
+std::wstring Dictionary::debugAllWordsString()
 {
-    for (auto& w : words_)
+    std::wstringstream  wss;
+    for (const auto& word : words_)
     {
-        std::wcout << w << " ";
+        wss << word << " ";
     }
-    std::wcout << std::endl;
+    return wss.str();
 }
 
 std::wstring Dictionary::getRandomWord()

@@ -6,10 +6,10 @@ namespace km
 {
 
 // comments cloud displayed in menu with option description
-struct CommentCloud : km::Rectangle
+struct CommentCloud
 {
-    sf::Sprite cloud_;
-    sf::Text    text_;
+    sf::Sprite cloudSprite_;
+    sf::Text textUI_;
     std::string comment_;
 };
 

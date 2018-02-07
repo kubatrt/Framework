@@ -1,12 +1,12 @@
 #pragma once
 
-#include <iostream>
+#include <string>
 #include <sstream>
 #include <vector>
 #include <algorithm>
 #include <map>
 #include <set>
-#include <SFML\System.hpp>
+#include <SFML/System.hpp>
 #include "../FrameworkLib/Utilities.hpp"
 #include "Misc.hpp"
 
@@ -26,7 +26,7 @@ public:
     Dictionary&& operator=(Dictionary&&) = delete;
 
     void loadFromFile(FilePath filePath);
-    void printAllWords();
+
     std::wstring getRandomWord();
     std::wstring getRandomWord(int length);
 
@@ -37,6 +37,8 @@ public:
     uint getWordsCount() const { return wordsCount_; }
     uint getLongestWord() const { return longestWord_; }
     uint getShortestWord() const { return shortestWord_; }
+
+    std::wstring debugAllWordsString();
 
 private:
     void prepareLines();
@@ -49,9 +51,9 @@ private:
     unsigned int longestWord_;
     unsigned int shortestWord_;
 
-    std::wstring textFromFile_;
-    std::vector <std::wstring> lines_;
-    std::set <std::wstring> words_; // readed from file
+    std::wstring textFromFile_; // whole text as an one string
+    std::vector <std::wstring> lines_; // lines from file
+    std::set <std::wstring> words_; // each readed from file
     std::vector<std::wstring> wordsAll_; // store all words
     std::map<int, std::vector<std::wstring>> wordsByLength_; // store words by length
 };

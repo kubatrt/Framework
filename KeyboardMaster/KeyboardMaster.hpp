@@ -19,7 +19,7 @@ public:
     void draw(sf::RenderTarget& renderer) override;
     void handleEvents() override;
 private:
-    fw::FPSCounter fpsCounter_;
+    //fw::FPSCounter fpsCounter_;
 };
 
 }

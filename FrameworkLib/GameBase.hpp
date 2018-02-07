@@ -41,8 +41,8 @@ public:
 
             update(elapsed);
             draw(window_);
-
             handleEvents();
+
             tryPop();
         }
         return 0;

@@ -61,13 +61,12 @@ private:
 
     SoundPlayer soundPlayer_;
 
-    //VirtualKeyboard vkb_;   // virutal keyboard representation
-    KeyboardTyper kb_;
     Dictionary dictionary_;
+    VirtualKeyboard vkb_;   // virutal keyboard representation
+    KeyboardTyper kb_;
 
     sf::Clock clock_;
     sf::Font mainFont_;
-    sf::Sound mainSound_;
 
     sf::Sprite backgroundSpriteUI_;
 

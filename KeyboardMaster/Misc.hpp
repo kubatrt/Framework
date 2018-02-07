@@ -5,14 +5,7 @@
 namespace km
 {
 
-
-struct IGameComponent
-{
-    virtual void update(sf::Time deltaTime) = 0;
-    virtual void draw(sf::RenderTarget& renderer) = 0;
-};
-
-enum KeyCode : int
+enum KeyCode : unsigned int
 {
     // UTF-8 unicode
     EOL = 0,

@@ -60,9 +60,16 @@
     </ClInclude>
     <ClInclude Include="GameBase.hpp" />
     <ClInclude Include="StateBase.hpp" />
-    <ClInclude Include="Util\Observer2.hpp" />
-    <ClInclude Include="Util\Singleton.hpp" />
-    <ClInclude Include="Util\ToggleKey.h" />
+    <ClInclude Include="Util\ToggleKey.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\Singleton.hpp">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\Observer2.hpp">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="IGameComponent.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GUI\Button.cpp">
@@ -81,10 +88,20 @@
       <Filter>ResourceManager</Filter>
     </ClCompile>
     <ClCompile Include="Utilities.cpp" />
-    <ClCompile Include="Util\Animation.cpp" />
-    <ClCompile Include="Util\Files.cpp" />
-    <ClCompile Include="Util\FPSCounter.cpp" />
-    <ClCompile Include="Util\Maths.cpp" />
-    <ClCompile Include="Util\ToggleKey.cpp" />
+    <ClCompile Include="Util\ToggleKey.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\Maths.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\FPSCounter.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\Files.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\Animation.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

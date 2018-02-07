@@ -8,10 +8,11 @@
 #include <sstream>
 #include <algorithm>
 
-#include "Util\NonCopyable.hpp"
-#include "Util\NonMoveable.hpp"
-#include "Util\Maths.hpp"
-#include "Util\Random.hpp"
+#include "Util/NonCopyable.hpp"
+#include "Util/NonMoveable.hpp"
+#include "Util/Maths.hpp"
+#include "Util/Random.hpp"
+#include "Util/Files.hpp"
 
 // !depracted
 #define log_info(msg)   std::wcout << msg << std::endl;
@@ -67,10 +68,6 @@ namespace framework
 
 std::vector<std::string> getLinesFromText(const std::string& text);
 
-
-
-
-// !old
 struct RandomMachine
 {
     template<class T>

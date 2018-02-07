@@ -13,6 +13,9 @@
 namespace km
 {
 
+namespace unussed
+{
+
 // Structure for text typed for player
 struct CourseText
 {
@@ -61,4 +64,5 @@ struct CourseText
 	}
 };
 
+}
 }

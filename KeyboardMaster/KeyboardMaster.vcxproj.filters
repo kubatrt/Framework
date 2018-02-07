@@ -98,5 +98,6 @@
     <None Include="VirtualKeyboard.cpp">
       <Filter>GameObjects</Filter>
     </None>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

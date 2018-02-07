@@ -125,6 +125,7 @@
     <ClInclude Include="GUI\StackMenu.hpp" />
     <ClInclude Include="GUI\Textbox.hpp" />
     <ClInclude Include="GUI\Widget.hpp" />
+    <ClInclude Include="IGameComponent.hpp" />
     <ClInclude Include="ResourceManager\ResourceHolder.hpp" />
     <ClInclude Include="ResourceManager\ResourceManager.hpp" />
     <ClInclude Include="StateBase.hpp" />

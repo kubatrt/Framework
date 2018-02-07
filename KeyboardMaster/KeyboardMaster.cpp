@@ -9,17 +9,13 @@ KeyboardMaster::KeyboardMaster()
     : fw::GameBase({ 1024, 768 }, "KeyboardMaster")
 {
     window_.setFramerateLimit(60);
-
     pushState<MainMenu>(*this);
-    //pushState<CourseMenu>(*this);
-
-    //fw::ResourceManager<sf::Font>::get("arial");
 }
 
 void KeyboardMaster::update(sf::Time deltaTime)
 {
     getCurrentState().update(deltaTime);
-    fpsCounter_.update(deltaTime);
+    //fpsCounter_.update(deltaTime);
 }
 
 void KeyboardMaster::draw(sf::RenderTarget& renderer)
@@ -27,7 +23,7 @@ void KeyboardMaster::draw(sf::RenderTarget& renderer)
     window_.clear();
 
     getCurrentState().draw(window_);
-    fpsCounter_.draw(window_);
+    //fpsCounter_.draw(window_);
 
     window_.display();
 }

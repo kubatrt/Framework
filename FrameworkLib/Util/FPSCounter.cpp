@@ -7,31 +7,31 @@ namespace framework
 
 FPSCounter::FPSCounter()
 {
-    text_.move(10, 10);
-    text_.setOutlineColor (sf::Color::Black);
-    text_.setFillColor(sf::Color::Yellow);
-    text_.setOutlineThickness  (2);
-    text_.setFont(ResourceHolder::get().fonts.get("arial"));
-    text_.setCharacterSize(24);
+    textUI_.move(10, 10);
+    textUI_.setOutlineColor (sf::Color::Black);
+    textUI_.setFillColor(sf::Color::Yellow);
+    textUI_.setOutlineThickness(2);
+    textUI_.setFont(ResourceHolder::get().fonts.get("arial"));
+    textUI_.setCharacterSize(24);
 }
 
 
 void FPSCounter::update(sf::Time deltaTime)
 {
-    m_frameCount++;
+    frameCount_++;
 
-    if (m_delayTimer.getElapsedTime().asSeconds() > 0.2)
+    if (delayTimer_.getElapsedTime().asSeconds() > 0.2)
     {
-        m_fps = m_frameCount / m_fpsTimer.restart().asSeconds();
-        m_frameCount = 0;
-        m_delayTimer.restart();
+        fps_ = frameCount_ / fpsTimer_.restart().asSeconds();
+        frameCount_ = 0;
+        delayTimer_.restart();
     }
 }
 
 void FPSCounter::draw(sf::RenderTarget& renderer)
 {
-    text_.setString("FPS: " + std::to_string((int)m_fps));
-    renderer.draw(text_);
+    textUI_.setString("FPS: " + std::to_string((int)fps_));
+    renderer.draw(textUI_);
 }
 
 }

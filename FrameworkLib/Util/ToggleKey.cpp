@@ -9,11 +9,11 @@ ToggleKey::ToggleKey(sf::Keyboard::Key key)
 
 bool ToggleKey::isKeyPressed()
 {
-    if (m_delayTimer.getElapsedTime().asSeconds() > 0.2)
+    if (delayTimer_.getElapsedTime().asSeconds() > 0.2)
     {
         if (sf::Keyboard::isKeyPressed(m_key))
         {
-            m_delayTimer.restart();
+            delayTimer_.restart();
             return true;
         }
     }

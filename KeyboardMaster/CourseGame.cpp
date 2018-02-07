@@ -41,7 +41,8 @@ void CourseGame::SoundPlayer::play(const std::string sound)
 CourseGame::CourseGame(fw::GameBase& game)
     : StateBase(game)
     , dictionary_("D:\\Workspace\\Projects\\Framework\\Debug\\data\\texts-pl")
-    //, vkb_(game.getWindow().getSize())
+    , vkb_(game.getWindow().getSize())
+    , kb_()
 {
     clock_.restart();
 
@@ -70,7 +71,7 @@ CourseGame::CourseGame(fw::GameBase& game)
     nextLetter_ = dictionary_.getLines()[currentLine_][currentletter_];
     nextLetterTextUI_.setString(nextLetter_);
     
-    //vkb_.highlightLetter(static_cast<int>(nextLetter_));
+    vkb_.highlightLetter(static_cast<int>(nextLetter_));
 }
 
 
@@ -253,7 +254,7 @@ void CourseGame::textEnteredEvent()
     }
 
     calculateCoretness();
-    //vkb_.highlightLetter(static_cast<int>(nextLetter_));
+    vkb_.highlightLetter(static_cast<int>(nextLetter_));
 }
 
 
@@ -301,13 +302,14 @@ void CourseGame::prepareDebugText()
 void CourseGame::update(sf::Time deltaTime)
 {
     prepareDebugText();
+    vkb_.update(deltaTime);
 }
 
 void CourseGame::draw(sf::RenderTarget& renderer)
 {
     renderer.draw(backgroundSpriteUI_);
 
-    //vkb.draw(renderer);
+    vkb_.draw(renderer);
 
     for (sf::Text text : courseTextLines)
         renderer.draw(text);

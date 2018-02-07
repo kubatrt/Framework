@@ -1,27 +1,26 @@
 #pragma once
 
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
+#include "../IGameComponent.hpp"
 
 namespace framework
 {
 
-class FPSCounter
+class FPSCounter : IGameComponent
 {
     public:
         FPSCounter();
 
-        void update(sf::Time deltaTime);
-        void draw(sf::RenderTarget& renderer);
+        void update(sf::Time deltaTime) override;
+        void draw(sf::RenderTarget& renderer) override;
 
     private:
-        sf::Text text_;
-        sf::Font m_font;
+        sf::Text textUI_;
 
-        sf::Clock m_delayTimer;
-        sf::Clock m_fpsTimer;
-
-        float m_fps = 0;
-        int m_frameCount = 0;
+        sf::Clock delayTimer_;
+        sf::Clock fpsTimer_;
+        float fps_ = 0;
+        int frameCount_ = 0;
 };
 
 }
