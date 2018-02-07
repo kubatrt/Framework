@@ -29,14 +29,14 @@ void GalleryGame::handleEvents(sf::Event e)
 
     case sf::Event::TextEntered:
         typedLetter_ = static_cast<wchar_t>(e.text.unicode);
-        textEntered();
+        textEnteredEvent();
         break;
     default:
         break;
     }
 }
 
-void GalleryGame::textEntered()
+void GalleryGame::textEnteredEvent()
 {
     if (static_cast<int>(typedLetter_) == KeyCode::Enter)
     {

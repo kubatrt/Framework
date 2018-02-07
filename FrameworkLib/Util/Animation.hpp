@@ -6,6 +6,30 @@
 namespace framework
 {
 
+struct Animation
+{
+    std::string name_;
+    std::string textureName_;
+    std::vector<sf::IntRect>    frames_;
+    sf::Time    duration_;
+    bool looping_;
+
+    Animation(const std::string& name, const std::string& textureName,
+        const sf::Time& duration, bool looping)
+        : name_(name_)
+        , textureName_(textureName)
+        , duration_(duration)
+        , looping_(looping)
+    {}
+
+    void addFrame(sf::Vector2i startFrom, sf::Vector2i frameSize, unsigned int frames)
+    {
+    }
+};
+
+namespace experimental
+{
+
 // TODO
 class Animation
 {
@@ -32,4 +56,5 @@ class Animation
         const unsigned FRAME_SIZE;
 };
 
-}
+}   // experimental
+}   // framework

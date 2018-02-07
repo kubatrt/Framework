@@ -19,7 +19,7 @@ public:
     void update(sf::Time deltaTime) override;
     void draw(sf::RenderTarget& renderer) override;
 
-    void textEntered(wchar_t letter);
+    void textEnteredEvent(wchar_t letter);
     void enterWord(std::wstring word);
 
 private:

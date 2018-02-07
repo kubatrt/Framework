@@ -20,6 +20,11 @@ class ResourceHolder : public NonCopyable, public NonMovable
         ResourceManager<sf::Texture>        textures;
         ResourceManager<sf::SoundBuffer>    sounds;
 
+        // TODO
+        // soundBuffer
+        // Music
+        // Shader
+
     private:
         ResourceHolder();
 };

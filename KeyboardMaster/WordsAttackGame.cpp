@@ -43,7 +43,7 @@ WordsAttackGame::WordsAttackGame(fw::GameBase& game)
 
 void WordsAttackGame::spawnWordBlock()
 {
-    if(wordBlocks_.size() >= maxWordsInGame || gameOver)
+    if((wordBlocks_.size() >= maxWordsInGame) || gameOver)
         return;
 
     spawnClock_.restart();
@@ -96,7 +96,7 @@ void WordsAttackGame::handleEvents(sf::Event e)
             if(gameOver)
                 return;
 
-            textEntered(typedLetter_);
+            textEnteredEvent(typedLetter_);
         }
         break;
     default:
@@ -104,7 +104,7 @@ void WordsAttackGame::handleEvents(sf::Event e)
     }
 }
 
-void WordsAttackGame::textEntered(wchar_t letter)
+void WordsAttackGame::textEnteredEvent(wchar_t letter)
 {
     typedWord_ += letter;
 }

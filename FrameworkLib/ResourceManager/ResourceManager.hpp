@@ -12,7 +12,7 @@ class ResourceManager
 {
 public:
     ResourceManager(const std::string& folder, const std::string& extention)
-        : folder_(resFolder_ + folder + "\\")
+        : folder_(resourceDirectory_ + folder + "\\")
         , extension_("." + extention)
     {
     }
@@ -53,7 +53,7 @@ private:
         return folder_ + name + extension_;
     }
 
-    const std::string resFolder_ = "D:\\Workspace\\Projects\\Framework\\Debug\\res\\";
+    const std::string resourceDirectory_ = "D:\\Workspace\\Projects\\Framework\\Debug\\res\\";
     const std::string folder_;
     const std::string extension_;
 

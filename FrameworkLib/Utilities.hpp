@@ -6,6 +6,7 @@
 #include <cwctype>
 #include <random>
 #include <sstream>
+#include <algorithm>
 
 #include "Util\NonCopyable.hpp"
 #include "Util\NonMoveable.hpp"
@@ -22,10 +23,52 @@ using WChar = wchar_t;
 using WStr = std::wstring;
 using FilePath = std::string;
 
+#define RUNNING_WINDOWS
+
+/*
+namespace Utils
+{
+#ifdef RUNNING_WINDOWS
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#include <Shlwapi.h>
+
+std::string getWorkingDirectory()
+{
+    HMODULE hModule = GetModuleHandle(nullptr);
+    if (hModule)
+    {
+        char path[256];
+        GetModuleFileName(hModule, path, sizeof(path));
+        PathRemoveFileSpec(path);
+        strcat_s(path, "\\"); // new
+        return std::string(path); // new
+    }
+    return "";
+}
+#elif defined RUNNING_LINUX
+#include <unistd.h>
+std::string getWorkingDirectory()
+{
+    char cwd[1024];
+    if (getcwd(cwd, sizeof(cwd)) != nullptr)
+    {
+        return std::string(cwd) + std::string("/");
+    }
+    return "";
+}
+#endif
+}
+*/
+
+
 namespace framework
 {
 
 std::vector<std::string> getLinesFromText(const std::string& text);
+
+
+
 
 // !old
 struct RandomMachine

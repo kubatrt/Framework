@@ -3,17 +3,22 @@
 namespace framework
 {
 
+
+
+namespace experimental
+{
 Animation::Animation(unsigned frameSize)
-    :   FRAME_SIZE  (frameSize)
-{ }
+    : FRAME_SIZE(frameSize)
+{
+}
 
 void Animation::addFrame(unsigned index, sf::Time delay)
 {
     sf::IntRect bounds;
     bounds.top = 0;
     bounds.height = FRAME_SIZE;
-    bounds.width  = FRAME_SIZE;
-    bounds.left   = index * FRAME_SIZE;
+    bounds.width = FRAME_SIZE;
+    bounds.left = index * FRAME_SIZE;
 
     frames_.emplace_back(bounds, delay);
 }
@@ -32,4 +37,5 @@ const sf::IntRect& Animation::getFrame()
     return frames_[currentFrame_].bounds;
 }
 
-}
+}   // experimental
+}   // framework

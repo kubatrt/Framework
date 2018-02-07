@@ -133,6 +133,7 @@
     <ClCompile Include="Dictionary.cpp" />
     <ClCompile Include="GalleryGame.cpp" />
     <ClCompile Include="KeyboardMaster.cpp" />
+    <ClCompile Include="KeyboardTyper.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Picture.cpp" />
@@ -161,6 +162,9 @@
     <ClInclude Include="WordBlock.hpp" />
     <ClInclude Include="WordsAttackGame.hpp" />
     <ClInclude Include="WritingGame.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="VirtualKeyboard.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

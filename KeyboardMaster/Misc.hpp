@@ -5,6 +5,7 @@
 namespace km
 {
 
+
 struct IGameComponent
 {
     virtual void update(sf::Time deltaTime) = 0;
@@ -58,6 +59,28 @@ enum KeyCode : int
 namespace experimental
 {
 
+class Entity
+{
+public:
+    void setVelocity(sf::Vector2f v) { velocity_ = v; }
+    sf::Vector2f getVelocity() const { return velocity_; }
+private:
+    sf::Vector2f velocity_;
+};
+
+
+class ILetterTyped
+{
+public:
+    virtual void typedLetter(const wchar_t letter) = 0;
+};
+
+class IWordTyped
+{
+public:
+    virtual void typedWord(const std::wstring word) = 0;
+};
+
 // Check intersection with two shapes
 template<class T1, class T2>
 bool isIntersecting(T1& a, T2& b)
@@ -100,21 +123,6 @@ struct PlayerSpaceShip
     // animation
     // moving
     // tween position
-};
-
-
-
-
-class ILetterTyped
-{
-public:
-    virtual void typedLetter(const wchar_t letter) = 0;
-};
-
-class IWordTyped
-{
-public:
-    virtual void typedWord(const std::wstring word) = 0;
 };
 
 } // experimental

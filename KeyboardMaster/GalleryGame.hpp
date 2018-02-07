@@ -19,7 +19,7 @@ public:
     void update(sf::Time deltaTime) override;
     void draw(sf::RenderTarget& renderer) override;
 
-    void textEntered();
+    void textEnteredEvent();
     void enterWord();
 
 private:

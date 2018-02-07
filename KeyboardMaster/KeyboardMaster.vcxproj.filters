@@ -27,6 +27,9 @@
     <ClCompile Include="WordBlock.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="KeyboardTyper.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tinyutf.h">
@@ -90,5 +93,10 @@
     <Filter Include="States">
       <UniqueIdentifier>{e651a726-8029-47c3-a170-bf7353aa7064}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="VirtualKeyboard.cpp">
+      <Filter>GameObjects</Filter>
+    </None>
   </ItemGroup>
 </Project>
