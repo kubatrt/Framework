@@ -30,6 +30,9 @@
     <ClCompile Include="KeyboardTyper.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="CourseMenu.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tinyutf.h">

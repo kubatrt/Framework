@@ -35,9 +35,9 @@ void CourseGame::SoundPlayer::play(const std::string sound)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-CourseGame::CourseGame(fw::GameBase& game)
+CourseGame::CourseGame(fw::GameBase& game, std::string filePath)
     : StateBase(game)
-    , dictionary_("D:\\Workspace\\Projects\\Framework\\Debug\\data\\texts-pl-2.txt")
+    , dictionary_(filePath) //("D:\\Workspace\\Projects\\Framework\\Debug\\data\\texts-pl-2.txt")
     , vkb_(game.getWindow().getSize())
     , kb_()
     , gameOver_(false)

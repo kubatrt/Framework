@@ -136,6 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CourseGame.cpp" />
+    <ClCompile Include="CourseMenu.cpp" />
     <ClCompile Include="Dictionary.cpp" />
     <ClCompile Include="GalleryGame.cpp" />
     <ClCompile Include="KeyboardMaster.cpp" />

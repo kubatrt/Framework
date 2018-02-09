@@ -28,8 +28,7 @@ Dictionary::Dictionary(FilePath filePath)
 void Dictionary::loadFromFile(FilePath filePath)
 {
     textFromFile_ = framework::loadTextFromUtf8File(filePath);
-    // fix for first letter
-    textFromFile_ = textFromFile_.substr(1, textFromFile_.size() - 1);
+    textFromFile_ = textFromFile_.substr(1, textFromFile_.size() - 1); // fix for first letter
 
     prepareWords();
     prepareLines();

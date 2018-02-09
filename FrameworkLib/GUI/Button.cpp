@@ -14,12 +14,20 @@ sf::Color normal{ 52, 150, 220 };
 sf::Color clicked{ 52, 190, 220 };
 }
 
+namespace
+{
+}
+
 
 Button::Button(ButtonSize s)
 {
     button_.setFillColor(buttonColor::normal);
     switch (s)
     {
+        case ButtonSize::Thin:
+            button_.setSize({ 256, 32 });
+            break;
+
         case ButtonSize::Wide:
             button_.setSize({256, 64});
             break;

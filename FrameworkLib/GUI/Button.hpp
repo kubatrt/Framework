@@ -15,6 +15,7 @@ enum class ButtonSize
 {
     Small,
     Wide,
+    Thin
 };
 
 

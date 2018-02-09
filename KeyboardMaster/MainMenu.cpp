@@ -4,6 +4,7 @@
 
 #include "MainMenu.hpp"
 #include "CourseGame.hpp"
+#include "CourseMenu.hpp"
 #include "GalleryGame.hpp"
 #include "WordsAttackGame.hpp"
 #include "WritingGame.hpp"
@@ -22,7 +23,7 @@ MainMenu::MainMenu(fw::GameBase& game)
     b->setText("Go to course");
     b->setFunction([&] ()
     {
-        game_.pushState<CourseGame>(game_);
+        game_.pushState<CourseMenu>(game_);
     });
 
     auto b2 = std::make_unique<fw::gui::Button>();

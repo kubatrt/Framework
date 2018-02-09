@@ -30,7 +30,7 @@ namespace fw = framework;
 class CourseGame : public fw::StateBase
 {
 public:
-    CourseGame(fw::GameBase& game);
+    CourseGame(fw::GameBase& game, std::string filePath);
     ~CourseGame();
 
     void handleEvents(sf::Event e) override;

@@ -16,7 +16,7 @@ namespace gui
 class StackMenu : public Widget, framework::NonCopyable
 {
     public:
-        StackMenu(const sf::Vector2f& position);
+        StackMenu(const sf::Vector2f& position, float offset = 25.f);
         
         StackMenu(StackMenu&& other);
         StackMenu& operator =(StackMenu&& other);
@@ -40,6 +40,8 @@ class StackMenu : public Widget, framework::NonCopyable
 
         sf::Vector2f basePosition_;
         sf::Vector2f baseSize_;
+
+        float offset_;
 };
 
 }
