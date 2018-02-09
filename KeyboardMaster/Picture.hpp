@@ -13,7 +13,7 @@ namespace km
 class Picture
 {
 public:
-    Picture(sf::Texture texture, uint width, uint height, uint rows, uint cols);
+    Picture(const sf::Texture& texture, uint width, uint height, uint rows, uint cols);
     ~Picture() = default;
 
     void init();

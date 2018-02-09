@@ -3,18 +3,18 @@
 namespace km
 {
 
-Picture::Picture(sf::Texture texture, uint width, uint height, uint rows, uint cols)
+Picture::Picture(const sf::Texture& texture, uint width, uint height, uint rows, uint cols)
     : dictionary_("D:/Workspace/Projects/Framework/Debug/data/words_01")  // data/words_01
     , complete_(false)
 {
-    std::cout << "Picture Width: " << width << " Height: " << height << std::endl;
+    std::cout << "PICTURE Width: " << width << " Height: " << height << std::endl;
 
-    //texture_ = texture;
+    texture_ = texture;
     // res/textures/obraz_1.png
-    texture_.loadFromFile("D:/Workspace/Projects/Framework/Debug/res/textures/obraz_1.png");
+    //texture_.loadFromFile("D:/Workspace/Projects/Framework/Debug/res/textures/obraz_1.png");
     sprite_.setTexture(texture_);
     sprite_.setPosition(sf::Vector2f(0, 0));
-    
+
     elementsInRow_ = rows;
     elementsInCol_ = cols;
     elementsTotal_ = elementsInRow_ * elementsInCol_;

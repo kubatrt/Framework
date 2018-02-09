@@ -31,7 +31,7 @@ WordsAttackGame::WordsAttackGame(fw::GameBase& game)
 
     gameOverTextUI_.setCharacterSize(48);
     gameOverTextUI_.setFillColor(sf::Color::Magenta);
-    gameOverTextUI_.setPosition({ game.getWindow().getSize().x /2.f, game.getWindow().getSize().y / 2.f });
+    gameOverTextUI_.setPosition({ game.getWindow().getSize().x /2.f - 150.f, game.getWindow().getSize().y / 2.f - 50.f});
     gameOverTextUI_.setString("Game Over");
     gameOverTextUI_.setFont(fw::ResourceHolder::get().fonts.get("arial"));
 
@@ -89,7 +89,8 @@ void WordsAttackGame::handleEvents(sf::Event e)
         }
         else if (static_cast<int>(typedLetter_) == KeyCode::Backspace)
         {
-            typedWord_.pop_back();
+            if(typedWord_.size() > 0)
+                typedWord_.pop_back();
         }
         else
         {

@@ -19,7 +19,6 @@
 #include "VirtualKeyboard.hpp"
 #include "Dictionary.hpp"
 #include "KeyboardTyper.hpp"
-#include "WordBlock.hpp"
 #include "Misc.hpp"
 
 namespace km
@@ -41,8 +40,8 @@ private:
     void textEnteredEvent(wchar_t typedLetter);
 
     void newLine();
-    uint inpenultimateLineNumber(); // index
-    uint currentLineLength();
+    //uint inpenultimateLineNumber(); // index
+    //uint currentLineLength();
     void prepareTextFields();
 
     // TODO: move elsewhere
@@ -64,7 +63,7 @@ private:
     std::vector<sf::Text> courseTextUI_;
     std::vector<sf::Text> courseInputTextUI_;
 
-    std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+    //std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
 
     sf::Clock timer_;
     bool gameOver_ = false;

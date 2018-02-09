@@ -6,13 +6,15 @@
 namespace km
 {
 
+namespace
+{
 constexpr int gameAreaWidth = 1024;
 constexpr int gameAreaHeight = 640;
 constexpr int courseAreaWidth = 1024;
 constexpr int courseAreaHeight = 400;
-constexpr int courseLevelMax = 20;
 constexpr int fontSize = 18;
 constexpr int textLineVerticalOffset = 2;
+}
 
 CourseGame::SoundPlayer::SoundPlayer()
 {
@@ -37,13 +39,12 @@ void CourseGame::SoundPlayer::play(const std::string sound)
 
 CourseGame::CourseGame(fw::GameBase& game, std::string filePath)
     : StateBase(game)
-    , dictionary_(filePath) //("D:\\Workspace\\Projects\\Framework\\Debug\\data\\texts-pl-2.txt")
+    , dictionary_(filePath)
     , vkb_(game.getWindow().getSize())
     , kb_()
     , gameOver_(false)
 {
     timer_.restart();
-
     mainFont_ = fw::ResourceHolder::get().fonts.get("CourierNew");
     backgroundSpriteUI_.setTexture(fw::ResourceHolder::get().textures.get("deep-blue-space"));
 
@@ -62,7 +63,6 @@ CourseGame::CourseGame(fw::GameBase& game, std::string filePath)
     debugTextUI_.setPosition(780, 500);
 
     prepareTextFields();
-    std::wstring wholeText = dictionary_.getText();
     nextLetter_ = dictionary_.getLines()[currentLine_][0];
     vkb_.highlightLetter(static_cast<int>(nextLetter_));
 }
@@ -98,6 +98,14 @@ void CourseGame::prepareTextFields()
         textField.setPosition(4.f, static_cast<float>(i * (fontSize * 2.f) + textLineVerticalOffset + fontSize));
         courseInputTextUI_.push_back(textField);
     }
+}
+
+void CourseGame::newLine()
+{
+    typingTextLine_.clear();
+    currentLine_++;
+    currentletterInLine_ = 0;
+    soundPlayer_.play("newline");
 }
 
 void CourseGame::handleEvents(sf::Event event)
@@ -136,6 +144,8 @@ void CourseGame::handleEvents(sf::Event event)
         break;
     }
 }
+
+
 
 void CourseGame::textEnteredEvent(wchar_t typedLetter)
 {
@@ -227,7 +237,7 @@ void CourseGame::textEnteredEvent(wchar_t typedLetter)
     vkb_.highlightLetter(static_cast<int>(nextLetter_));
 }
 
-uint CourseGame::inpenultimateLineNumber()
+/*uint CourseGame::inpenultimateLineNumber()
 { 
     return dictionary_.getLines().size() - 1; 
 };
@@ -235,15 +245,9 @@ uint CourseGame::inpenultimateLineNumber()
 uint CourseGame::currentLineLength()
 {
     return dictionary_.getLines()[currentLine_].size(); // - 1
-}
+}*/
 
-void CourseGame::newLine()
-{
-    typingTextLine_.clear();
-    currentLine_++;
-    currentletterInLine_ = 0;
-    soundPlayer_.play("newline");
-}
+
 
 void CourseGame::update(sf::Time deltaTime)
 {

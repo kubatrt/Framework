@@ -13,7 +13,7 @@ namespace fw = framework;
 class GalleryGame : public fw::StateBase
 {
 public:
-    GalleryGame(fw::GameBase& game);
+    GalleryGame(fw::GameBase& game, sf::Vector2u division);
 
     void handleEvents(sf::Event e) override;
     void update(sf::Time deltaTime) override;

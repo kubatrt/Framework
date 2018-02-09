@@ -37,14 +37,23 @@ MainMenu::MainMenu(fw::GameBase& game)
     b3->setText("Gallery");
     b3->setFunction([&] ()
     {
-        game_.pushState<GalleryGame>(game_);
+        game_.pushState<GalleryGame>(game_, sf::Vector2u{5, 4});
     });
+
+
 
     auto b4 = std::make_unique<fw::gui::Button>();
     b4->setText("Writing");
     b4->setFunction([&] ()
     {
-        game_.pushState<WritingGame>(game_);
+        std::string articlesFiles[] = {
+            "D:\\Workspace\\Projects\\Framework\\Debug\\data\\art_01.txt",
+            "D:\\Workspace\\Projects\\Framework\\Debug\\data\\art_02.txt",
+            "D:\\Workspace\\Projects\\Framework\\Debug\\data\\art_03.txt",
+            "D:\\Workspace\\Projects\\Framework\\Debug\\data\\art_04.txt"
+        };
+        int pick = fw::RandomMachine::getRange(0, 3);
+        game_.pushState<WritingGame>(game_, articlesFiles[pick]);
     });
 
     auto bquit = std::make_unique<fw::gui::Button>();

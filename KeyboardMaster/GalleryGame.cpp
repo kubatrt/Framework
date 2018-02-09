@@ -4,11 +4,14 @@
 namespace km
 {
 
-GalleryGame::GalleryGame(fw::GameBase& game)
+GalleryGame::GalleryGame(fw::GameBase& game, sf::Vector2u division)
     : StateBase(game)
     , picture_(
         framework::ResourceHolder::get().textures.get("obraz_1"),
-        game.getWindow().getSize().x, game.getWindow().getSize().y, 2, 2)
+        game.getWindow().getSize().x, 
+        game.getWindow().getSize().y, 
+        division.x, 
+        division.y)
     //, dictionary_("data/words_01")
 {
     
@@ -25,6 +28,9 @@ void GalleryGame::handleEvents(sf::Event e)
             game_.popState();
         else if (e.key.code == sf::Keyboard::F12)
             game_.toggleFullscreen();
+        else if (e.key.code == sf::Keyboard::Return)
+            if(picture_.isComplete())
+                game_.popState();
         break;
 
     case sf::Event::TextEntered:
@@ -58,11 +64,6 @@ void GalleryGame::enterWord()
 void GalleryGame::update(sf::Time deltaTime)
 {
     picture_.update(deltaTime);
-
-    if (picture_.isComplete())
-    {
-        game_.popState();
-    }
 }
 
 void GalleryGame::draw(sf::RenderTarget& renderer)

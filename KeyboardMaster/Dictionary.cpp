@@ -6,20 +6,19 @@ namespace km
 
 namespace
 {
-constexpr int SHORTEST_WORD = 3;
-constexpr int LONGEST_WORD = 8;
+constexpr int DEFAULT_SHORTEST_WORD = 3;
+constexpr int DEFAULT_LONGEST_WORD = 8;
 }
 
 Dictionary::Dictionary(FilePath filePath)
-    : shortestWord_(SHORTEST_WORD)
-    , longestWord_(LONGEST_WORD)
+    : shortestWord_(DEFAULT_SHORTEST_WORD)
+    , longestWord_(DEFAULT_LONGEST_WORD)
     , lettersCount_(0)
     , wordsCount_(0)
 {
     loadFromFile(filePath);
 
     std::wcerr << "DICTIONARY - " << filePath.c_str() << std::endl;
-    std::wcerr << "Loaded text: " << textFromFile_ << std::endl;
     std::wcerr << "letters count: " << lettersCount_ << std::endl;
     std::wcerr << "longest word: " << longestWord_ << std::endl;
     std::wcerr << "shortest word: " << shortestWord_ << std::endl;
