@@ -64,12 +64,12 @@ PictureElement(const PictureElement& pictureElement)
     this->word_ = pictureElement.word_;
     this->nextLetter_= pictureElement.nextLetter_;
 
-    log_info("PictureElement CPY: " << word_);
+    log_info("PictureElement CPY: " << word_.c_str());
 }
 
 ~PictureElement()
 {
-    log_info("PictureElement DTOR:" << word_);
+    log_info("PictureElement DTOR:" << word_.c_str());
 }
 
 int getIndex() const { return index_; }

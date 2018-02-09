@@ -14,7 +14,7 @@ constexpr float row_2nd = 55;
 constexpr float row_3rd = 107;
 constexpr float row_4th = 159;
 constexpr float row_5th = 210;
-constexpr float OUT_OF_RANGE = 200.0f;
+constexpr float OUT_OF_RANGE = 2000.0f;
 
 class VirtualKeyboard : IGameComponent
 {
@@ -23,11 +23,13 @@ public:
     //VirtualKeyboard(sf::Vector2u windowSize);
     ~VirtualKeyboard() = default;
 
-    //VirtualKeyboard(const VirtualKeyboard&) = delete;
-    //VirtualKeyboard& operator= (const VirtualKeyboard&) = delete;
+    VirtualKeyboard(const VirtualKeyboard&) = delete;
+    VirtualKeyboard& operator= (const VirtualKeyboard&) = delete;
 
     //void highlightLetter(int letterCode);
 
+    sf::Texture layoutTexture_;
+    sf::Texture maskTexture_;
     sf::Sprite  layoutSprite_;
     sf::Sprite  maskSprite_;
 
@@ -66,12 +68,12 @@ public:
         maskPositions_[KeyCode::Space] = sf::Vector2f(238, row_5th);
 
 
-        sf::Texture layoutTexture = framework::ResourceHolder::get().textures.get("kbl_48");
-        layoutSprite_.setTexture(layoutTexture);
-        layoutSprite_.setPosition(0.f, static_cast<float>(windowSize.y - layoutTexture.getSize().y));
+        layoutTexture_ = framework::ResourceHolder::get().textures.get("kbl_48");
+        layoutSprite_.setTexture(layoutTexture_);
+        layoutSprite_.setPosition(0.f, static_cast<float>(windowSize.y - layoutTexture_.getSize().y));
 
-        sf::Texture maskTexture = framework::ResourceHolder::get().textures.get("mask");
-        maskSprite_.setTexture(maskTexture);
+        maskTexture_ = framework::ResourceHolder::get().textures.get("mask");
+        maskSprite_.setTexture(maskTexture_);
         maskSprite_.setColor(sf::Color(255, 255, 255, 100));
     }
 

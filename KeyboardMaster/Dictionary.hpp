@@ -44,7 +44,7 @@ private:
     void prepareLines();
     void prepareWords();
     void sortWordsByLength();
-    void prepareCount();
+    void prepareCounts();
 
     unsigned int lettersCount_;
     unsigned int wordsCount_;
@@ -52,7 +52,7 @@ private:
     unsigned int shortestWord_;
 
     std::wstring textFromFile_; // whole text as an one string
-    std::vector <std::wstring> lines_; // lines from file
+    std::vector <std::wstring> lines_; // arrays of lines from file
     std::set <std::wstring> words_; // each readed from file
     std::vector<std::wstring> wordsAll_; // store all words
     std::map<int, std::vector<std::wstring>> wordsByLength_; // store words by length

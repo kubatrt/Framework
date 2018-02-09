@@ -28,9 +28,9 @@ std::string loadTextFromFile(const std::string& filePath, bool throws)
         }
     }
 
-    std::ostringstream stream;
-    stream << inFile.rdbuf();
-    return stream.str();
+    std::ostringstream oss;
+    oss << inFile.rdbuf();
+    return oss.str();
 }
 
 // System independent, universal utf8 text file loading

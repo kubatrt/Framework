@@ -24,14 +24,14 @@ public:
 
     void start() 
     {
-        clock_.restart();
+        timer_.restart();
         isPlaying_ = true;
 
     }
 
     void stop() 
     {
-        elapsedTime_ = clock_.restart();
+        elapsedTime_ = timer_.restart();
         isPlaying_ = false;
     }
 
@@ -40,7 +40,7 @@ public:
         if(!isPlaying_)
             return;
 
-        sf::Time elapsedTime_ = clock_.getElapsedTime();
+        sf::Time elapsedTime_ = timer_.getElapsedTime();
 
         std::cout << elapsedTime_.asSeconds() << std::endl;
        
@@ -59,7 +59,7 @@ private:
     }
     void playAudio() {};
 
-    sf::Clock clock_;
+    sf::Clock timer_;
     unsigned int bpm_;
     float interval_;
     bool isPlaying_;

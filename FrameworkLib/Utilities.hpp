@@ -14,10 +14,12 @@
 #include "Util/Random.hpp"
 #include "Util/Files.hpp"
 
+// Debug level: 0 - off, 1 - info,  2 - debug
+#define DEBUG_LEVEL 0   
+
 // !depracted
-#define log_info(msg)   std::wcout << msg << std::endl;
-#define log_debug(msg)  std::wcout << "(DEBUG): " << msg " ::" << __FILE__ << ":" << __LINE__ << std::endl;
-#define log_error(msg)  std::wcerr << "(ERROR): " << msg << std::endl;
+#define log_info(msg) if(DEBUG_LEVEL  > 0) std::wcerr << msg << std::endl;
+#define log_debug(msg) if(DEBUG_LEVEL > 1)std::wcerr << "(DEBUG): " << msg " ::" << __FILE__ << ":" << __LINE__ << std::endl;
 
 typedef unsigned int uint;
 using WChar = wchar_t;
@@ -74,7 +76,7 @@ struct RandomMachine
     static T getRange(T min, T max)
     {
         std::random_device rd;
-        std::default_random_engine re(rd());	//std::mt19937
+        std::default_random_engine re(rd());    //std::mt19937
 
         // use epoch time as seed for random generator
     long int seed = static_cast<long int>(

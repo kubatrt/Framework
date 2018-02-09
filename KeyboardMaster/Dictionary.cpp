@@ -18,10 +18,11 @@ Dictionary::Dictionary(FilePath filePath)
 {
     loadFromFile(filePath);
 
-    std::wcout << "Loaded text: " << textFromFile_ << std::endl;
-    std::wcout << "letters count: " << lettersCount_ << std::endl;
-    std::wcout << "longest word: " << longestWord_ << std::endl;
-    std::wcout << "shortest word: " << shortestWord_ << std::endl;
+    std::wcerr << "DICTIONARY - " << filePath.c_str() << std::endl;
+    std::wcerr << "Loaded text: " << textFromFile_ << std::endl;
+    std::wcerr << "letters count: " << lettersCount_ << std::endl;
+    std::wcerr << "longest word: " << longestWord_ << std::endl;
+    std::wcerr << "shortest word: " << shortestWord_ << std::endl;
 }
 
 void Dictionary::loadFromFile(FilePath filePath)
@@ -29,13 +30,13 @@ void Dictionary::loadFromFile(FilePath filePath)
     textFromFile_ = framework::loadTextFromUtf8File(filePath);
     prepareWords();
     prepareLines();
-    prepareCount();
+    prepareCounts();
     sortWordsByLength();
 }
 
-void Dictionary::prepareCount()
+void Dictionary::prepareCounts()
 {
-    for (auto& line : lines_)
+    for (const auto& line : lines_)
     {
         lettersCount_ += line.length();
     }
@@ -69,7 +70,8 @@ std::wstring Dictionary::getRandomWord()
 
 std::wstring Dictionary::getRandomWord(int length)
 {
-    if(length == getLongestWord()) length--;
+    if(length == getLongestWord())
+        length--;
     return wordsByLength_[length].at(
             framework::RandomMachine::getRange<size_t>(0, wordsByLength_[length].size() - 1));
     
@@ -100,17 +102,14 @@ void Dictionary::prepareWords()
     {
         if (*it == ' ' || *it == '\n')
         {
-            // longest word
             if (buffer.length() > longestWord_)
                 longestWord_ = buffer.length();
-
-            // shortest word
             if (buffer.length() != 0 && buffer.length() < shortestWord_)
                 shortestWord_ = buffer.length();
 
             wordsCount_++;
             words_.insert(buffer);
-            
+
             buffer.clear();
         }
         else

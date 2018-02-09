@@ -24,7 +24,7 @@ public:
     {
         started_ = true;
         done_ = false;
-        clock_.restart();
+        timer_.restart();
     }
 
     void update()
@@ -32,7 +32,7 @@ public:
         if(done_ || !started_) 
             return;
 
-        if (clock_.getElapsedTime() >= treshold_)
+        if (timer_.getElapsedTime() >= treshold_)
         {
             done_ = true;
             callback_();
@@ -41,7 +41,7 @@ public:
 
 private:
     sf::Time treshold_;
-    sf::Clock clock_;
+    sf::Clock timer_;
     std::function<void()> callback_;
     bool done_;
     bool started_;

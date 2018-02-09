@@ -23,13 +23,22 @@ public:
     float getKPM() const { return keysPerMinute_; }
     float getKPW() const { return wordsPerMinute_; }
     
-    float correctnessPercentage();
+    float correctnessPercentage(uint lettersCount);
 
-    void textEnteredEvent(wchar_t letter);
-    void wordEntered(std::wstring word);
-    void backspace();
-    
-    void update();
+    void textEnteredEvent(wchar_t letter, bool correct, uint letterPositionInLine);
+    void wordEntered(std::wstring word, bool correct = true);
+
+    //void backspace();
+    //void mistake();
+    void omit(uint lettersNumber);
+    uint getOmittedLetters() const { return omittedLetters_; }
+    uint getBackspaces() const; 
+    uint getMistakes() const;
+    uint getCorrectLetters() const { return correctLetters_; }
+    uint getCorrectWords() const { return correctWords_;}
+    uint getTypedKeys() const { return typedKeys_; }
+
+    void update(sf::Time deltaTime);
 
     std::wstring debugInfo() {};
 
@@ -37,22 +46,22 @@ private:
    // Dictionary dictionary_;
 
     std::vector<std::wstring> typedWords_;
-    sf::Clock clock_;
+    sf::Clock timer_;
 
     std::wstring typingText_;
 
     wchar_t lastTypedLetter_;
     std::wstring lastTypedWord_;
-
-    float correctness_;
-    uint correctLetters_;
     uint correctWords_;
-    uint wordsTotal_;
-    uint backspaces_;
-    uint omittedLetters_;
-    uint mistakes_;
 
-    unsigned int keysTyped_;    // every key typed
+    //float correctness_;
+    //uint wordsTotal_;
+    uint backspaces_;
+    uint correctLetters_;
+    uint omittedLetters_;
+    uint mistakeLetters_;
+
+    unsigned int typedKeys_;    // every key typed
     unsigned int wordsTyped_;
     float keysPerMinute_;
     float wordsPerMinute_;
