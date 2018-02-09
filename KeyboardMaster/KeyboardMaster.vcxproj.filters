@@ -50,9 +50,6 @@
     <ClInclude Include="CourseGame.hpp">
       <Filter>States</Filter>
     </ClInclude>
-    <ClInclude Include="CourseText.hpp">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="GalleryGame.hpp">
       <Filter>States</Filter>
     </ClInclude>
@@ -82,6 +79,9 @@
       <Filter>GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="Scheduler.hpp" />
+    <ClInclude Include="StarsBackground.hpp">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="3rdparty">
@@ -98,6 +98,5 @@
     <None Include="VirtualKeyboard.cpp">
       <Filter>GameObjects</Filter>
     </None>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

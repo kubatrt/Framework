@@ -40,7 +40,7 @@ CourseGame::CourseGame(fw::GameBase& game)
     , dictionary_("D:\\Workspace\\Projects\\Framework\\Debug\\data\\texts-pl-2.txt")
     , vkb_(game.getWindow().getSize())
     , kb_()
-    , gameEnd_(false)
+    , gameOver_(false)
 {
     timer_.restart();
 
@@ -120,6 +120,13 @@ void CourseGame::handleEvents(sf::Event event)
         {
             game_.toggleFullscreen();
         }
+        else if (event.key.code == sf::Keyboard::Return)
+        {
+            if (gameOver_)
+            {
+                game_.popState();
+            }
+        }
         break;
     case sf::Event::TextEntered:
             std::wcout << L"debug ASCII character typed: " << static_cast<int>(event.text.unicode) << std::endl;
@@ -132,6 +139,9 @@ void CourseGame::handleEvents(sf::Event event)
 
 void CourseGame::textEnteredEvent(wchar_t typedLetter)
 {
+    if(gameOver_) 
+        return;
+
     kb_.textEnteredEvent(typedLetter, typedLetter == nextLetter_, currentletterInLine_);
 
     if (static_cast<int>(typedLetter) == KeyCode::Backspace)
@@ -142,13 +152,10 @@ void CourseGame::textEnteredEvent(wchar_t typedLetter)
             typingTextLine_.pop_back();
             std::wcout << "BACKSPACE" << std::endl;
         }
-
-        //nextLetter_ = dictionary_.getLines()[currentLine_][currentletterInLine_];
-        //nextLetterTextUI_.setString(nextLetter_);
     }
     else if (static_cast<int>(typedLetter) == KeyCode::Enter)
     {
-        if (currentLine_ < dictionary_.getLines().size()) // can we go down?
+        if (currentLine_ < dictionary_.getLines().size() - 1) // can we go down?
         {
             int omittedLetters = dictionary_.getLines()[currentLine_].size() - currentletterInLine_;
             kb_.omit(omittedLetters);
@@ -158,18 +165,14 @@ void CourseGame::textEnteredEvent(wchar_t typedLetter)
         }
         else
         {
-            // END course with "enter" key which is correct
-            //if (currentletterInLine_ == dictionary_.getLines()[currentLine_].size())
-            //{
-                std::wcout << "(END 1) that was last line" << std::endl;
-                gameEnd_ = true;
-            //}
+            std::wcout << "(END 1) that was last line" << std::endl;
+            gameOver_ = true;
         }
     }
-    else
+    else // any other letter
     {
-        // if current letter is still in current line?
-        if (currentletterInLine_ < dictionary_.getLines()[currentLine_].size())   // THIS IS WRONG!?
+        // if current letter is not last in current line?
+        if (currentletterInLine_ < dictionary_.getLines()[currentLine_].size())
         {
             if (typedLetter == nextLetter_)
             {
@@ -182,39 +185,35 @@ void CourseGame::textEnteredEvent(wchar_t typedLetter)
 
             typingTextLine_.push_back(typedLetter);
             currentletterInLine_++;
-            //nextLetter_ = dictionary_.getLines()[currentLine_][currentletterInLine_];
 
             std::wcout << "typedLetter: " << static_cast<int>(typedLetter) << std::endl;
             std::wcout << "nextLetter: " << static_cast<int>(nextLetter_) << std::endl;
         }
         else
         {
-            //std::wcout << "last letter in line" << std::endl;
-            if (currentLine_ < dictionary_.getLines().size() - 1)
+            // and its last line
+            if (currentLine_ == dictionary_.getLines().size() - 1)
             {
-                // the correct movement to next line are only "space" or "Enter" (earlier)
-                if (static_cast<int>(typedLetter) == KeyCode::Enter)
-                {
-                    soundPlayer_.play("newline");
-                }
-                else
-                {
-                    soundPlayer_.play("mistake");
-                }
-                newLine();
+                std::wcout << "(END 2) that was last letter in line" << std::endl;
+                gameOver_ = true;
             }
-            // this means that was last letter in last line in course and it's incorrect, but dont count mistake
             else
             {
-                std::wcout << "(END 2)" << std::endl;
-                gameEnd_ = true;
+                soundPlayer_.play("mistake");
+                newLine();
+                // that was last letter, go to new line this means that was last letter in 
+                // last line in course and it's incorrect, but dont count mistake
             }
         }
     }
 
     // HACK
-    if(currentLine_ >= dictionary_.getLines().size())
+    if (currentLine_ >= dictionary_.getLines().size())
+    {
+        std::wcerr << "HACK" << std::endl;
         currentLine_ = dictionary_.getLines().size() - 1;
+    }
+        
 
     nextLetter_ = dictionary_.getLines()[currentLine_][currentletterInLine_];
     if (static_cast<int>(nextLetter_) == 0 || static_cast<int>(nextLetter_) == KeyCode::Enter)
@@ -248,10 +247,8 @@ void CourseGame::newLine()
 
 void CourseGame::update(sf::Time deltaTime)
 {
-    if (gameEnd_)
-    {
-        game_.popState();
-    }
+    if (gameOver_)
+        return;
 
     vkb_.update(deltaTime);
     kb_.update(deltaTime);
@@ -261,7 +258,7 @@ void CourseGame::update(sf::Time deltaTime)
         << L"\nLetter: " << currentletterInLine_ << L" Line: " << currentLine_
         << L"\nCorrect: " << kb_.getCorrectLetters() << L" Miss: " << kb_.getMistakes()
         << L"\nOmitt: " << kb_.getOmittedLetters() << L" TypedKeys: " << kb_.getTypedKeys()
-        << L"\nTotalKeysTyped: " << kb_.getTypedKeys() << L" KPM: " << kb_.getKPM()
+        << L"\nKPM: " << kb_.getKPM()
         << L"\nCorrectness: " << kb_.correctnessPercentage(dictionary_.getLettersCount());
     debugTextUI_.setString(wss.str());
 

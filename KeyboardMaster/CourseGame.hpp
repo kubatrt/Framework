@@ -19,7 +19,6 @@
 #include "VirtualKeyboard.hpp"
 #include "Dictionary.hpp"
 #include "KeyboardTyper.hpp"
-#include "CourseText.hpp"
 #include "WordBlock.hpp"
 #include "Misc.hpp"
 
@@ -46,6 +45,7 @@ private:
     uint currentLineLength();
     void prepareTextFields();
 
+    // TODO: move elsewhere
     struct SoundPlayer
     {
         SoundPlayer();
@@ -56,38 +56,27 @@ private:
         sf::Sound sound_;
     };
 
+    sf::Font mainFont_;
     sf::Sprite backgroundSpriteUI_;
     sf::Text nextLetterTextUI_;
     sf::Text debugTextUI_;
+    sf::Text gameOverTextUI_;
     std::vector<sf::Text> courseTextUI_;
     std::vector<sf::Text> courseInputTextUI_;
-    sf::Font mainFont_;
 
     std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
 
     sf::Clock timer_;
-    bool gameEnd_ = false;
+    bool gameOver_ = false;
     SoundPlayer soundPlayer_;
     Dictionary dictionary_;
     VirtualKeyboard vkb_;
     KeyboardTyper kb_;
 
-    //wchar_t typedLetter_;
     wchar_t nextLetter_;
     std::wstring typingTextLine_;
     unsigned int currentLine_ = 0;
     unsigned int currentletterInLine_ = 0;
-
-    int backspaces_ = 0;
-    int typedKeys_ = 0;
-
-    //unsigned int currentword_ = 0;
-    //unsigned int correctLetters_ = 0;
-    //unsigned int mistakes_ = 0;
-    //int omittedLetters_ = 0;
-    //float kpm_ = 0;
-    //float correctnessPercentage_ = 100.f;
-    
 };
 
 }

@@ -2,17 +2,15 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
-#include "Misc.hpp"
 #include "../FrameworkLib/Utilities.hpp"
 #include "../FrameworkLib/ResourceManager/ResourceHolder.hpp"
-#include "Scheduler.hpp"
+#include "Misc.hpp"
+//#include "Scheduler.hpp"
 
 namespace km
 {
 
 // fontSize 24, 15 / 22, 14 / 18, 12
-
-
 
 class Picture;
 

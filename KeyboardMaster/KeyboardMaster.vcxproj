@@ -151,7 +151,6 @@
     <ClInclude Include="CommentCloud.hpp" />
     <ClInclude Include="CourseGame.hpp" />
     <ClInclude Include="CourseMenu.hpp" />
-    <ClInclude Include="CourseText.hpp" />
     <ClInclude Include="Dictionary.hpp" />
     <ClInclude Include="GalleryGame.hpp" />
     <ClInclude Include="KeyboardMaster.hpp" />
@@ -163,6 +162,7 @@
     <ClInclude Include="PictureElement.hpp" />
     <ClInclude Include="Scheduler.hpp" />
     <ClInclude Include="SimpleApplication.hpp" />
+    <ClInclude Include="StarsBackground.hpp" />
     <ClInclude Include="tinyutf.h" />
     <ClInclude Include="VirtualKeyboard.hpp" />
     <ClInclude Include="WordBlock.hpp" />
@@ -170,7 +170,6 @@
     <ClInclude Include="WritingGame.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram.cd" />
     <None Include="VirtualKeyboard.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

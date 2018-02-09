@@ -83,8 +83,11 @@ void KeyboardTyper::wordEntered(std::wstring word, bool correct)
 void KeyboardTyper::update(sf::Time deltaTime)
 {
     sf::Time elapsed = timer_.getElapsedTime();
-    keysPerMinute_ = 60.f / elapsed.asSeconds() * typedKeys_;
-    wordsPerMinute_ = 60.f / elapsed.asSeconds() * typedWords_.size();
+    //keysPerMinute_ = 60.f / elapsed.asSeconds() * typedKeys_;
+    if(typedKeys_ > 0)
+        keysPerMinute_ = typedKeys_ / elapsed.asSeconds() * 60.f;
+    if (wordsPerMinute_ > 0)
+        wordsPerMinute_ = wordsPerMinute_ / elapsed.asSeconds() * 60.f;
 }
 
 float KeyboardTyper::correctnessPercentage(uint lettersCount)
