@@ -26,6 +26,10 @@ private:
     Picture picture_;
     wchar_t typedLetter_;
     std::wstring typedWord_;
+    uint typedWords_= 0;
+    bool gameOver_ = false;
+
+    sf::Text gameOverTextUI_;
 };
 
 }

@@ -14,7 +14,10 @@ GalleryGame::GalleryGame(fw::GameBase& game, sf::Vector2u division)
         division.y)
     //, dictionary_("data/words_01")
 {
-    
+    gameOverTextUI_.setCharacterSize(48);
+    gameOverTextUI_.setFillColor(sf::Color::Magenta);
+    gameOverTextUI_.setPosition({ game.getWindow().getSize().x / 2.f - 150.f, game.getWindow().getSize().y / 2.f - 50.f });
+    gameOverTextUI_.setFont(fw::ResourceHolder::get().fonts.get("arial"));
 }
 
 void GalleryGame::handleEvents(sf::Event e)
@@ -29,7 +32,7 @@ void GalleryGame::handleEvents(sf::Event e)
         else if (e.key.code == sf::Keyboard::F12)
             game_.toggleFullscreen();
         else if (e.key.code == sf::Keyboard::Return)
-            if(picture_.isComplete())
+            if(gameOver_)
                 game_.popState();
         break;
 
@@ -55,8 +58,10 @@ void GalleryGame::textEnteredEvent()
 }
 
 void GalleryGame::enterWord()
+
 {
     std::wcout << "Entered word: " << typedWord_ << std::endl;
+    typedWords_++;
     picture_.typedWord(typedWord_);
     typedWord_.clear();
 }
@@ -64,11 +69,22 @@ void GalleryGame::enterWord()
 void GalleryGame::update(sf::Time deltaTime)
 {
     picture_.update(deltaTime);
+
+    if (picture_.isComplete() || typedWords_ == picture_.elementsCount())
+    {
+        gameOver_ = true;
+        picture_.setVisible(true);
+        std::stringstream ss; 
+        ss << "Picture: " << std::to_string(typedWords_) << " / " << std::to_string(picture_.elementsCount());
+        gameOverTextUI_.setString(ss.str());
+    }
 }
 
 void GalleryGame::draw(sf::RenderTarget& renderer)
 {
     picture_.draw(renderer);
+    if(gameOver_)
+        renderer.draw(gameOverTextUI_);
 }
 
 }

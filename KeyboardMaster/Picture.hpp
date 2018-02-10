@@ -26,27 +26,29 @@ public:
 
     void typedWord(std::wstring word);
     bool isComplete();
+    uint elementsCount() const { return elements_.size(); }
 
     // TODO:
     // corectness()
     // totalTime()
 
 private:
-    bool visible_;
+    bool visible_ = false;
     sf::Texture texture_;
     sf::Sprite sprite_;
 
+    uint typedWords_ = 0;
     uint elementsInRow_;
     uint elementsInCol_;
     uint elementsTotal_;
-    uint elementsCorrect_;
 
-    bool complete_;
+    bool isComplete_;
     uint activeIndex_;
-    std::set<int> indexesLeft;
+    std::vector<int> indexesLeft;
 
-    std::vector<std::shared_ptr<PictureElement>> elementsSPtr_;
     Dictionary dictionary_;
+
+    std::vector<std::shared_ptr<PictureElement>> elements_;
 };
 
 }

@@ -71,9 +71,8 @@ PictureElement(const PictureElement& pictureElement)
 }
 
 int getIndex() const { return index_; }
-
-bool isRevealed() { return revealed_; }
-bool isActive() { return active_; }
+bool isRevealed() const { return revealed_; }
+bool isActive() const { return active_; }
 
 void setActive()
 {
