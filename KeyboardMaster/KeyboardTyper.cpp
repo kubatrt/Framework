@@ -86,6 +86,7 @@ void KeyboardTyper::update(sf::Time deltaTime)
     //keysPerMinute_ = 60.f / elapsed.asSeconds() * typedKeys_;
     if(typedKeys_ > 0)
         keysPerMinute_ = typedKeys_ / elapsed.asSeconds() * 60.f;
+    keysPerMinute_ = (typedKeys_ > 0) ? typedKeys_ / elapsed.asSeconds() * 60.f : 0;
     if (wordsPerMinute_ > 0)
         wordsPerMinute_ = wordsPerMinute_ / elapsed.asSeconds() * 60.f;
 }

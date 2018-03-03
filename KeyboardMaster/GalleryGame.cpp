@@ -75,7 +75,8 @@ void GalleryGame::update(sf::Time deltaTime)
         gameOver_ = true;
         picture_.setVisible(true);
         std::stringstream ss; 
-        ss << "Picture: " << std::to_string(typedWords_) << " / " << std::to_string(picture_.elementsCount());
+        ss << "[debug] Picture: " << std::to_string(typedWords_) << " / " 
+            << std::to_string(picture_.elementsCount());
         gameOverTextUI_.setString(ss.str());
     }
 }

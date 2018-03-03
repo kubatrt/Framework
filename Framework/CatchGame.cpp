@@ -11,9 +11,6 @@ CatchGame::CatchGame()
 {
     window_.setFramerateLimit(60);  // instead of separate fixedUpdate
     pushState<MainMenu>(*this);
-    //pushState<CourseMenu>(*this);
-
-    //fw::ResourceManager<sf::Font>::get("arial");
 }
 
 void CatchGame::update(sf::Time deltaTime)

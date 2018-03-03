@@ -44,11 +44,9 @@ public:
 
 private:
    // Dictionary dictionary_;
-
-    std::vector<std::wstring> typedWords_;
     sf::Clock timer_;
-
     std::wstring typingText_;
+    std::vector<std::wstring> typedWords_;
 
     wchar_t lastTypedLetter_;
     std::wstring lastTypedWord_;

@@ -4,7 +4,11 @@
 #include <SFML\Audio.hpp>
 #include <SFML\System.hpp>
 
-// TODO
+/* Metronome
+    BPM - beats per minute
+    80 beats per 60 seconds
+    interval = 60 / 80 = 0,75 s
+*/
 class Metronome
 {
 public:
@@ -64,12 +68,5 @@ private:
     float interval_;
     bool isPlaying_;
     sf::Time elapsedTime_;
-
-
-    /*
-        BPM - beats per minute
-        80 beats per 60 seconds
-        interval = 60 / 80 = 0,75 s
-    */
 
 };
