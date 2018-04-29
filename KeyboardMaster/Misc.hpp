@@ -75,23 +75,34 @@ public:
 };
 
 // Check intersection with two shapes
-template<class T1, class T2>
+template<typename T1, typename T2>
 bool isIntersecting(T1& a, T2& b)
 {
     return  a.right() >= b.left() && a.left() <= b.right()
         && a.top() <= b.bottom() && a.bottom() >= b.top();
 }
 
+enum class ECourseLevel : unsigned
+{
+    ECourseLevel_1 = 1,
+    ECourseLevel_2 = 2,
+    ECourseLevel_3 = 3,
+    ECourseLevel_4 = 4,
+    ECourseLevel_5 = 5
+};
 
 struct User
 {
     std::string name;
-    unsigned int courseLevel;   // 0 - 20 deterimnes players skill level
+    ECourseLevel courseLevel;   // 0 - 20 deterimnes players skill level
 };
 
 
 struct Session
 {
+    Session() noexcept {};
+    ~Session() = default;
+
     User user;
     sf::Time timeStarted;
     std::string saveFilePath;

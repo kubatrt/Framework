@@ -2,11 +2,6 @@
 
 using namespace km;
 
-// TODO observer pattern
-// TODO keyboardtpyer
-// TODO writing game
-// TODO chose exercises menu
-
 int main(int argc, char* argv)
 {
     KeyboardMaster game;

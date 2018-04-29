@@ -18,10 +18,10 @@ Dictionary::Dictionary(FilePath filePath)
 {
     loadFromFile(filePath);
 
-    std::wcerr << "DICTIONARY - " << filePath.c_str() << std::endl;
-    std::wcerr << "letters count: " << lettersCount_ << std::endl;
-    std::wcerr << "longest word: " << longestWord_ << std::endl;
-    std::wcerr << "shortest word: " << shortestWord_ << std::endl;
+    std::wcerr << "DICTIONARY - " << filePath.c_str() << std::endl
+         << "letters count: " << lettersCount_ << std::endl
+         << "longest word: " << longestWord_ << std::endl
+         << "shortest word: " << shortestWord_ << std::endl;
 }
 
 void Dictionary::loadFromFile(FilePath filePath)

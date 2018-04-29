@@ -48,46 +48,4 @@ void CatchGame::handleEvents()
     }
 }
 
-/*
-int CatchGame::run()
-{
-    //constexpr unsigned ticksPerSecond = 60;	//ticks per seconds for fixedTimeUpdate
-    //const sf::Time timePerUpdate = sf::seconds(1.f / static_cast<float>(ticksPerSecond));
-    //unsigned ticks = 0;
-
-    sf::Clock timer;
-    auto lastTime = sf::Time::Zero;
-    //auto lag = sf::Time::Zero;
-
-    while (window_.isOpen() )
-    {
-        // TODO: (time) move elsewhere
-        auto time = timer.getElapsedTime();
-        auto elapsed = time - lastTime;
-        lastTime = time;
-        //lag += elapsed;
-
-        // Real time update
-        update(elapsed); 
-
-        // Fixed time update
-        while (lag >= timePerUpdate)
-        {
-            ticks++;
-            lag -= timePerUpdate;
-            auto& state = getCurrentState();
-            state.fixedUpdate(elapsed);
-        }
-
-        // Render
-        draw(window_);
-
-        //Handle window events
-        handleEvents();
-        tryPop();
-    }
-
-    return 0;
-}
-*/
 }
